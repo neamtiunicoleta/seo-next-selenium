@@ -3,7 +3,7 @@ package com.tests.Risks.RiskAsset;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -17,7 +17,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 public class CreateRiskAssetTest extends BaseTest {
 
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void createRiskAsset() {
@@ -26,12 +26,12 @@ public class CreateRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("120");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.inputKeyField("120");
-		createItemsPageSteps.inputDescriptionField("Seo Risk");
-		createItemsPageSteps.checkActive();
+		itemsPageSteps.inputKeyField("120");
+		itemsPageSteps.inputDescriptionField("Seo Risk");
+		itemsPageSteps.checkActive();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		abstractPageSteps.checkIfElementExists("120");
-		createItemsPageSteps.checkDescription("120", "Seo Risk");
+		itemsPageSteps.checkIfElementIsPresent("120");
+		itemsPageSteps.checkDescription("120", "Seo Risk");
 		abstractPageSteps.selectItemFromGrid("120");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();

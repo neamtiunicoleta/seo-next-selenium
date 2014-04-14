@@ -21,6 +21,38 @@ public class AbstractPage extends PageObject {
 				.implicitlyWait(Delay.DEFAULT, TimeUnit.SECONDS);
 	}
 
+	private void implicitlyWait(long time) {
+		getDriver().manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+	}
+
+	public void implicitlyWaitDefault() {
+		implicitlyWait(Delay.DEFAULT);
+	}
+
+	public void implicitlyWaitSmall() {
+		implicitlyWait(Delay.SMALL);
+	}
+
+	public void implicitlyWaitReasonable() {
+		implicitlyWait(Delay.REASONABLE);
+	}
+
+	public void implicitlyWaitExtraSmall() {
+		implicitlyWait(Delay.EXTRA_SMALL);
+	}
+
+	public void implicitlyWaitMedium() {
+		implicitlyWait(Delay.MEDIUM);
+	}
+
+	public void implicitlyWaitLarge() {
+		implicitlyWait(Delay.LARGE);
+	}
+
+	public void implicitlyWaitExtraLarge() {
+		implicitlyWait(Delay.EXTRA_LARGE);
+	}
+
 	public void switchToCreateIframe() {
 		WebElement createIframe = getDriver().findElement(
 				By.cssSelector("iframe[class*='dlgFrame']"));
@@ -79,18 +111,18 @@ public class AbstractPage extends PageObject {
 		return element;
 	}
 
-	public boolean checkIfElementExists(String id) {
-		List<WebElement> gridList = getDriver()
-				.findElements(
-						By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"));
-		for (WebElement item : gridList) {
-			if (item.getText().contains(id)) {
-				return true;
-			}
-
-		}
-		return false;
-	}
+// public boolean checkIfElementExists(String id) {
+	// List<WebElement> gridList = getDriver()
+	// .findElements(
+	// By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"));
+	// for (WebElement item : gridList) {
+	// if (item.getText().contains(id)) {
+	// return true;
+	// }
+	//
+	// }
+	// return false;
+	// }
 
 	public void selectItemFromGrid(String itemId) {
 		List<WebElement> gridList = getDriver()
@@ -159,4 +191,55 @@ public class AbstractPage extends PageObject {
 		waitABit(3000);
 	}
 
+	public List<WebElement> getVisibleElementsFromList(
+			List<WebElement> elementsList) {
+		for (int i = 0; i < elementsList.size(); i++) {
+			WebElement element = elementsList.get(i);
+			if (!$(element).isCurrentlyVisible()) {
+				elementsList.remove(i);
+				i--;
+			}
+		}
+		return elementsList;
+	}
+
+	public boolean checkIfElementWithSpecifiedTextExistsInList(By by,
+			boolean ignoreCase, boolean equals, String... terms) {
+		implicitlyWaitReasonable();
+		List<WebElement> elementsList = getVisibleElementsFromList(getDriver()
+				.findElements(by));
+		for (WebElement element : elementsList) {
+			String currentElementName = element.getText().trim();
+			if (ignoreCase)
+				currentElementName = currentElementName.toLowerCase();
+			boolean matched = false;
+			if (terms.length == 1) {
+				if (ignoreCase)
+					matched = equals ? currentElementName.equals(terms[0]
+							.toLowerCase()) : currentElementName
+							.contains(terms[0].toLowerCase());
+				else
+					matched = equals ? currentElementName.equals(terms[0])
+							: currentElementName.contains(terms[0]);
+			} else
+				matched = StringUtils.checkIfTextContainsTerms(
+						currentElementName, ignoreCase, terms);
+			if (matched)
+				return true;
+		}
+		return false;
+	}
+
+	public WebElement getElementIfExists(By by, int waitingTime,
+			TimeUnit timeUnit) {
+		getDriver().manage().timeouts().implicitlyWait(waitingTime, timeUnit);
+		try {
+			WebElement element = getDriver().findElement(by);
+			implicitlyWaitDefault();
+			return element;
+		} catch (Exception e) {
+			implicitlyWaitDefault();
+			return null;
+		}
+	}
 }

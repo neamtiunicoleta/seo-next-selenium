@@ -8,58 +8,58 @@ import net.thucydides.core.pages.Pages;
 
 import com.tools.AbstractSteps;
 
-public class CreateItemsPageSteps extends AbstractSteps {
+public class ItemsPageSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 
-	public CreateItemsPageSteps(Pages pages) {
+	public ItemsPageSteps(Pages pages) {
 		super(pages);
 	}
 
 	@Step
 	public void inputKeyField(String key) {
-		createItemsPage().switchToCreateIframe();
-		createItemsPage().inputKeyField(key);
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
 	}
 
 	@Step
 	public void inputDescriptionField(String description) {
-		createItemsPage().inputDescriptionField(description);
+		itemsPage().inputDescriptionField(description);
 	}
 
 	@Step
 	public void selectRisk(String riskCategory) {
-		createItemsPage().selectRisk(riskCategory);
+		itemsPage().selectRisk(riskCategory);
 	}
 
 	@Step
 	public void checkActive() {
-		createItemsPage().checkActive();
+		itemsPage().checkActive();
 	}
 
 	@Step
 	public void checkDescription(String id, String description) {
-		createItemsPage().checkDescription(id, description);
+		itemsPage().checkDescription(id, description);
 	}
 
 	@StepGroup
 	public void createRiskCriteria(String key, String description,
 			String riskCategory) {
-		createItemsPage().switchToCreateIframe();
-		createItemsPage().inputKeyField(key);
-		createItemsPage().inputDescriptionField(description);
-		createItemsPage().selectRisk(riskCategory);
-		createItemsPage().checkActive();
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
+		itemsPage().inputDescriptionField(description);
+		itemsPage().selectRisk(riskCategory);
+		itemsPage().checkActive();
 		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
 	@StepGroup
 	public void createRiskCategoryOrAsset(String key, String description) {
-		createItemsPage().switchToCreateIframe();
-		createItemsPage().inputKeyField(key);
-		createItemsPage().inputDescriptionField(description);
-		createItemsPage().checkActive();
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
+		itemsPage().inputDescriptionField(description);
+		itemsPage().checkActive();
 		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
 	}
@@ -67,41 +67,46 @@ public class CreateItemsPageSteps extends AbstractSteps {
 	@Step
 	public void checkThatCategoryExists(String id) {
 		abstractPage().switchToCreateIframe();
-		Assert.assertTrue("The category shouln't be displayed!",
-				createItemsPage().checkIfCategoryExists(id));
+		Assert.assertTrue("The category shouln't be displayed!", itemsPage()
+				.checkIfCategoryExists(id));
 	}
 
 	@Step
 	public void checkThatCategoryDoesntExist(String id) {
 		abstractPage().switchToCreateIframe();
-		Assert.assertFalse("The category shouln't be displayed!",
-				createItemsPage().checkIfCategoryExists(id));
+		Assert.assertFalse("The category shouln't be displayed!", itemsPage()
+				.checkIfCategoryExists(id));
 	}
 
 	@Step
 	public void inputCodeField(String code) {
 		abstractPage().switchToCreateIframe();
-		createItemsPage().inputCodeField(code);
+		itemsPage().inputCodeField(code);
 	}
 
 	@Step
 	public void inputTitleField(String title) {
-		createItemsPage().inputTitleField(title);
+		itemsPage().inputTitleField(title);
 	}
 
 	@Step
 	public void checkTitle(String id, String title) {
-		createItemsPage().checkTitle(id, title);
+		itemsPage().checkTitle(id, title);
 	}
 
 	@StepGroup
 	public void createBusinessCode(String code, String title, String risk) {
-		createItemsPage().switchToCreateIframe();
-		createItemsPage().inputCodeField(code);
-		createItemsPage().inputTitleField(title);
-		createItemsPage().selectRisk(risk);
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputCodeField(code);
+		itemsPage().inputTitleField(title);
+		itemsPage().selectRisk(risk);
 		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@Step
+	public void checkIfElementIsPresent(String key) {
+		itemsPage().checkIfElementIsPresent(key);
 	}
 
 }

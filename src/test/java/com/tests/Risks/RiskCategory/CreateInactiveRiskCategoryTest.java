@@ -3,7 +3,7 @@ package com.tests.Risks.RiskCategory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -17,7 +17,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 public class CreateInactiveRiskCategoryTest extends BaseTest {
 
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void createInactiveRiskCategory() {
@@ -26,19 +26,17 @@ public class CreateInactiveRiskCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("196");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.inputKeyField("196");
-		createItemsPageSteps.inputDescriptionField("Seo Risk");
+		itemsPageSteps.inputKeyField("196");
+		itemsPageSteps.inputDescriptionField("Seo Risk");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		abstractPageSteps.checkIfElementExists("196");
-		createItemsPageSteps.checkDescription("196", "Seo Risk");
+		itemsPageSteps.checkIfElementIsPresent("196");
+		itemsPageSteps.checkDescription("196", "Seo Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.checkThatCategoryDoesntExist("196");
+		itemsPageSteps.checkThatCategoryDoesntExist("196");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.selectItemFromGrid("196");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		abstractPageSteps.deleteElementIfExists("196");
 	}
 
 }

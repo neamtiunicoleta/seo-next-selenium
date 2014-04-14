@@ -1,16 +1,20 @@
-package com.pages.risks;
+package com.pages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import junit.framework.Assert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.tools.AbstractPage;
+import com.tools.Delay;
 
-public class CreateItemsPage extends AbstractPage {
+public class ItemsPage extends AbstractPage {
 
-	public CreateItemsPage(WebDriver driver) {
+	public ItemsPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -82,4 +86,24 @@ public class CreateItemsPage extends AbstractPage {
 	public void checkTitle(String id, String title) {
 		checkTextFromField("td:nth-child(3)", id, title);
 	}
+
+	public boolean checkIfElementIsPresent(String key) {
+		boolean hasMorePages = true;
+		boolean foundDocument = false;
+		while (hasMorePages && !foundDocument) {
+			foundDocument = checkIfElementWithSpecifiedTextExistsInList(
+					By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"),
+					true, false, key);
+			WebElement nextPageButton = getElementIfExists(
+					By.cssSelector("a[id*='btn_Next']"), Delay.SMALL,
+					TimeUnit.SECONDS);
+			if (nextPageButton == null) {
+				hasMorePages = false;
+			} else if (!foundDocument) {
+				nextPageButton.click();
+			}
+		}
+		return foundDocument;
+	}
+
 }

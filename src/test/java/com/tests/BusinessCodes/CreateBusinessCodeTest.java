@@ -7,7 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -17,7 +17,7 @@ import com.tools.Constants;
 public class CreateBusinessCodeTest extends BaseTest {
 
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void createBusinessCode() {
@@ -27,20 +27,20 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("702");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.inputCodeField("594");
-		createItemsPageSteps.inputTitleField("Kenya");
-		createItemsPageSteps.selectRisk("893");
+		itemsPageSteps.inputCodeField("594");
+		itemsPageSteps.inputTitleField("Kenya");
+		itemsPageSteps.selectRisk("893");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		abstractPageSteps.checkIfElementExists("594");
-		createItemsPageSteps.checkTitle("594", "Kenya");
+		itemsPageSteps.checkIfElementIsPresent("594");
+		itemsPageSteps.checkTitle("594", "Kenya");
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();

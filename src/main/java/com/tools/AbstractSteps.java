@@ -3,7 +3,7 @@ package com.tools;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 
-import com.pages.risks.CreateItemsPage;
+import com.pages.ItemsPage;
 
 public class AbstractSteps extends ScenarioSteps {
 
@@ -17,8 +17,8 @@ public class AbstractSteps extends ScenarioSteps {
 		return getPages().currentPageAt(AbstractPage.class);
 	}
 
-	public CreateItemsPage createItemsPage() {
-		return getPages().currentPageAt(CreateItemsPage.class);
+	public ItemsPage itemsPage() {
+		return getPages().currentPageAt(ItemsPage.class);
 	}
 
 	public static String[] getVarargs(String parameter) {

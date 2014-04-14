@@ -7,8 +7,8 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
 import com.steps.ExportFiles;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -20,7 +20,7 @@ public class ExportCriteriasTest extends BaseTest {
 	@Steps
 	public ExportFiles exportFiles;
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void exportListOfCriterias() {
@@ -31,12 +31,12 @@ public class ExportCriteriasTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("35");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("35", "Category Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("35", "Category Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCriteria("212", "Edit Risk", "35");
+		itemsPageSteps.createRiskCriteria("212", "Edit Risk", "35");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCriteria("125", "Edit Risk", "35");
+		itemsPageSteps.createRiskCriteria("125", "Edit Risk", "35");
 		exportFiles.deleteFilesFromDownloadsFolder("RiskCriteriasList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles

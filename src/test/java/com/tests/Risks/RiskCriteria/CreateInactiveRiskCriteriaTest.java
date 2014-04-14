@@ -7,7 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -17,7 +17,7 @@ import com.tools.Constants;
 public class CreateInactiveRiskCriteriaTest extends BaseTest {
 
 	@Steps
-	public CreateItemsPageSteps creaeItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void createInactiveRiskCriteria() {
@@ -27,29 +27,26 @@ public class CreateInactiveRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("285");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		creaeItemsPageSteps.createRiskCategoryOrAsset("285", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("285", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		creaeItemsPageSteps.inputKeyField("52");
-		creaeItemsPageSteps.inputDescriptionField("Seo Next");
-		creaeItemsPageSteps.selectRisk("285");
+		itemsPageSteps.inputKeyField("52");
+		itemsPageSteps.inputDescriptionField("Seo Next");
+		itemsPageSteps.selectRisk("285");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		abstractPageSteps.checkIfElementExists("52");
-		creaeItemsPageSteps.checkDescription("52", "Seo Next");
+		itemsPageSteps.checkIfElementIsPresent("52");
+		itemsPageSteps.checkDescription("52", "Seo Next");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		creaeItemsPageSteps.checkThatCategoryDoesntExist("52");
+		itemsPageSteps.checkThatCategoryDoesntExist("52");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
-		abstractPageSteps.selectItemFromGrid("52");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		abstractPageSteps.deleteElementIfExists("52");
+		;
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.selectItemFromGrid("285");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		abstractPageSteps.deleteElementIfExists("285");
 
 	}
 }

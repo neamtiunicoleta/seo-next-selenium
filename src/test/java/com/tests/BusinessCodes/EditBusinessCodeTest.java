@@ -7,7 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -17,7 +17,7 @@ import com.tools.Constants;
 public class EditBusinessCodeTest extends BaseTest {
 
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void editBusinessCode() {
@@ -27,21 +27,23 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("702");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createBusinessCode("594", "Kenya", "893");
+		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
+		itemsPageSteps.checkIfElementIsPresent("594");
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
-		createItemsPageSteps.inputTitleField("Germany");
+		itemsPageSteps.inputTitleField("Germany");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		createItemsPageSteps.checkTitle("594", "Germany");
+		itemsPageSteps.checkIfElementIsPresent("594");
+		itemsPageSteps.checkTitle("594", "Germany");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");

@@ -7,8 +7,8 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
 import com.steps.ExportFiles;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -20,7 +20,7 @@ public class ExportCategoriesTest extends BaseTest {
 	@Steps
 	public ExportFiles exportFiles;
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 
 	@Test
 	public void exportListOfCategories() {
@@ -30,9 +30,9 @@ public class ExportCategoriesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("136");
 		abstractPageSteps.deleteElementIfExists("147");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("136", "First Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("136", "First Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("147", "Second Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("147", "Second Risk");
 		exportFiles.deleteFilesFromDownloadsFolder("RiskCategoriesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles

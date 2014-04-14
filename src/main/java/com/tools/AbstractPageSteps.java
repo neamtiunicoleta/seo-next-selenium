@@ -32,22 +32,23 @@ public class AbstractPageSteps extends AbstractSteps {
 	@Step
 	public void selectActionFromManagePagesRibbon(String action) {
 		abstractPage().selectActionFromHeader("ACTIONS");
+		waitABit(2000);
 		abstractPage().selectActionFromRibbon(action);
 	}
 
-	@Step
-	public void checkIfElementExists(String key) {
-		Assert.assertTrue("The element is not present!", abstractPage()
-				.checkIfElementExists(key));
-		waitABit(2000);
+//	@Step
+//	public void checkIfElementExists(String key) {
+//		Assert.assertTrue("The element is not present!", abstractPage()
+//				.checkIfElementExists(key));
+//		waitABit(2000);
+//
+//	}
 
-	}
-
-	@Step
-	public void checkIfElementDoesntExists(String key) {
-		Assert.assertFalse("The element is present!", abstractPage()
-				.checkIfElementExists(key));
-	}
+//	@Step
+//	public void checkIfElementDoesntExists(String key) {
+//		Assert.assertFalse("The element is present!", abstractPage()
+//				.checkIfElementExists(key));
+//	}
 
 	@Step
 	public void switchToCreateIframe() {
@@ -66,7 +67,7 @@ public class AbstractPageSteps extends AbstractSteps {
 
 	@Step
 	public void deleteElementIfExists(String id) {
-		if (abstractPage().checkIfElementExists(id)) {
+		if (itemsPage().checkIfElementIsPresent(id)) {
 			abstractPage().selectItemFromGrid(id);
 			selectActionFromManagePagesRibbon("Delete");
 			abstractPage().clickOk();

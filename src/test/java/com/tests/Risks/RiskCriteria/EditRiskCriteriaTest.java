@@ -7,7 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
 import com.tools.Application;
@@ -17,7 +17,7 @@ import com.tools.Constants;
 @RunWith(ThucydidesRunner.class)
 public class EditRiskCriteriaTest extends BaseTest {
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
 
@@ -29,23 +29,21 @@ public class EditRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("292");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("292", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("292", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCriteria("293", "Edit Risk", "292");
+		itemsPageSteps.createRiskCriteria("293", "Edit Risk", "292");
+		itemsPageSteps.checkIfElementIsPresent("293");
 		abstractPageSteps.selectItemFromGrid("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
-		createItemsPageSteps.inputDescriptionField("Edit Risk Criteria");
+		itemsPageSteps.inputDescriptionField("Edit Risk Criteria");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		createItemsPageSteps.checkDescription("293", "Edit Risk Criteria");
-		abstractPageSteps.selectItemFromGrid("293");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		itemsPageSteps.checkIfElementIsPresent("293");
+		itemsPageSteps.checkDescription("293", "Edit Risk Criteria");
+		abstractPageSteps.deleteElementIfExists("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.selectItemFromGrid("292");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		abstractPageSteps.deleteElementIfExists("292");
 	}
 
 }

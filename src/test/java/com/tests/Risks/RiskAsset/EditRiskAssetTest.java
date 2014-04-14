@@ -7,7 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.CreateItemsPageSteps;
+import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
 import com.tools.Application;
@@ -16,8 +16,9 @@ import com.tools.Constants;
 @Story(Application.Edit.EditRisks.EditRiskAssets.class)
 @RunWith(ThucydidesRunner.class)
 public class EditRiskAssetTest extends BaseTest {
+
 	@Steps
-	public CreateItemsPageSteps createItemsPageSteps;
+	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
 
@@ -28,16 +29,16 @@ public class EditRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("21");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		createItemsPageSteps.createRiskCategoryOrAsset("21", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("21", "Edit Risk");
+		itemsPageSteps.checkIfElementIsPresent("21");
 		abstractPageSteps.selectItemFromGrid("21");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
-		createItemsPageSteps.inputDescriptionField("Edit Risk Category");
+		itemsPageSteps.inputDescriptionField("Edit Risk Category");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		createItemsPageSteps.checkDescription("21", "Edit Risk Category");
-		abstractPageSteps.selectItemFromGrid("21");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
-		abstractPageSteps.clickOk();
+		itemsPageSteps.checkIfElementIsPresent("21");
+		itemsPageSteps.checkDescription("21", "Edit Risk Category");
+		abstractPageSteps.deleteElementIfExists("21");
 	}
 
 }
