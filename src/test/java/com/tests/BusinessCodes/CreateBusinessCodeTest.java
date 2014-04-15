@@ -35,6 +35,7 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputCodeField("594");
 		itemsPageSteps.inputTitleField("Kenya");
 		itemsPageSteps.selectRisk("893");

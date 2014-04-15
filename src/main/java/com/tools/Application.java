@@ -19,6 +19,10 @@ public class Application {
 		public class CreateBusinessCode {
 
 		}
+
+		public class CreateCurrency {
+
+		}
 	}
 
 	public class Edit {
@@ -37,6 +41,10 @@ public class Application {
 		}
 
 		public class EditBusinessode {
+
+		}
+
+		public class EditCurrency {
 
 		}
 	}

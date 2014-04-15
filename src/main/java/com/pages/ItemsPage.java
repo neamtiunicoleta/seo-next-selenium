@@ -48,6 +48,23 @@ public class ItemsPage extends AbstractPage {
 
 	}
 
+	public void selectCountry(String countryName) {
+		getDriver().findElement(By.cssSelector("select[id*='ddlCountry']"))
+				.click();
+		List<WebElement> CountriesList = getDriver().findElements(
+				By.cssSelector("select[id*='ddlCountry'] option"));
+		boolean foundOption = false;
+		for (WebElement country : CountriesList) {
+			if (country.getText().equals(countryName)) {
+				foundOption = true;
+				country.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The country was not found!", foundOption);
+
+	}
+
 	public boolean checkIfCategoryExists(String id) {
 		getDriver().findElement(By.cssSelector("select[id*='ddlRisk']"))
 				.click();
@@ -72,19 +89,27 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void inputCodeField(String code) {
-		WebElement codeField = returnField("input", "txtCode");
+		WebElement codeField = returnField("input", "Code");
 		element(codeField).clear();
 		element(codeField).type(code);
 	}
 
 	public void inputTitleField(String title) {
-		WebElement titleField = returnField("input", "txtTitle");
+		WebElement titleField = returnField("input", "Title");
 		element(titleField).clear();
 		element(titleField).type(title);
 	}
 
 	public void checkTitle(String id, String title) {
 		checkTextFromField("td:nth-child(3)", id, title);
+	}
+
+	public void checkRoundingValue(String id, String value) {
+		checkTextFromField("td:nth-child(5)", id, value);
+	}
+
+	public void checkCountry(String id, String country) {
+		checkTextFromField("td:nth-child(4)", id, country);
 	}
 
 	public boolean checkIfElementIsPresent(String key) {
@@ -106,4 +131,15 @@ public class ItemsPage extends AbstractPage {
 		return foundDocument;
 	}
 
+	public void inputRoundingValue(String roundingValue) {
+		WebElement value = returnField("input", "idRoundingValue");
+		element(value).clear();
+		element(value).type(roundingValue);
+	}
+
+	public void checkHighImportance() {
+		WebElement highImportanceCheckbox = returnField("input",
+				"HighImportance");
+		element(highImportanceCheckbox).click();
+	}
 }

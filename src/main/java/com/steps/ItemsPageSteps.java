@@ -50,7 +50,6 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputDescriptionField(description);
 		itemsPage().selectRisk(riskCategory);
 		itemsPage().checkActive();
-		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
@@ -60,27 +59,25 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputKeyField(key);
 		itemsPage().inputDescriptionField(description);
 		itemsPage().checkActive();
-		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
 	@Step
 	public void checkThatCategoryExists(String id) {
 		abstractPage().switchToCreateIframe();
-		Assert.assertTrue("The category shouln't be displayed!", itemsPage()
+		Assert.assertTrue("The category shouldn't be displayed!", itemsPage()
 				.checkIfCategoryExists(id));
 	}
 
 	@Step
 	public void checkThatCategoryDoesntExist(String id) {
 		abstractPage().switchToCreateIframe();
-		Assert.assertFalse("The category shouln't be displayed!", itemsPage()
+		Assert.assertFalse("The category shouldn't be displayed!", itemsPage()
 				.checkIfCategoryExists(id));
 	}
 
 	@Step
 	public void inputCodeField(String code) {
-		abstractPage().switchToCreateIframe();
 		itemsPage().inputCodeField(code);
 	}
 
@@ -100,13 +97,52 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputCodeField(code);
 		itemsPage().inputTitleField(title);
 		itemsPage().selectRisk(risk);
-		abstractPage().selectActionFromHeader("ACTIONS");
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
 	@Step
 	public void checkIfElementIsPresent(String key) {
-		itemsPage().checkIfElementIsPresent(key);
+		Assert.assertTrue("The element is not present", itemsPage()
+				.checkIfElementIsPresent(key));
+		waitABit(2000);
 	}
 
+	@Step
+	public void selectCountry(String countryName) {
+		itemsPage().selectCountry(countryName);
+	}
+
+	@Step
+	public void inputRoundingValue(String value) {
+		itemsPage().inputRoundingValue(value);
+	}
+
+	@Step
+	public void checkHighImportance() {
+		itemsPage().checkHighImportance();
+	}
+
+	@Step
+	public void checkRoundingValue(String id, String code) {
+		itemsPage().checkRoundingValue(id, code);
+	}
+
+	@Step
+	public void checkCountry(String id, String country) {
+		itemsPage().checkCountry(id, country);
+	}
+
+	@StepGroup
+	public void createCurrency(String key, String code, String title,
+			String country, String value) {
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
+		itemsPage().inputCodeField(code);
+		itemsPage().inputTitleField(title);
+		itemsPage().selectCountry(country);
+		itemsPage().inputRoundingValue(value);
+		itemsPage().checkActive();
+		itemsPage().checkHighImportance();
+		abstractPage().selectActionFromRibbon("Save");
+	}
 }

@@ -161,11 +161,9 @@ public class AbstractPage extends PageObject {
 			elemId = elemId.replace("\n", "");
 			elemId = elemId.replace(
 					"Use SHIFT+ENTER to open the menu (new window).", "");
-
 			if (elemId != null && id.contentEquals(elemId)) {
 				result = elemNow.findElement(By.cssSelector(fieldType))
 						.getText();
-
 				break;
 			}
 

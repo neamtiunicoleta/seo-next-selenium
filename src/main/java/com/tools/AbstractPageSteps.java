@@ -1,6 +1,5 @@
 package com.tools;
 
-import junit.framework.Assert;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 
@@ -35,20 +34,6 @@ public class AbstractPageSteps extends AbstractSteps {
 		waitABit(2000);
 		abstractPage().selectActionFromRibbon(action);
 	}
-
-//	@Step
-//	public void checkIfElementExists(String key) {
-//		Assert.assertTrue("The element is not present!", abstractPage()
-//				.checkIfElementExists(key));
-//		waitABit(2000);
-//
-//	}
-
-//	@Step
-//	public void checkIfElementDoesntExists(String key) {
-//		Assert.assertFalse("The element is present!", abstractPage()
-//				.checkIfElementExists(key));
-//	}
 
 	@Step
 	public void switchToCreateIframe() {
