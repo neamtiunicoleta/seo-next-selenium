@@ -1,5 +1,7 @@
 package com.tools;
 
+import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +12,16 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.sikuli.api.DesktopScreenRegion;
+import org.sikuli.api.ImageTarget;
+import org.sikuli.api.ScreenRegion;
+import org.sikuli.api.Target;
+import org.sikuli.api.robot.Keyboard;
+import org.sikuli.api.robot.Mouse;
+import org.sikuli.api.robot.desktop.DesktopKeyboard;
+import org.sikuli.api.robot.desktop.DesktopMouse;
+import org.sikuli.api.visual.Canvas;
+import org.sikuli.api.visual.DesktopCanvas;
 
 public class AbstractPage extends PageObject {
 
@@ -110,19 +122,6 @@ public class AbstractPage extends PageObject {
 		Assert.assertTrue("The field was not found", foundInput);
 		return element;
 	}
-
-// public boolean checkIfElementExists(String id) {
-	// List<WebElement> gridList = getDriver()
-	// .findElements(
-	// By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"));
-	// for (WebElement item : gridList) {
-	// if (item.getText().contains(id)) {
-	// return true;
-	// }
-	//
-	// }
-	// return false;
-	// }
 
 	public void selectItemFromGrid(String itemId) {
 		List<WebElement> gridList = getDriver()
@@ -239,5 +238,45 @@ public class AbstractPage extends PageObject {
 			implicitlyWaitDefault();
 			return null;
 		}
+	}
+
+	public void clickOnButtonUsingSikuli(String imagePath) throws Exception {
+		waitABit(3000);
+		ScreenRegion screenRegion = new DesktopScreenRegion();
+		Canvas canvas = new DesktopCanvas();
+		Mouse mouse = new DesktopMouse();
+		File image = new File(imagePath);
+		Target imageTarget = new ImageTarget(image);
+		screenRegion.wait(imageTarget, 5000);
+		ScreenRegion buttonScreenRegion = screenRegion.find(new ImageTarget(
+				image));
+		canvas.addLabel(buttonScreenRegion, "Searched Buton").display(3);
+		mouse.click(buttonScreenRegion.getCenter());
+	}
+
+	public WebElement waitUntilElementExists(By by, int waitSeconds) {
+		getDriver().manage().timeouts()
+				.implicitlyWait(Delay.EXTRA_SMALL_MS, TimeUnit.MILLISECONDS);
+		WebElement element = null;
+		for (int i = 0; i < waitSeconds * 2; i++) {
+			try {
+				element = getDriver().findElement(by);
+				implicitlyWaitDefault();
+				return element;
+			} catch (Exception e) {
+				// no need to do anything
+			}
+		}
+		Assert.fail(String.format(
+				"The searched element '%s' was not found after %d seconds!",
+				by.toString(), waitSeconds));
+		return element;
+	}
+
+	public void typeAndEnterUsingSikuli(String text) {
+		Keyboard keyboard = new DesktopKeyboard();
+		keyboard.type(text);
+		keyboard.keyDown(KeyEvent.VK_ENTER);
+		keyboard.keyUp(KeyEvent.VK_ENTER);
 	}
 }

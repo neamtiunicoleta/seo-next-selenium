@@ -4,6 +4,7 @@ import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 
 import com.pages.ItemsPage;
+import com.pages.UploadAssetsPage;
 
 public class AbstractSteps extends ScenarioSteps {
 
@@ -23,5 +24,9 @@ public class AbstractSteps extends ScenarioSteps {
 
 	public static String[] getVarargs(String parameter) {
 		return StringUtils.getSubstringsSplitByKey(parameter, "/");
+	}
+
+	public UploadAssetsPage uploadAssetsPage() {
+		return getPages().currentPageAt(UploadAssetsPage.class);
 	}
 }

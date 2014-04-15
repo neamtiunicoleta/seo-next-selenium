@@ -1,5 +1,7 @@
 package com.steps;
 
+import java.util.Date;
+
 import org.junit.Assert;
 
 import net.thucydides.core.annotations.Step;
@@ -7,6 +9,7 @@ import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.pages.Pages;
 
 import com.tools.AbstractSteps;
+import com.tools.DateUtils;
 
 public class ItemsPageSteps extends AbstractSteps {
 
@@ -144,5 +147,45 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().checkActive();
 		itemsPage().checkHighImportance();
 		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@Step
+	public void inputStartDate(String startDate) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputStartDate(startDate);
+	}
+
+	@Step
+	public void inputRate(String rate) {
+		itemsPage().inputRate(rate);
+	}
+
+	@StepGroup
+	public void createExchangeRateWithStartDate(String daysInFuture, String rate) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputStartDate(
+				DateUtils.toString(
+						DateUtils.addDays(new Date(),
+								Integer.parseInt(daysInFuture)), "dd/MM/yyyy"));
+		itemsPage().inputRate(rate);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@StepGroup
+	public void createExchangeRateWithYearToDate(String rate) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().checkYearToDate();
+		itemsPage().inputRate(rate);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@Step
+	public void checkEndDate(String startDate, String endDate) {
+		itemsPage().checkEndDate(startDate, endDate);
+	}
+
+	@Step
+	public void checkRate(String startDate, String rate) {
+		itemsPage().checkRate(startDate, rate);
 	}
 }

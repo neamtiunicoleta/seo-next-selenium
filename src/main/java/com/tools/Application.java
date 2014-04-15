@@ -23,6 +23,10 @@ public class Application {
 		public class CreateCurrency {
 
 		}
+
+		public class CreateExchangeRate {
+
+		}
 	}
 
 	public class Edit {
@@ -45,6 +49,17 @@ public class Application {
 		}
 
 		public class EditCurrency {
+
+		}
+
+		public class EditExchangeRate {
+
+		}
+
+	}
+
+	public class Import {
+		public class ImportCountries {
 
 		}
 	}

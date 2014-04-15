@@ -142,4 +142,29 @@ public class ItemsPage extends AbstractPage {
 				"HighImportance");
 		element(highImportanceCheckbox).click();
 	}
+
+	public void inputStartDate(String startDate) {
+		WebElement date = returnField("input", "StartDateDate");
+		element(date).clear();
+		element(date).type(startDate);
+	}
+
+	public void inputRate(String rate) {
+		WebElement exchangeRate = returnField("input", "idRate");
+		element(exchangeRate).clear();
+		element(exchangeRate).type(rate);
+	}
+
+	public void checkYearToDate() {
+		WebElement yearToDateCheckbox = returnField("input", "YTD");
+		element(yearToDateCheckbox).click();
+	}
+
+	public void checkEndDate(String startDate, String endDate) {
+		checkTextFromField("td:nth-child(3)", startDate, endDate);
+	}
+
+	public void checkRate(String startDate, String rate) {
+		checkTextFromField("td:nth-child(4)", startDate, rate);
+	}
 }

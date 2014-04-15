@@ -52,11 +52,10 @@ public class AbstractPageSteps extends AbstractSteps {
 
 	@Step
 	public void deleteElementIfExists(String id) {
-		if (itemsPage().checkIfElementIsPresent(id)) {
+		while ((itemsPage().checkIfElementIsPresent(id))) {
 			abstractPage().selectItemFromGrid(id);
 			selectActionFromManagePagesRibbon("Delete");
 			abstractPage().clickOk();
 		}
 	}
-
 }
