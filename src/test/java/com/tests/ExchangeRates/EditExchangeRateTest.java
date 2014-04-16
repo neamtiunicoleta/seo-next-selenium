@@ -55,7 +55,7 @@ public class EditExchangeRateTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
-		itemsPageSteps.checkRate(DateUtils.toString(
+		itemsPageSteps.checkRateFromGrid(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"), "589");
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(

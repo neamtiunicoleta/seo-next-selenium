@@ -36,7 +36,7 @@ public class EditRiskCategoryTest extends BaseTest {
 		itemsPageSteps.inputDescriptionField("Edit Risk Category");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("298");
-		itemsPageSteps.checkDescription("298", "Edit Risk Category");
+		itemsPageSteps.checkDescriptionFromGrid("298", "Edit Risk Category");
 		abstractPageSteps.deleteElementIfExists("298");
 	}
 

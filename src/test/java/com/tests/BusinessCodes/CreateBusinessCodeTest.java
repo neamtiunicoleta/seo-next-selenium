@@ -22,18 +22,20 @@ public class CreateBusinessCodeTest extends BaseTest {
 	@Test
 	public void createBusinessCode() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Business Codes");
+		abstractPageSteps.deleteElementIfExists("594");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("702");
+		abstractPageSteps.deleteElementIfExists("711");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("711", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "711");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputCodeField("594");
@@ -41,7 +43,8 @@ public class CreateBusinessCodeTest extends BaseTest {
 		itemsPageSteps.selectRisk("893");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594");
-		itemsPageSteps.checkTitle("594", "Kenya");
+		itemsPageSteps.checkTitleFromGrid("594", "Kenya");
+		itemsPageSteps.checkRiskCriteriaFromGrid("595", "893");
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();
@@ -49,7 +52,7 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("702");
+		abstractPageSteps.deleteElementIfExists("711");
 	}
 
 }

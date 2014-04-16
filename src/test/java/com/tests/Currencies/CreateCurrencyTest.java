@@ -31,15 +31,16 @@ public class CreateCurrencyTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.inputKeyField("562");
 		itemsPageSteps.inputCodeField("594f");
-		itemsPageSteps.inputTitleField("New Currency");
+		itemsPageSteps.inputTitleField("Euro");
 		itemsPageSteps.selectCountry("ANDORRA");
 		itemsPageSteps.inputRoundingValue("345");
-		itemsPageSteps.checkActive();
+		itemsPageSteps.clickOnActiveCheckBox();
 		itemsPageSteps.checkHighImportance();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594f");
-		itemsPageSteps.checkRoundingValue("594f", "345");
-		itemsPageSteps.checkCountry("594f", "ANDORRA");
+		itemsPageSteps.checkTitleFromGrid("594f", "Euro");
+		itemsPageSteps.checkRoundingValueFromGrid("594f", "345");
+		itemsPageSteps.checkCountryFromGrid("594f", "ANDORRA");
 		abstractPageSteps.deleteElementIfExists("594f");
 	}
 

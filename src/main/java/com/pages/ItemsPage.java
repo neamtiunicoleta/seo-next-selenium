@@ -32,8 +32,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void selectRisk(String category) {
-		getDriver().findElement(By.cssSelector("select[id*='ddlRisk']"))
-				.click();
+		getDriver().findElement(By.cssSelector("select[id*='Risk']")).click();
 		List<WebElement> riskCategoryList = getDriver().findElements(
 				By.cssSelector("select[id*='ddlRisk'] option"));
 		boolean foundOption = false;
@@ -79,12 +78,12 @@ public class ItemsPage extends AbstractPage {
 		return false;
 	}
 
-	public void checkActive() {
+	public void clickOnActiveCheckBox() {
 		WebElement activeCheckBox = returnField("input", "idFormSectionActive");
 		element(activeCheckBox).click();
 	}
 
-	public void checkDescription(String id, String description) {
+	public void checkDescriptionFromGrid(String id, String description) {
 		checkTextFromField("td.gridDescriptionColumn", id, description);
 	}
 
@@ -100,15 +99,31 @@ public class ItemsPage extends AbstractPage {
 		element(titleField).type(title);
 	}
 
-	public void checkTitle(String id, String title) {
+	public void checkTitleFromGrid(String id, String title) {
 		checkTextFromField("td:nth-child(3)", id, title);
 	}
 
-	public void checkRoundingValue(String id, String value) {
+	public void checkKeyForRisksFromGrid(String id, String key) {
+		checkTextFromField("td.ms-vb-title", id, key);
+	}
+
+	public void checkKeyForCurrenciesFromGrid(String id, String key) {
+		checkTextFromField("td:nth-child(2)", id, key);
+	}
+
+	public void checkRiskCategoryForCriteriasFromGrid(String id, String risk) {
+		checkTextFromField("td:nth-child(4)", id, risk);
+	}
+
+	public void checkCodeFromGrid(String id, String code) {
+		checkTextFromField("td:nth-child(2)", id, code);
+	}
+
+	public void checkRoundingValueFromGrid(String id, String value) {
 		checkTextFromField("td:nth-child(5)", id, value);
 	}
 
-	public void checkCountry(String id, String country) {
+	public void checkCountryFromGrid(String id, String country) {
 		checkTextFromField("td:nth-child(4)", id, country);
 	}
 
@@ -137,7 +152,7 @@ public class ItemsPage extends AbstractPage {
 		element(value).type(roundingValue);
 	}
 
-	public void checkHighImportance() {
+	public void clickOnHighImportanceCheckBox() {
 		WebElement highImportanceCheckbox = returnField("input",
 				"HighImportance");
 		element(highImportanceCheckbox).click();
@@ -155,16 +170,30 @@ public class ItemsPage extends AbstractPage {
 		element(exchangeRate).type(rate);
 	}
 
-	public void checkYearToDate() {
+	public void clickOnYearToDateCheckBox() {
 		WebElement yearToDateCheckbox = returnField("input", "YTD");
 		element(yearToDateCheckbox).click();
 	}
 
-	public void checkEndDate(String startDate, String endDate) {
+	public void checkEndDateFromGrid(String startDate, String endDate) {
 		checkTextFromField("td:nth-child(3)", startDate, endDate);
 	}
 
-	public void checkRate(String startDate, String rate) {
+	public void checkRateFromGrid(String startDate, String rate) {
 		checkTextFromField("td:nth-child(4)", startDate, rate);
+	}
+
+	// public void checkRiskCategoryForFromGrid(String id, String riskCategory)
+	// {
+	// checkTextFromField("td.gridDescriptionColumn", id, riskCategory);
+	// }
+
+	public void checkNameForBusinessCodesFromGrid(String id, String name) {
+		checkTextFromField("td:nth-child(3)", id, name);
+	}
+
+	public void checkRiskCriteriaFromGrid(String id,
+			String riskCriteria) {
+		checkTextFromField("td:nth-child(4)", id, riskCriteria);
 	}
 }

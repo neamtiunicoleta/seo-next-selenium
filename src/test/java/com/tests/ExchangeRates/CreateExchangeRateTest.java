@@ -53,7 +53,7 @@ public class CreateExchangeRateTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
-		itemsPageSteps.checkEndDate(DateUtils.toString(
+		itemsPageSteps.checkEndDateFromGrid(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"), DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("3")),
@@ -61,11 +61,11 @@ public class CreateExchangeRateTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"));
-		itemsPageSteps.checkEndDate(DateUtils.toString(
+		itemsPageSteps.checkEndDateFromGrid(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"), "");
 		itemsPageSteps.checkIfElementIsPresent("Year To Date");
-		itemsPageSteps.checkEndDate("Year To Date", DateUtils.toString(
+		itemsPageSteps.checkEndDateFromGrid("Year To Date", DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("1")),
 				"dd/MM/yyyy"));
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(

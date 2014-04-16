@@ -36,13 +36,13 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkActive() {
-		itemsPage().checkActive();
+	public void clickOnActiveCheckBox() {
+		itemsPage().clickOnActiveCheckBox();
 	}
 
 	@Step
-	public void checkDescription(String id, String description) {
-		itemsPage().checkDescription(id, description);
+	public void checkDescriptionFromGrid(String id, String description) {
+		itemsPage().checkDescriptionFromGrid(id, description);
 	}
 
 	@StepGroup
@@ -52,7 +52,7 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputKeyField(key);
 		itemsPage().inputDescriptionField(description);
 		itemsPage().selectRisk(riskCategory);
-		itemsPage().checkActive();
+		itemsPage().clickOnActiveCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
@@ -61,7 +61,7 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().switchToCreateIframe();
 		itemsPage().inputKeyField(key);
 		itemsPage().inputDescriptionField(description);
-		itemsPage().checkActive();
+		itemsPage().clickOnActiveCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
@@ -90,8 +90,8 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkTitle(String id, String title) {
-		itemsPage().checkTitle(id, title);
+	public void checkTitleFromGrid(String id, String title) {
+		itemsPage().checkTitleFromGrid(id, title);
 	}
 
 	@StepGroup
@@ -122,17 +122,17 @@ public class ItemsPageSteps extends AbstractSteps {
 
 	@Step
 	public void checkHighImportance() {
-		itemsPage().checkHighImportance();
+		itemsPage().clickOnHighImportanceCheckBox();
 	}
 
 	@Step
-	public void checkRoundingValue(String id, String code) {
-		itemsPage().checkRoundingValue(id, code);
+	public void checkRoundingValueFromGrid(String id, String code) {
+		itemsPage().checkRoundingValueFromGrid(id, code);
 	}
 
 	@Step
-	public void checkCountry(String id, String country) {
-		itemsPage().checkCountry(id, country);
+	public void checkCountryFromGrid(String id, String country) {
+		itemsPage().checkCountryFromGrid(id, country);
 	}
 
 	@StepGroup
@@ -144,8 +144,8 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputTitleField(title);
 		itemsPage().selectCountry(country);
 		itemsPage().inputRoundingValue(value);
-		itemsPage().checkActive();
-		itemsPage().checkHighImportance();
+		itemsPage().clickOnActiveCheckBox();
+		itemsPage().clickOnHighImportanceCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
@@ -174,18 +174,62 @@ public class ItemsPageSteps extends AbstractSteps {
 	@StepGroup
 	public void createExchangeRateWithYearToDate(String rate) {
 		abstractPage().switchToCreateIframe();
-		itemsPage().checkYearToDate();
+		itemsPage().clickOnYearToDateCheckBox();
 		itemsPage().inputRate(rate);
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
 	@Step
-	public void checkEndDate(String startDate, String endDate) {
-		itemsPage().checkEndDate(startDate, endDate);
+	public void checkEndDateFromGrid(String startDate, String endDate) {
+		itemsPage().checkEndDateFromGrid(startDate, endDate);
 	}
 
 	@Step
-	public void checkRate(String startDate, String rate) {
-		itemsPage().checkRate(startDate, rate);
+	public void checkRateFromGrid(String startDate, String rate) {
+		itemsPage().checkRateFromGrid(startDate, rate);
+	}
+
+	@StepGroup
+	public void createCountry(String name, String code, String risk) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputTitleField(name);
+		itemsPage().inputCodeField(code);
+		itemsPage().selectRisk(risk);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	// @Step
+	// public void checkRiskCategoryFromGrid(String id, String riskCategory) {
+	// itemsPage().checkRiskCategoryFromGrid(id, riskCategory);
+	// }
+
+	@Step
+	public void checkRiskCriteriaFromGrid(String id, String riskCriteria) {
+		itemsPage().checkRiskCriteriaFromGrid(id, riskCriteria);
+	}
+
+	@Step
+	public void checkKeyForRisksFromGrid(String id, String key) {
+		itemsPage().checkKeyForRisksFromGrid(id, key);
+	}
+
+	@Step
+	public void checkRiskCategoryForCriteriasFromGrid(String id, String risk) {
+		itemsPage().checkRiskCategoryForCriteriasFromGrid(id, risk);
+	}
+
+	@Step
+	public void checkKeyForCurrenciesFromGrid(String id, String key) {
+		itemsPage().checkKeyForCurrenciesFromGrid(id, key);
+	}
+
+	@Step
+	public void checkCodeFromGrid(String id, String code) {
+		itemsPage().checkCodeFromGrid(id, code);
+	}
+
+	@Step
+	public void checkNameForBusinessCodesFromGrid(String id, String name) {
+		itemsPage().checkNameForBusinessCodesFromGrid(id, name);
 	}
 }

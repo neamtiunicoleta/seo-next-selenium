@@ -22,15 +22,22 @@ public class EditBusinessCodeTest extends BaseTest {
 	@Test
 	public void editBusinessCode() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Business Codes");
+		abstractPageSteps.deleteElementIfExists("594");
+		abstractPageSteps.deleteElementIfExists("595");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
+		abstractPageSteps.deleteElementIfExists("894");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("702");
+		abstractPageSteps.deleteElementIfExists("78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("702", "Edit Risk");
+		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "702");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
@@ -40,16 +47,20 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputCodeField("595");
 		itemsPageSteps.inputTitleField("Germany");
+		itemsPageSteps.selectRisk("894");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("594");
-		itemsPageSteps.checkTitle("594", "Germany");
-		abstractPageSteps.deleteElementIfExists("594");
+		itemsPageSteps.checkIfElementIsPresent("595");
+		itemsPageSteps.checkTitleFromGrid("595", "Germany");
+		itemsPageSteps.checkRiskCriteriaFromGrid("595", "894");
+		abstractPageSteps.deleteElementIfExists("595");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
+		abstractPageSteps.deleteElementIfExists("894");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("702");
+		abstractPageSteps.deleteElementIfExists("78");
 	}
 
 }

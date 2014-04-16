@@ -30,7 +30,7 @@ public class CreateInactiveRiskCategoryTest extends BaseTest {
 		itemsPageSteps.inputDescriptionField("Seo Risk");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("196");
-		itemsPageSteps.checkDescription("196", "Seo Risk");
+		itemsPageSteps.checkDescriptionFromGrid("196", "Seo Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.checkThatCategoryDoesntExist("196");

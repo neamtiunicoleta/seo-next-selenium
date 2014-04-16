@@ -29,18 +29,21 @@ public class EditCurrencyTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "g59k", "edit currency",
-				"AUSTRIA", "985");
+		itemsPageSteps.createCurrency("384", "g59k", "USD", "AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		abstractPageSteps.selectItemFromGrid("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputCodeField("g60k");
+		itemsPageSteps.inputTitleField("Euro");
 		itemsPageSteps.inputRoundingValue("112");
 		itemsPageSteps.selectCountry("ANGOLA");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("g59k");
-		itemsPageSteps.checkCountry("g59k", "ANGOLA");
-		abstractPageSteps.deleteElementIfExists("g59k");
+		itemsPageSteps.checkIfElementIsPresent("g60k");
+		itemsPageSteps.checkTitleFromGrid("g60k", "Euro");
+		itemsPageSteps.checkCountryFromGrid("g60k", "ANGOLA");
+		itemsPageSteps.checkRoundingValueFromGrid("g60k", "112");
+		abstractPageSteps.deleteElementIfExists("g60k");
 	}
 
 }

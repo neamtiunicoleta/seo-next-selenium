@@ -35,7 +35,8 @@ public class CreateInactiveRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.selectRisk("285");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("52");
-		itemsPageSteps.checkDescription("52", "Seo Next");
+		itemsPageSteps.checkDescriptionFromGrid("52", "Seo Next");
+		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("52", "285");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");

@@ -28,10 +28,10 @@ public class CreateActiveRiskCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.inputKeyField("196");
 		itemsPageSteps.inputDescriptionField("Seo Risk");
-		itemsPageSteps.checkActive();
+		itemsPageSteps.clickOnActiveCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("196");
-		itemsPageSteps.checkDescription("196", "Seo Risk");
+		itemsPageSteps.checkDescriptionFromGrid("196", "Seo Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.checkThatCategoryExists("196");

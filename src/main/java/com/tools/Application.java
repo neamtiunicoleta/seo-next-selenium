@@ -27,6 +27,10 @@ public class Application {
 		public class CreateExchangeRate {
 
 		}
+
+		public class createCountry {
+
+		}
 	}
 
 	public class Edit {
@@ -56,10 +60,18 @@ public class Application {
 
 		}
 
+		public class EditCountry {
+
+		}
+
 	}
 
 	public class Import {
 		public class ImportCountries {
+
+		}
+
+		public class ImportExchangeRates {
 
 		}
 	}

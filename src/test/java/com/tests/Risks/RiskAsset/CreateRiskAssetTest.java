@@ -28,10 +28,10 @@ public class CreateRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.inputKeyField("120");
 		itemsPageSteps.inputDescriptionField("Seo Risk");
-		itemsPageSteps.checkActive();
+		itemsPageSteps.clickOnActiveCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("120");
-		itemsPageSteps.checkDescription("120", "Seo Risk");
+		itemsPageSteps.checkDescriptionFromGrid("120", "Seo Risk");
 		abstractPageSteps.selectItemFromGrid("120");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();
