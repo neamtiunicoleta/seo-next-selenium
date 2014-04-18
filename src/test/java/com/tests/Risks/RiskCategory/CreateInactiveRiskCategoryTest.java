@@ -24,19 +24,20 @@ public class CreateInactiveRiskCategoryTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("196");
+		abstractPageSteps.deleteElementIfExists("147");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.inputKeyField("196");
+		itemsPageSteps.inputKeyField("147");
 		itemsPageSteps.inputDescriptionField("Seo Risk");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("196");
-		itemsPageSteps.checkDescriptionFromGrid("196", "Seo Risk");
+		itemsPageSteps.checkIfElementIsPresent("147");
+		itemsPageSteps.checkDescriptionFromGrid("147", "Seo Risk");
+		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("147");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.checkThatCategoryDoesntExist("196");
+		itemsPageSteps.checkThatCategoryDoesntExist("147");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("196");
+		abstractPageSteps.deleteElementIfExists("147");
 	}
 
 }

@@ -147,11 +147,24 @@ public class AbstractPage extends PageObject {
 		alert.accept();
 	}
 
+	private boolean isAttributePresent(WebElement element, String attribute) {
+		Boolean result = false;
+		try {
+			String result1 = element.getAttribute(attribute);
+			if (result1 != null) {
+				result = true;
+			}
+		} catch (Exception e) {
+		}
+
+		return result;
+	}
+
 	public void checkTextFromField(String fieldType, String id, String text) {
 		String result = "";
-		List<WebElement> gridList = getDriver()
+		List<WebElement> gridList = getVisibleElementsFromList(getDriver()
 				.findElements(
-						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr"));
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr")));
 		gridList.remove(0);
 
 		for (WebElement elemNow : gridList) {
@@ -169,6 +182,32 @@ public class AbstractPage extends PageObject {
 		}
 
 		Assert.assertTrue("The text is not correct", result.contains(text));
+	}
+
+	public boolean checkCheckBox(String fieldName, String id) {
+		List<WebElement> gridList = getVisibleElementsFromList(getDriver()
+				.findElements(
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr")));
+		gridList.remove(0);
+
+		for (WebElement elemNow : gridList) {
+
+			String elemId = elemNow.findElement(
+					By.cssSelector("a.ms-core-menu-root")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+
+			if (elemId != null && id.contentEquals(elemId)) {
+				waitABit(2000);
+				WebElement checkBox = elemNow.findElement(By
+						.cssSelector(fieldName));
+				if (isAttributePresent(checkBox, "checked")) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public void selectMenuOption(String optionTitle) {

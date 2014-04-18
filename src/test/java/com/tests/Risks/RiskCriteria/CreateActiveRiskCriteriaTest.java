@@ -38,6 +38,7 @@ public class CreateActiveRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent("20");
 		itemsPageSteps.checkDescriptionFromGrid("20", "Seo Next");
 		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("20", "292");
+		itemsPageSteps.checkIfActiveCheckBoxIsChecked("20");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");

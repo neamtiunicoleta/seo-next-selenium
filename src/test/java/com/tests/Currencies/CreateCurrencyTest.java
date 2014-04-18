@@ -27,7 +27,7 @@ public class CreateCurrencyTest extends BaseTest {
 	public void createCurrency() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Currencies");
-		abstractPageSteps.deleteElementIfExists("562");
+		abstractPageSteps.deleteElementIfExists("594f");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.inputKeyField("562");
 		itemsPageSteps.inputCodeField("594f");
@@ -35,12 +35,14 @@ public class CreateCurrencyTest extends BaseTest {
 		itemsPageSteps.selectCountry("ANDORRA");
 		itemsPageSteps.inputRoundingValue("345");
 		itemsPageSteps.clickOnActiveCheckBox();
-		itemsPageSteps.checkHighImportance();
+		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594f");
 		itemsPageSteps.checkTitleFromGrid("594f", "Euro");
 		itemsPageSteps.checkRoundingValueFromGrid("594f", "345");
 		itemsPageSteps.checkCountryFromGrid("594f", "ANDORRA");
+		itemsPageSteps.checkIfActiveCheckBoxIsChecked("594f");
+		itemsPageSteps.checkIfHighImportanceCheckBoxIsChecked("594f");
 		abstractPageSteps.deleteElementIfExists("594f");
 	}
 

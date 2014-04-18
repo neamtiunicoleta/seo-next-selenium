@@ -7,6 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
@@ -21,10 +22,15 @@ public class EditRiskCategoryTest extends BaseTest {
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
+	@Steps
+	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
 	public void editRiskCategory() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("298");
@@ -34,10 +40,28 @@ public class EditRiskCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputDescriptionField("Edit Risk Category");
+		itemsPageSteps.clickOnActiveCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("298");
 		itemsPageSteps.checkDescriptionFromGrid("298", "Edit Risk Category");
+		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("298");
 		abstractPageSteps.deleteElementIfExists("298");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+
+		itemsPageSteps.checkIfElementIsPresent("RiskCategories", "Accessed");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 298 from RiskCategories was Added");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 298 from RiskCategories was Deleted");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 298 from RiskCategories was Changed");
+		hitLogPageSteps
+				.clickOnviewLogDetails("Key: 298 from RiskCategories was Changed");
+		hitLogPageSteps.checkIfChangesArePresent("Description", "Edit Risk",
+				"Edit Risk Category");
+		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
 	}
 
 }

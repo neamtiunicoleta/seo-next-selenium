@@ -104,7 +104,7 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkIfElementIsPresent(String key) {
+	public void checkIfElementIsPresent(String... key) {
 		Assert.assertTrue("The element is not present", itemsPage()
 				.checkIfElementIsPresent(key));
 		waitABit(2000);
@@ -121,7 +121,7 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkHighImportance() {
+	public void clickOnHighImportanceCheckBox() {
 		itemsPage().clickOnHighImportanceCheckBox();
 	}
 
@@ -194,14 +194,9 @@ public class ItemsPageSteps extends AbstractSteps {
 		abstractPage().switchToCreateIframe();
 		itemsPage().inputTitleField(name);
 		itemsPage().inputCodeField(code);
-		itemsPage().selectRisk(risk);
+//		itemsPage().selectRisk(risk);
 		abstractPage().selectActionFromRibbon("Save");
 	}
-
-	// @Step
-	// public void checkRiskCategoryFromGrid(String id, String riskCategory) {
-	// itemsPage().checkRiskCategoryFromGrid(id, riskCategory);
-	// }
 
 	@Step
 	public void checkRiskCriteriaFromGrid(String id, String riskCriteria) {
@@ -231,5 +226,30 @@ public class ItemsPageSteps extends AbstractSteps {
 	@Step
 	public void checkNameForBusinessCodesFromGrid(String id, String name) {
 		itemsPage().checkNameForBusinessCodesFromGrid(id, name);
+	}
+
+	@Step
+	public void clickOnDeleteLogItemsButton() {
+		itemsPage().clickOnDeleteLogItemsButton();
+	}
+
+	@Step
+	public void checkIfActiveCheckBoxIsChecked(String id) {
+		itemsPage().checkIfActiveCheckBoxIsChecked(id);
+	}
+
+	@Step
+	public void checkIfActiveCheckBoxIsNotChecked(String id) {
+		itemsPage().checkIfActiveCheckBoxIsNotChecked(id);
+	}
+
+	@Step
+	public void checkIfHighImportanceCheckBoxIsChecked(String id) {
+		itemsPage().checkIfHighImportanceCheckBoxIsChecked(id);
+	}
+
+	@Step
+	public void checkIfHighImportanceCheckBoxIsNotChecked(String id) {
+		itemsPage().checkIfHighImportanceCheckBoxIsNotChecked(id);
 	}
 }

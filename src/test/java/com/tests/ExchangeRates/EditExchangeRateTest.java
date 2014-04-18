@@ -5,6 +5,7 @@ import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
@@ -22,13 +23,17 @@ public class EditExchangeRateTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
-
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
+	@Steps
+	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
 	public void editExchangeRate() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -63,6 +68,19 @@ public class EditExchangeRateTest extends BaseTest {
 				"dd/MM/yyyy"));
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+
+		itemsPageSteps.checkIfElementIsPresent("ExchangeRates", "Accessed");
+		itemsPageSteps
+				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Added");
+		itemsPageSteps
+				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Deleted");
+		itemsPageSteps
+				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Changed");
+		hitLogPageSteps
+				.clickOnviewLogDetails("Currency: g12k from ExchangeRates was Changed");
+		hitLogPageSteps.checkIfChangesArePresent("Rate ", "278", "589");
 	}
 
 }

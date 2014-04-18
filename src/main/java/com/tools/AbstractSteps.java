@@ -3,6 +3,7 @@ package com.tools;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 
+import com.pages.HitLogPage;
 import com.pages.ItemsPage;
 import com.pages.UploadAssetsPage;
 
@@ -28,5 +29,9 @@ public class AbstractSteps extends ScenarioSteps {
 
 	public UploadAssetsPage uploadAssetsPage() {
 		return getPages().currentPageAt(UploadAssetsPage.class);
+	}
+
+	public HitLogPage hitLogPage() {
+		return getPages().currentPageAt(HitLogPage.class);
 	}
 }

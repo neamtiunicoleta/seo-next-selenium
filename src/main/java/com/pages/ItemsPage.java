@@ -100,7 +100,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void checkTitleFromGrid(String id, String title) {
-		checkTextFromField("td:nth-child(3)", id, title);
+		checkTextFromField("td:nth-child(4)", id, title);
 	}
 
 	public void checkKeyForRisksFromGrid(String id, String key) {
@@ -116,18 +116,18 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void checkCodeFromGrid(String id, String code) {
-		checkTextFromField("td:nth-child(2)", id, code);
+		checkTextFromField("td:nth-child(3)", id, code);
 	}
 
 	public void checkRoundingValueFromGrid(String id, String value) {
-		checkTextFromField("td:nth-child(5)", id, value);
+		checkTextFromField("td:nth-child(6)", id, value);
 	}
 
 	public void checkCountryFromGrid(String id, String country) {
-		checkTextFromField("td:nth-child(4)", id, country);
+		checkTextFromField("td:nth-child(5)", id, country);
 	}
 
-	public boolean checkIfElementIsPresent(String key) {
+	public boolean checkIfElementIsPresent(String... key) {
 		boolean hasMorePages = true;
 		boolean foundDocument = false;
 		while (hasMorePages && !foundDocument) {
@@ -183,17 +183,41 @@ public class ItemsPage extends AbstractPage {
 		checkTextFromField("td:nth-child(4)", startDate, rate);
 	}
 
-	// public void checkRiskCategoryForFromGrid(String id, String riskCategory)
-	// {
-	// checkTextFromField("td.gridDescriptionColumn", id, riskCategory);
-	// }
-
 	public void checkNameForBusinessCodesFromGrid(String id, String name) {
 		checkTextFromField("td:nth-child(3)", id, name);
 	}
 
-	public void checkRiskCriteriaFromGrid(String id,
-			String riskCriteria) {
+	public void checkRiskCriteriaFromGrid(String id, String riskCriteria) {
 		checkTextFromField("td:nth-child(4)", id, riskCriteria);
+	}
+
+	public void clickOnDeleteLogItemsButton() {
+		WebElement deleteLogItemsButton = returnField("input", "deleteLog");
+		element(deleteLogItemsButton).click();
+	}
+
+	public void clickOnViewDetailsButton() {
+		WebElement viewDetailsButton = returnField("div", "viewitem");
+		element(viewDetailsButton).click();
+	}
+
+	public void checkIfActiveCheckBoxIsChecked(String id) {
+		Assert.assertTrue("The checkbox is not checked",
+				checkCheckBox("input[id*='active']", id));
+	}
+
+	public void checkIfActiveCheckBoxIsNotChecked(String id) {
+		Assert.assertFalse("The checkbox is checked",
+				checkCheckBox("input[id*='active']", id));
+	}
+
+	public void checkIfHighImportanceCheckBoxIsChecked(String id) {
+		Assert.assertTrue("The checkbox is not checked",
+				checkCheckBox("input[id*='highImportance']", id));
+	}
+
+	public void checkIfHighImportanceCheckBoxIsNotChecked(String id) {
+		Assert.assertFalse("The checkbox is checked",
+				checkCheckBox("input[id*='highImportance']", id));
 	}
 }

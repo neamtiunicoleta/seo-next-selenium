@@ -1,29 +1,29 @@
 package com.tests.BusinessCodes;
 
-import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.annotations.Story;
-import net.thucydides.junit.runners.ThucydidesRunner;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.HitLogPageSteps;
+import com.steps.ExportFiles;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Edit.EditBusinessode.class)
-@RunWith(ThucydidesRunner.class)
-public class EditBusinessCodeTest extends BaseTest {
+import net.thucydides.core.annotations.Steps;
+import net.thucydides.core.annotations.Story;
+import net.thucydides.junit.runners.ThucydidesRunner;
 
+@Story(Application.Export.ExportBusinessCodes.class)
+@RunWith(ThucydidesRunner.class)
+public class ExportBusinessCodesTest extends BaseTest {
+
+	@Steps
+	public ExportFiles exportFiles;
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
-	@Steps
-	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
-	public void editBusinessCode() {
+	public void exportListBusinessCodes() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.clickOnDeleteLogItemsButton();
@@ -50,33 +50,16 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
 		itemsPageSteps.checkIfElementIsPresent("594");
-		abstractPageSteps.selectItemFromGrid("594");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
-		abstractPageSteps.switchToCreateIframe();
-		itemsPageSteps.inputCodeField("595");
-		itemsPageSteps.inputTitleField("Germany");
-		itemsPageSteps.selectRisk("894");
-		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("595");
-		itemsPageSteps.checkTitleFromGrid("595", "Germany");
-		itemsPageSteps.checkRiskCriteriaFromGrid("595", "894");
-		abstractPageSteps.deleteElementIfExists("595");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		itemsPageSteps.createBusinessCode("511", "Kenya", "893");
+		itemsPageSteps.checkIfElementIsPresent("511");
+		exportFiles.deleteFilesFromDownloadsFolder("BusinessCodesList.xlsx");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
+		exportFiles
+				.checkIfTheFileHasBeenSuccessfullyDownloaded("BusinessCodesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("BusinessCodes", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Code: 594 from BusinessCodes was Added");
-		itemsPageSteps
-				.checkIfElementIsPresent("Code: 595 from BusinessCodes was Deleted");
-		itemsPageSteps
-				.checkIfElementIsPresent("Code: 595 from BusinessCodes was Changed");
-		hitLogPageSteps
-				.clickOnviewLogDetails("Code: 595 from BusinessCodes was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Title", "Kenya", "Germany");
-		hitLogPageSteps.checkIfChangesArePresent("Code", "594", "595");
-		hitLogPageSteps.checkIfChangesArePresent("Risk", "893", "894");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		itemsPageSteps.checkIfElementIsPresent("BusinessCodes", "Exported");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 
 		abstractPageSteps.selectMenuOption("Risk Management");
@@ -89,5 +72,4 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 	}
-
 }

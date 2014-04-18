@@ -7,6 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
@@ -20,10 +21,15 @@ public class EditRiskCriteriaTest extends BaseTest {
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
+	@Steps
+	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
 	public void editRiskCriteria() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
@@ -41,14 +47,32 @@ public class EditRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputDescriptionField("Edit Risk Criteria");
 		itemsPageSteps.selectRisk("203");
+		itemsPageSteps.clickOnActiveCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("293");
 		itemsPageSteps.checkDescriptionFromGrid("293", "Edit Risk Criteria");
 		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("293", "203");
+		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("293");
 		abstractPageSteps.deleteElementIfExists("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("292");
 		abstractPageSteps.deleteElementIfExists("203");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Accessed");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Added");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Deleted");
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Changed");
+		hitLogPageSteps
+				.clickOnviewLogDetails("Key: 293 from RiskCriterias was Changed");
+		hitLogPageSteps.checkIfChangesArePresent("RiskCategory", "292", "203");
+		hitLogPageSteps.checkIfChangesArePresent("Description", "Edit Risk",
+				"Edit Risk Criteria");
+		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
 	}
 
 }

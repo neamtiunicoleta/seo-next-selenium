@@ -75,4 +75,36 @@ public class Application {
 
 		}
 	}
+
+	public class Export {
+		public class ExportRisks {
+			public class ExportRiskCriterias {
+
+			}
+
+			public class ExportRiskCategories {
+
+			}
+
+			public class ExportRiskAssets {
+
+			}
+		}
+
+		public class ExportExchangeRates {
+
+		}
+
+		public class ExportCurrencies {
+
+		}
+
+		public class ExportCountries {
+
+		}
+
+		public class ExportBusinessCodes {
+
+		}
+	}
 }

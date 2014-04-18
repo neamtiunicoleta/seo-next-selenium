@@ -13,7 +13,7 @@ import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Create.CreateRisks.CreateRiskCategory.class)
+@Story(Application.Export.ExportRisks.ExportRiskCriterias.class)
 @RunWith(ThucydidesRunner.class)
 public class ExportCriteriasTest extends BaseTest {
 
@@ -25,6 +25,9 @@ public class ExportCriteriasTest extends BaseTest {
 	@Test
 	public void exportListOfCriterias() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("212");
 		abstractPageSteps.deleteElementIfExists("125");
@@ -41,6 +44,8 @@ public class ExportCriteriasTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("RiskCriteriasList.xlsx");
-
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Exported");
 	}
 }

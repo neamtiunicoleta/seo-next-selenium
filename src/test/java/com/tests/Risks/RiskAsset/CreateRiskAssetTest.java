@@ -32,6 +32,7 @@ public class CreateRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("120");
 		itemsPageSteps.checkDescriptionFromGrid("120", "Seo Risk");
+		itemsPageSteps.checkIfActiveCheckBoxIsChecked("120");
 		abstractPageSteps.selectItemFromGrid("120");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();
