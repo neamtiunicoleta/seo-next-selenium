@@ -32,6 +32,8 @@ public class ExportAssetsTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("13");
 		abstractPageSteps.deleteElementIfExists("14");
+		itemsPageSteps.checkThatElementIsNotPresent("13");
+		itemsPageSteps.checkThatElementIsNotPresent("14");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("13", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -40,6 +42,10 @@ public class ExportAssetsTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("RiskAssetsList.xlsx");
+		abstractPageSteps.deleteElementIfExists("13");
+		abstractPageSteps.deleteElementIfExists("14");
+		itemsPageSteps.checkThatElementIsNotPresent("13");
+		itemsPageSteps.checkThatElementIsNotPresent("14");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");

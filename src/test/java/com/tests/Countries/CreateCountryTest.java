@@ -41,10 +41,12 @@ public class CreateCountryTest extends BaseTest {
 		itemsPageSteps.checkCodeFromGrid("CtTest", "C2");
 		itemsPageSteps.checkRiskCriteriaFromGrid("CtTest", "295");
 		abstractPageSteps.deleteElementIfExists("CtTest");
+		itemsPageSteps.checkThatElementIsNotPresent("CtTest");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("295");
+		itemsPageSteps.checkThatElementIsNotPresent("295");
 	}
 
 }

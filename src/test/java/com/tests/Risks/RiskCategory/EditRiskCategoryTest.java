@@ -46,6 +46,7 @@ public class EditRiskCategoryTest extends BaseTest {
 		itemsPageSteps.checkDescriptionFromGrid("298", "Edit Risk Category");
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("298");
 		abstractPageSteps.deleteElementIfExists("298");
+		itemsPageSteps.checkThatElementIsNotPresent("298");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");

@@ -46,8 +46,10 @@ public class CreateInactiveRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("52");
+		itemsPageSteps.checkThatElementIsNotPresent("52");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("285");
+		itemsPageSteps.checkThatElementIsNotPresent("285");
 
 	}
 }

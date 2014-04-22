@@ -44,6 +44,7 @@ public class CreateCurrencyTest extends BaseTest {
 		itemsPageSteps.checkIfActiveCheckBoxIsChecked("594f");
 		itemsPageSteps.checkIfHighImportanceCheckBoxIsChecked("594f");
 		abstractPageSteps.deleteElementIfExists("594f");
+		itemsPageSteps.checkThatElementIsNotPresent("694f");
 	}
 
 }

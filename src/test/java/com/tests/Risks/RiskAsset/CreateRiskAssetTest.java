@@ -36,6 +36,7 @@ public class CreateRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid("120");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();
+		itemsPageSteps.checkThatElementIsNotPresent("120");
 	}
 
 }

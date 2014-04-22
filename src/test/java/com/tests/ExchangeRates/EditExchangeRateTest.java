@@ -66,8 +66,12 @@ public class EditExchangeRateTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
+		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("2")),
+				"dd/MM/yyyy"));
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		itemsPageSteps.checkThatElementIsNotPresent("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
 

@@ -54,9 +54,12 @@ public class EditRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("293", "203");
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("293");
 		abstractPageSteps.deleteElementIfExists("293");
+		itemsPageSteps.checkThatElementIsNotPresent("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("292");
 		abstractPageSteps.deleteElementIfExists("203");
+		itemsPageSteps.checkThatElementIsNotPresent("292");
+		itemsPageSteps.checkThatElementIsNotPresent("203");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");

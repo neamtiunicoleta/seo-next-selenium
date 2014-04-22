@@ -53,6 +53,7 @@ public class EditCurrencyTest extends BaseTest {
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("g60k");
 		itemsPageSteps.checkIfHighImportanceCheckBoxIsNotChecked("g60k");
 		abstractPageSteps.deleteElementIfExists("g60k");
+		itemsPageSteps.checkThatElementIsNotPresent("g60k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("Currencies", "Accessed");
@@ -69,8 +70,7 @@ public class EditCurrencyTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("ISOCode", "g59k", "g60k");
 		hitLogPageSteps
 				.checkIfChangesArePresent("Country", "AUSTRIA", "ANGOLA");
-		hitLogPageSteps
-				.checkIfChangesArePresent("RoundingValue", "985", "112");
+		hitLogPageSteps.checkIfChangesArePresent("RoundingValue", "985", "112");
 		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
 		hitLogPageSteps.checkIfChangesArePresent("HighImportance", "True",
 				"False");

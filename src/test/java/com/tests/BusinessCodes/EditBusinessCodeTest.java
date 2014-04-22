@@ -61,6 +61,7 @@ public class EditBusinessCodeTest extends BaseTest {
 		itemsPageSteps.checkTitleFromGrid("595", "Germany");
 		itemsPageSteps.checkRiskCriteriaFromGrid("595", "894");
 		abstractPageSteps.deleteElementIfExists("595");
+		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 
 		abstractPageSteps.selectMenuOption("Hitlog");
@@ -82,12 +83,10 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
+		itemsPageSteps.checkThatElementIsNotPresent("893");
+		itemsPageSteps.checkThatElementIsNotPresent("894");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.deleteElementIfExists("594");
+		itemsPageSteps.checkThatElementIsNotPresent("78");
 	}
-
 }

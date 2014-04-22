@@ -35,7 +35,7 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("132", "Edit Risk1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("13", "Edit Risk2");
+		itemsPageSteps.createRiskCategoryOrAsset("133", "Edit Risk2");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
@@ -47,6 +47,8 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CountriesList.xlsx");
+		abstractPageSteps.deleteElementIfExists("aaf3");
+		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("Countries", "Exported");
@@ -55,7 +57,7 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("132");
 		abstractPageSteps.deleteElementIfExists("133");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		
+		itemsPageSteps.checkThatElementIsNotPresent("132");
+		itemsPageSteps.checkThatElementIsNotPresent("133");
 	}
 }

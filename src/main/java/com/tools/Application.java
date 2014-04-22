@@ -107,4 +107,10 @@ public class Application {
 
 		}
 	}
+
+	public class Filter {
+		public class FilterHitlog {
+
+		}
+	}
 }

@@ -52,11 +52,19 @@ public class ExportExchangeRatesTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"));
+
 		exportFiles.deleteFilesFromDownloadsFolder("ExchangeRatesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("ExchangeRatesList.xlsx");
+		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("2")),
+				"dd/MM/yyyy"));
+		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("4")),
+				"dd/MM/yyyy"));
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.deleteElementIfExists("g68k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("ExchangeRates", "Exported");

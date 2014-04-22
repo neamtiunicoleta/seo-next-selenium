@@ -48,11 +48,14 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();
+		itemsPageSteps.checkThatElementIsNotPresent("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
+		itemsPageSteps.checkThatElementIsNotPresent("893");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("711");
+		itemsPageSteps.checkThatElementIsNotPresent("711");
 	}
 
 }

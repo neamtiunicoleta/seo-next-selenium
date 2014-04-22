@@ -40,6 +40,10 @@ public class ExportCategoriesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("RiskCategoriesList.xlsx");
+		abstractPageSteps.deleteElementIfExists("136");
+		abstractPageSteps.deleteElementIfExists("147");
+		itemsPageSteps.checkThatElementIsNotPresent("136");
+		itemsPageSteps.checkThatElementIsNotPresent("147");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");

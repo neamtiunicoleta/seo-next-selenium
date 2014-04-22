@@ -52,14 +52,16 @@ public class EditCountryTest extends BaseTest {
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("A58kn");
 		itemsPageSteps.checkCodeFromGrid("A58kn", "C2");
-		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("A58kn",
-				"133");
+		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("A58kn", "133");
 		abstractPageSteps.deleteElementIfExists("A58kn");
+		itemsPageSteps.checkThatElementIsNotPresent("A58kn");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("132");
 		abstractPageSteps.deleteElementIfExists("133");
+		itemsPageSteps.checkThatElementIsNotPresent("132");
+		itemsPageSteps.checkThatElementIsNotPresent("133");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");

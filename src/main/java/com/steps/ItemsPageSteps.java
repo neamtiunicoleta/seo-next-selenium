@@ -111,6 +111,13 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
+	public void checkThatElementIsNotPresent(String... key) {
+		Assert.assertFalse("The element is not present", itemsPage()
+				.checkIfElementIsPresent(key));
+		waitABit(2000);
+	}
+
+	@Step
 	public void selectCountry(String countryName) {
 		itemsPage().selectCountry(countryName);
 	}
@@ -194,7 +201,7 @@ public class ItemsPageSteps extends AbstractSteps {
 		abstractPage().switchToCreateIframe();
 		itemsPage().inputTitleField(name);
 		itemsPage().inputCodeField(code);
-//		itemsPage().selectRisk(risk);
+		// itemsPage().selectRisk(risk);
 		abstractPage().selectActionFromRibbon("Save");
 	}
 

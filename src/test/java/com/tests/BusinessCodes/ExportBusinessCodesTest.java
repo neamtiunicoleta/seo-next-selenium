@@ -65,11 +65,15 @@ public class ExportBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
+		itemsPageSteps.checkThatElementIsNotPresent("893");
+		itemsPageSteps.checkThatElementIsNotPresent("894");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
+		itemsPageSteps.checkThatElementIsNotPresent("78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
+		itemsPageSteps.checkThatElementIsNotPresent("594");
 	}
 }

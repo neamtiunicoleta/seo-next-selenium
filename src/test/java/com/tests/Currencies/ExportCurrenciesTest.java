@@ -44,6 +44,10 @@ public class ExportCurrenciesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CurrenciesList.xlsx");
+		abstractPageSteps.deleteElementIfExists("a67b");
+		abstractPageSteps.deleteElementIfExists("a68b");
+		itemsPageSteps.checkThatElementIsNotPresent("a67b");
+		itemsPageSteps.checkThatElementIsNotPresent("a68b");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("Currencies", "Exported");

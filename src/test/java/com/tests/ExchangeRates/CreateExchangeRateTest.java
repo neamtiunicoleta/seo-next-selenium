@@ -71,12 +71,20 @@ public class CreateExchangeRateTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
+		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("2")),
+				"dd/MM/yyyy"));
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"));
+		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("4")),
+				"dd/MM/yyyy"));
 		abstractPageSteps.deleteElementIfExists("Year To Date");
+		itemsPageSteps.checkThatElementIsNotPresent("Year To Date");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		itemsPageSteps.checkThatElementIsNotPresent("g12k");
 	}
 
 }
