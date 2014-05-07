@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
-import com.tools.AbstractPageSteps;
 import com.tools.Application;
 import com.tools.Constants;
 
@@ -19,9 +18,6 @@ public class CreateCurrencyTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
-
-	@Steps
-	public AbstractPageSteps abstractPageSteps;
 
 	@Test
 	public void createCurrency() {

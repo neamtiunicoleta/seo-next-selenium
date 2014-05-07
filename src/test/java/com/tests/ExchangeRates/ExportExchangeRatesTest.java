@@ -34,7 +34,7 @@ public class ExportExchangeRatesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g68k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "g68k", "export exchange rate",
+		itemsPageSteps.createActiveCurrency("384", "g68k", "export exchange rate",
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g68k");
 		abstractPageSteps.selectItemFromGrid("g68k");

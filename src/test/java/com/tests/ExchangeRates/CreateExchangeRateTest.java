@@ -32,7 +32,7 @@ public class CreateExchangeRateTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "g12k", "edit currency",
+		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");

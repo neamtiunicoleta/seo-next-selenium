@@ -61,4 +61,49 @@ public class FilterPageSteps extends AbstractSteps {
 						DateUtils.addDays(new Date(), Integer.parseInt(days)),
 						"dd/MM/yyyy"));
 	}
+
+	@Step
+	public void inputBussinessCode(String code) {
+		filterPage().inputBussinessCode(code);
+	}
+
+	@Step
+	public void inputName(String name) {
+		filterPage().inputName(name);
+	}
+
+	@Step
+	public void inputCountryCode(String country) {
+		filterPage().inputCountryCode(country);
+	}
+
+	@Step
+	public void inputCountryTitle(String country) {
+		filterPage().inputCountryTitle(country);
+	}
+
+	@Step
+	public void inputISOCode(String isoCode) {
+		filterPage().inputISOCode(isoCode);
+	}
+
+	@Step
+	public void checkActiveCheckBox() {
+		filterPage().checkActiveCheckBox();
+	}
+
+	@Step
+	public void checkRiskyCheckBox() {
+		filterPage().checkActiveCheckBox();
+	}
+
+	@Step
+	public void inputTitle(String title) {
+		filterPage().inputTitle(title);
+	}
+
+	@Step
+	public void inputRelations(String relation) {
+		filterPage().inputRelations(relation);
+	}
 }

@@ -34,7 +34,7 @@ public class ItemsPage extends AbstractPage {
 	public void selectRisk(String category) {
 		getDriver().findElement(By.cssSelector("select[id*='Risk']")).click();
 		List<WebElement> riskCategoryList = getDriver().findElements(
-				By.cssSelector("select[id*='ddlRisk'] option"));
+				By.cssSelector("select[id*='Risk'] option"));
 		boolean foundOption = false;
 		for (WebElement riskCategory : riskCategoryList) {
 			if (riskCategory.getText().equals(category)) {
@@ -128,6 +128,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public boolean checkIfElementIsPresent(String... key) {
+//		getDriver().navigate().refresh();
 		boolean hasMorePages = true;
 		boolean foundDocument = false;
 		while (hasMorePages && !foundDocument) {
@@ -141,6 +142,7 @@ public class ItemsPage extends AbstractPage {
 				hasMorePages = false;
 			} else if (!foundDocument) {
 				nextPageButton.click();
+				waitABit(2000);
 			}
 		}
 		return foundDocument;

@@ -41,7 +41,7 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCountry("aaf3", "NC", "132");
+		itemsPageSteps.createCountryWithRisk("aaf3", "NC", "132");
 		itemsPageSteps.checkIfElementIsPresent("aaf3");
 		exportFiles.deleteFilesFromDownloadsFolder("CountriesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");

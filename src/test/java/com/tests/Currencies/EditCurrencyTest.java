@@ -34,7 +34,7 @@ public class EditCurrencyTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "g59k", "USD", "AUSTRIA", "985");
+		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		abstractPageSteps.selectItemFromGrid("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");

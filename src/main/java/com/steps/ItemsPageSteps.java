@@ -112,7 +112,7 @@ public class ItemsPageSteps extends AbstractSteps {
 
 	@Step
 	public void checkThatElementIsNotPresent(String... key) {
-		Assert.assertFalse("The element is not present", itemsPage()
+		Assert.assertFalse("The element is present", itemsPage()
 				.checkIfElementIsPresent(key));
 		waitABit(2000);
 	}
@@ -143,7 +143,7 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@StepGroup
-	public void createCurrency(String key, String code, String title,
+	public void createActiveCurrency(String key, String code, String title,
 			String country, String value) {
 		itemsPage().switchToCreateIframe();
 		itemsPage().inputKeyField(key);
@@ -152,6 +152,19 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().selectCountry(country);
 		itemsPage().inputRoundingValue(value);
 		itemsPage().clickOnActiveCheckBox();
+		itemsPage().clickOnHighImportanceCheckBox();
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@StepGroup
+	public void createInactiveCurrency(String key, String code, String title,
+			String country, String value) {
+		itemsPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
+		itemsPage().inputCodeField(code);
+		itemsPage().inputTitleField(title);
+		itemsPage().selectCountry(country);
+		itemsPage().inputRoundingValue(value);
 		itemsPage().clickOnHighImportanceCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
@@ -197,11 +210,19 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@StepGroup
-	public void createCountry(String name, String code, String risk) {
+	public void createCountryWithRisk(String name, String code, String risk) {
 		abstractPage().switchToCreateIframe();
 		itemsPage().inputTitleField(name);
 		itemsPage().inputCodeField(code);
-		// itemsPage().selectRisk(risk);
+		itemsPage().selectRisk(risk);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@StepGroup
+	public void createCountryWithoutRisk(String name, String code) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputTitleField(name);
+		itemsPage().inputCodeField(code);
 		abstractPage().selectActionFromRibbon("Save");
 	}
 

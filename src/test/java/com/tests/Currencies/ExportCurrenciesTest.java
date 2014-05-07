@@ -32,10 +32,10 @@ public class ExportCurrenciesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("a67b");
 		abstractPageSteps.deleteElementIfExists("a68b");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "a67b", "export currency",
+		itemsPageSteps.createInactiveCurrency("384", "a67b", "export currency",
 				"AUSTRIA", "985");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("325", "a68b", "export currency",
+		itemsPageSteps.createInactiveCurrency("325", "a68b", "export currency",
 				"ANGOLA", "912");
 		itemsPageSteps.checkIfElementIsPresent("a67b");
 		itemsPageSteps.checkIfElementIsPresent("a68b");

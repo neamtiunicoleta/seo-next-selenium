@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
-import com.tools.AbstractPageSteps;
 import com.tools.Application;
 import com.tools.Constants;
 
@@ -19,8 +18,6 @@ import com.tools.Constants;
 public class EditRiskCriteriaTest extends BaseTest {
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
-	@Steps
-	public AbstractPageSteps abstractPageSteps;
 	@Steps
 	public HitLogPageSteps hitLogPageSteps;
 

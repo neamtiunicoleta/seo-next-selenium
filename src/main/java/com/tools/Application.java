@@ -28,7 +28,15 @@ public class Application {
 
 		}
 
-		public class createCountry {
+		public class CreateCountry {
+
+		}
+
+		public class CreateLinkCategory {
+
+		}
+
+		public class CreateLinkType {
 
 		}
 	}
@@ -61,6 +69,14 @@ public class Application {
 		}
 
 		public class EditCountry {
+
+		}
+
+		public class EditLinkCategory {
+
+		}
+
+		public class EditLinkType {
 
 		}
 
@@ -106,10 +122,62 @@ public class Application {
 		public class ExportBusinessCodes {
 
 		}
+
+		public class ExportLinkCategory {
+
+		}
+
+		public class ExporttLinkType {
+
+		}
 	}
 
 	public class Filter {
 		public class FilterHitlog {
+
+		}
+
+		public class FilterBusinessCodes {
+
+		}
+
+		public class FilterCountries {
+
+		}
+
+		public class FilterCurrencies {
+
+		}
+
+		public class FilterExchangeRates {
+
+		}
+
+		public class FilterRiskCriterias {
+
+		}
+
+		public class FilterRiskCategories {
+
+		}
+
+		public class FilterRiskAssets {
+
+		}
+
+		public class FilterClients {
+
+		}
+
+		public class FilterMandates {
+
+		}
+
+		public class FilterLinkCategory {
+
+		}
+
+		public class FilterLinkType {
 
 		}
 	}

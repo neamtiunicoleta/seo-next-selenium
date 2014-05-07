@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
-import com.tools.AbstractPageSteps;
 import com.tools.Application;
 import com.tools.Constants;
 import com.tools.DateUtils;
@@ -24,8 +23,6 @@ public class EditExchangeRateTest extends BaseTest {
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
-	public AbstractPageSteps abstractPageSteps;
-	@Steps
 	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
@@ -37,7 +34,7 @@ public class EditExchangeRateTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCurrency("384", "g12k", "edit currency",
+		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
