@@ -43,8 +43,8 @@ public class CreateBusinessCodeTest extends BaseTest {
 		itemsPageSteps.selectRisk("893");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594");
-		itemsPageSteps.checkTitleFromGrid("594", "Kenya");
-		itemsPageSteps.checkRiskCriteriaFromGrid("595", "893");
+		itemsPageSteps.checkNameForBusinessCodesFromGrid("594", "Kenya");
+		itemsPageSteps.checkRiskCriteriaFromGrid("594", "893");
 		abstractPageSteps.selectItemFromGrid("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
 		abstractPageSteps.clickOk();

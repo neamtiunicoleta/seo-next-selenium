@@ -28,9 +28,9 @@ public class FilterHitLogByTypeTest extends BaseTest {
 	@Test
 	public void filterHitlogByType() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+//		abstractPageSteps.selectMenuOption("Hitlog");
+//		itemsPageSteps.clickOnDeleteLogItemsButton();
+//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("184");

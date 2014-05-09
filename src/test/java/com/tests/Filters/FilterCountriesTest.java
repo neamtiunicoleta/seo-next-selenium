@@ -29,17 +29,19 @@ public class FilterCountriesTest extends BaseTest {
 	public void filterCountries() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.deleteElementIfExists("754");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("132");
+		abstractPageSteps.deleteElementIfExists("91");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("132", "Edit Risk1");
+		itemsPageSteps.createRiskCategoryOrAsset("91", "Edit Risk1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		itemsPageSteps.createRiskCriteria("754", "Risk", "91");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("aaf3");
+		abstractPageSteps.deleteElementIfExists("abd");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createCountryWithRisk("aaf3", "NC", "132");
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
+		itemsPageSteps.createCountryWithRisk("abd", "NC", "754");
+		itemsPageSteps.checkIfElementIsPresent("abd");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createCountryWithoutRisk("aaf4", "CF");
 		itemsPageSteps.checkIfElementIsPresent("aaf4");
@@ -47,29 +49,30 @@ public class FilterCountriesTest extends BaseTest {
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputCountryCode("NC");
 		filterPageSteps.clickOnFilterButton();
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
+		itemsPageSteps.checkIfElementIsPresent("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
-		filterPageSteps.inputCountryTitle("aaf3");
+		filterPageSteps.inputCountryTitle("abd");
 		filterPageSteps.clickOnFilterButton();
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
+		itemsPageSteps.checkIfElementIsPresent("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
 		filterPageSteps.checkRiskyCheckBox();
 		filterPageSteps.clickOnFilterButton();
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
+		itemsPageSteps.checkIfElementIsPresent("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
-		abstractPageSteps.deleteElementIfExists("aaf3");
-		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
+		abstractPageSteps.deleteElementIfExists("abd");
+		itemsPageSteps.checkThatElementIsNotPresent("abd");
 		abstractPageSteps.deleteElementIfExists("aaf4");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.deleteElementIfExists("754");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("132");
+		abstractPageSteps.deleteElementIfExists("91");
 	}
 }

@@ -32,9 +32,9 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void selectRisk(String category) {
-		getDriver().findElement(By.cssSelector("select[id*='Risk']")).click();
+		getDriver().findElement(By.cssSelector("div[id*='Risk']")).click();
 		List<WebElement> riskCategoryList = getDriver().findElements(
-				By.cssSelector("select[id*='Risk'] option"));
+				By.cssSelector("div[class*='select2-drop'] ul li"));
 		boolean foundOption = false;
 		for (WebElement riskCategory : riskCategoryList) {
 			if (riskCategory.getText().equals(category)) {
@@ -48,7 +48,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void selectCountry(String countryName) {
-		getDriver().findElement(By.cssSelector("select[id*='ddlCountry']"))
+		getDriver().findElement(By.cssSelector("div[id*='ddlCountry']"))
 				.click();
 		List<WebElement> CountriesList = getDriver().findElements(
 				By.cssSelector("select[id*='ddlCountry'] option"));
@@ -65,12 +65,12 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public boolean checkIfCategoryExists(String id) {
-		getDriver().findElement(By.cssSelector("select[id*='ddlRisk']"))
-				.click();
+		getDriver().findElement(By.cssSelector("div[id*='Risk']")).click();
 		List<WebElement> gridList = getDriver().findElements(
-				By.cssSelector("select[id*='ddlRisk'] option"));
+				By.cssSelector("div[class*='select2-drop'] ul li"));
 		for (WebElement item : gridList) {
 			if (item.getText().contains(id)) {
+				item.click();
 				return true;
 			}
 
@@ -128,7 +128,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public boolean checkIfElementIsPresent(String... key) {
-//		getDriver().navigate().refresh();
+		// getDriver().navigate().refresh();
 		boolean hasMorePages = true;
 		boolean foundDocument = false;
 		while (hasMorePages && !foundDocument) {

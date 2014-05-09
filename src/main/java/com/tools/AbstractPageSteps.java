@@ -31,7 +31,7 @@ public class AbstractPageSteps extends AbstractSteps {
 	@Step
 	public void selectActionFromManagePagesRibbon(String action) {
 		abstractPage().selectActionFromHeader("ACTIONS");
-		waitABit(2000);
+		waitABit(3000);
 		abstractPage().selectActionFromRibbon(action);
 	}
 

@@ -25,9 +25,9 @@ public class ExportBusinessCodesTest extends BaseTest {
 	@Test
 	public void exportListBusinessCodes() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.deleteElementIfExists("595");
@@ -51,8 +51,8 @@ public class ExportBusinessCodesTest extends BaseTest {
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
 		itemsPageSteps.checkIfElementIsPresent("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createBusinessCode("511", "Kenya", "893");
-		itemsPageSteps.checkIfElementIsPresent("511");
+		itemsPageSteps.createBusinessCode("595", "Kenya", "893");
+		itemsPageSteps.checkIfElementIsPresent("595");
 		exportFiles.deleteFilesFromDownloadsFolder("BusinessCodesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles

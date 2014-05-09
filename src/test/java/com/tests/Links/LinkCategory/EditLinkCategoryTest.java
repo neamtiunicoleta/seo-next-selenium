@@ -28,9 +28,9 @@ public class EditLinkCategoryTest extends BaseTest {
 	@Test
 	public void editLinkCategoryTest() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");

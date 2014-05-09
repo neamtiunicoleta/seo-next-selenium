@@ -95,7 +95,6 @@ public class AbstractPage extends PageObject {
 		boolean foundOption = false;
 
 		for (WebElement option : ribbonButtonsList) {
-
 			if (option.getText().contains(action)) {
 				foundOption = true;
 				option.click();
@@ -218,6 +217,7 @@ public class AbstractPage extends PageObject {
 		for (WebElement option : homeMenuOptionsList) {
 			if (option.getText().contains(optionTitle)) {
 				foundOption = true;
+				waitABit(2000);
 				option.click();
 				break;
 			}

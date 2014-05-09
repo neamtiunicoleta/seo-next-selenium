@@ -1,4 +1,4 @@
-package com.tests.Links.LinkCategory;
+package com.tests.Links.LinkType;
 
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
@@ -8,47 +8,60 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.steps.ExportFiles;
+import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.steps.LinksPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Export.ExportLinkCategory.class)
+@Story(Application.Export.ExporttLinkType.class)
 @RunWith(ThucydidesRunner.class)
-public class ExportLinkCategoryTest extends BaseTest {
+public class ExportLinkTypeTest extends BaseTest {
 
-	@Steps
-	public ExportFiles exportFiles;
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public LinksPageSteps linksPageSteps;
+	@Steps
+	public HitLogPageSteps hitLogPageSteps;
+	@Steps
+	public ExportFiles exportFiles;
 
 	@Test
-	public void exportLinkCategories() {
+	public void exportLinkTypeTest() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-//		abstractPageSteps.selectMenuOption("Hitlog");
-//		itemsPageSteps.clickOnDeleteLogItemsButton();
-//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		abstractPageSteps.deleteElementIfExists("Client1-Client1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("client-cl1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkCategory("client-cl1", "Client", "Client",
 				"Client-Client");
-		itemsPageSteps.checkIfElementIsPresent("client-cl1");
-		exportFiles.deleteFilesFromDownloadsFolder("LinkCategoriesList.xlsx");
+
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		linksPageSteps.createLinkType("Client1-Client1", "client-cl1");
+		itemsPageSteps.checkIfElementIsPresent("Client1-Client1");
+
+		exportFiles.deleteFilesFromDownloadsFolder("LinkTypesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
-				.checkIfTheFileHasBeenSuccessfullyDownloaded("LinkCategoriesList.xlsx");
+				.checkIfTheFileHasBeenSuccessfullyDownloaded("LinkTypesList.xlsx");
+		abstractPageSteps.deleteElementIfExists("Client1-Client1");
+		itemsPageSteps.checkThatElementIsNotPresent("Client1-Client1");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("client-cl1");
-		itemsPageSteps.checkThatElementIsNotPresent("client-cl1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("LinkCategories", "Exported");
+		itemsPageSteps.checkIfElementIsPresent("LinkTypes", "Exported");
+
 	}
+
 }

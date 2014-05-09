@@ -28,9 +28,9 @@ public class EditExchangeRateTest extends BaseTest {
 	@Test
 	public void editExchangeRate() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -38,7 +38,7 @@ public class EditExchangeRateTest extends BaseTest {
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange Rates");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
@@ -81,7 +81,7 @@ public class EditExchangeRateTest extends BaseTest {
 				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Changed");
 		hitLogPageSteps
 				.clickOnviewLogDetails("Currency: g12k from ExchangeRates was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Rate ", "278", "589");
+		hitLogPageSteps.checkIfChangesArePresent("Rate", "278", "589");
 	}
 
 }

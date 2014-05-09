@@ -25,9 +25,9 @@ public class EditBusinessCodeTest extends BaseTest {
 	@Test
 	public void editBusinessCode() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.deleteElementIfExists("595");
@@ -58,7 +58,7 @@ public class EditBusinessCodeTest extends BaseTest {
 		itemsPageSteps.selectRisk("894");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("595");
-		itemsPageSteps.checkTitleFromGrid("595", "Germany");
+		itemsPageSteps.checkNameForBusinessCodesFromGrid("595", "Germany");
 		itemsPageSteps.checkRiskCriteriaFromGrid("595", "894");
 		abstractPageSteps.deleteElementIfExists("595");
 		itemsPageSteps.checkThatElementIsNotPresent("595");

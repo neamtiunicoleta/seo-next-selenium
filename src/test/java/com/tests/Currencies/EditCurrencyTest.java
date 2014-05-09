@@ -28,9 +28,9 @@ public class EditCurrencyTest extends BaseTest {
 	@Test
 	public void editCurrency() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+//		abstractPageSteps.selectMenuOption("Hitlog");
+//		itemsPageSteps.clickOnDeleteLogItemsButton();
+//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");

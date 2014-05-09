@@ -28,17 +28,17 @@ public class ExportExchangeRatesTest extends BaseTest {
 	@Test
 	public void exportListOfExchangeRates() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g68k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g68k", "export exchange rate",
-				"AUSTRIA", "985");
+		itemsPageSteps.createActiveCurrency("384", "g68k",
+				"export exchange rate", "AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g68k");
 		abstractPageSteps.selectItemFromGrid("g68k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange Rates");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));

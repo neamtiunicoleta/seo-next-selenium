@@ -25,9 +25,9 @@ public class ExportCurrenciesTest extends BaseTest {
 	@Test
 	public void exportListOfCurrencies() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+//		abstractPageSteps.selectMenuOption("Hitlog");
+//		itemsPageSteps.clickOnDeleteLogItemsButton();
+//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("a67b");
 		abstractPageSteps.deleteElementIfExists("a68b");

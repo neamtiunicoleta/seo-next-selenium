@@ -36,7 +36,7 @@ public class CreateExchangeRateTest extends BaseTest {
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange Rates");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
 		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));

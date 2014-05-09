@@ -31,30 +31,30 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-//		 abstractPageSteps.deleteElementIfExists("cl-cl1");
-//		 abstractPageSteps.deleteElementIfExists("cl-md1");
-//		 abstractPageSteps.deleteElementIfExists("md-md1");
-//		 abstractPageSteps.deleteElementIfExists("md-cl1");
-//		
-//		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-//		 linksPageSteps.createLinkCategory("cl-cl1", "Client", "Client",
-//		 "Client-Client");
-//		 itemsPageSteps.checkIfElementIsPresent("cl-cl1");
-//		
-//		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-//		 linksPageSteps.createLinkCategory("cl-md1", "Client", "Mandate",
-//		 "Client-Mandate");
-//		 itemsPageSteps.checkIfElementIsPresent("cl-md1");
-//		
-//		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-//		 linksPageSteps.createLinkCategory("md-md1", "Mandate", "Mandate",
-//		 "Mandate-Mandate");
-//		 itemsPageSteps.checkIfElementIsPresent("md-md1");
-//		
-//		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-//		 linksPageSteps.createLinkCategory("md-cl1", "Mandate", "Client",
-//		 "Mandate-Client");
-//		 itemsPageSteps.checkIfElementIsPresent("md-cl1");
+		 abstractPageSteps.deleteElementIfExists("cl-cl1");
+		 abstractPageSteps.deleteElementIfExists("cl-md1");
+		 abstractPageSteps.deleteElementIfExists("md-md1");
+		 abstractPageSteps.deleteElementIfExists("md-cl1");
+		
+		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		 linksPageSteps.createLinkCategory("cl-cl1", "Client", "Client",
+		 "Client-Client");
+		 itemsPageSteps.checkIfElementIsPresent("cl-cl1");
+		
+		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		 linksPageSteps.createLinkCategory("cl-md1", "Client", "Mandate",
+		 "Client-Mandate");
+		 itemsPageSteps.checkIfElementIsPresent("cl-md1");
+		
+		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		 linksPageSteps.createLinkCategory("md-md1", "Mandate", "Mandate",
+		 "Mandate-Mandate");
+		 itemsPageSteps.checkIfElementIsPresent("md-md1");
+		
+		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		 linksPageSteps.createLinkCategory("md-cl1", "Mandate", "Client",
+		 "Mandate-Client");
+		 itemsPageSteps.checkIfElementIsPresent("md-cl1");
 
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputTitle("cl-cl1");

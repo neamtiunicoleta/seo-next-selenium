@@ -62,6 +62,5 @@ public class FilterCurrenciesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("g59k");
 		abstractPageSteps.deleteElementIfExists("g60k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 	}
 }

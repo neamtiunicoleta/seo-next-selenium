@@ -25,9 +25,9 @@ public class EditCountryTest extends BaseTest {
 	@Test
 	public void editCountry() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+//		abstractPageSteps.selectMenuOption("Hitlog");
+//		itemsPageSteps.clickOnDeleteLogItemsButton();
+//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("315");
 		abstractPageSteps.deleteElementIfExists("316");
