@@ -33,15 +33,14 @@ public class EditExchangeRateTest extends BaseTest {
 		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		// create currency
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
+		// create exchange rates
 		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
-		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"));
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("2", "278");
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
@@ -70,11 +69,11 @@ public class EditExchangeRateTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("g12k");
 		itemsPageSteps.checkThatElementIsNotPresent("g12k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 
 		itemsPageSteps.checkIfElementIsPresent("ExchangeRates", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Added");
+
 		itemsPageSteps
 				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Deleted");
 		itemsPageSteps
@@ -82,6 +81,9 @@ public class EditExchangeRateTest extends BaseTest {
 		hitLogPageSteps
 				.clickOnviewLogDetails("Currency: g12k from ExchangeRates was Changed");
 		hitLogPageSteps.checkIfChangesArePresent("Rate", "278", "589");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Added");
 	}
 
 }

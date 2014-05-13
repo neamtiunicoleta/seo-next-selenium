@@ -35,22 +35,26 @@ public class FilterBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create business codes
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createBusinessCode("595", "Germany", "894");
 
+		// filter by code
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputBussinessCode("594");
 		filterPageSteps.clickOnFilterButton();
@@ -58,18 +62,19 @@ public class FilterBusinessCodesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by name
 		filterPageSteps.inputName("Germany");
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("595");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// delete items
 		abstractPageSteps.deleteElementIfExists("595");
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");

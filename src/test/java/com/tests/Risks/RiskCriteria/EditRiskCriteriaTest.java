@@ -29,6 +29,7 @@ public class EditRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("293");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("292");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -36,10 +37,12 @@ public class EditRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("203", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("293", "Edit Risk", "292");
 		itemsPageSteps.checkIfElementIsPresent("293");
 		abstractPageSteps.selectItemFromGrid("293");
+		// edit
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputDescriptionField("Edit Risk Criteria");
@@ -50,6 +53,7 @@ public class EditRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.checkDescriptionFromGrid("293", "Edit Risk Criteria");
 		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("293", "203");
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("293");
+		// delete items
 		abstractPageSteps.deleteElementIfExists("293");
 		itemsPageSteps.checkThatElementIsNotPresent("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
@@ -59,10 +63,10 @@ public class EditRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("203");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Added");
+
 		itemsPageSteps
 				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Deleted");
 		itemsPageSteps
@@ -73,6 +77,9 @@ public class EditRiskCriteriaTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Description", "Edit Risk",
 				"Edit Risk Criteria");
 		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Added");
 	}
 
 }

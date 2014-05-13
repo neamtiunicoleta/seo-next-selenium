@@ -47,11 +47,12 @@ public class ExportLinkTypeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkType("Client1-Client1", "client-cl1");
 		itemsPageSteps.checkIfElementIsPresent("Client1-Client1");
-
+		// export
 		exportFiles.deleteFilesFromDownloadsFolder("LinkTypesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("LinkTypesList.xlsx");
+		// delete items
 		abstractPageSteps.deleteElementIfExists("Client1-Client1");
 		itemsPageSteps.checkThatElementIsNotPresent("Client1-Client1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
@@ -59,6 +60,7 @@ public class ExportLinkTypeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("LinkTypes", "Exported");
 

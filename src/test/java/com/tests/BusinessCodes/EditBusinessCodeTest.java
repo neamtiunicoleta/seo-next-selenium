@@ -35,22 +35,25 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create business code
 		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
 		itemsPageSteps.checkIfElementIsPresent("594");
 		abstractPageSteps.selectItemFromGrid("594");
+		// edit business code
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputCodeField("595");
@@ -63,11 +66,9 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("595");
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("BusinessCodes", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Code: 594 from BusinessCodes was Added");
 		itemsPageSteps
 				.checkIfElementIsPresent("Code: 595 from BusinessCodes was Deleted");
 		itemsPageSteps
@@ -77,9 +78,11 @@ public class EditBusinessCodeTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Title", "Kenya", "Germany");
 		hitLogPageSteps.checkIfChangesArePresent("Code", "594", "595");
 		hitLogPageSteps.checkIfChangesArePresent("Risk", "893", "894");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+				.checkIfElementIsPresent("Code: 594 from BusinessCodes was Added");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");

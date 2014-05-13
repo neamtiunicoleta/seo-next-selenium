@@ -34,6 +34,7 @@ public class CreateActiveRiskCategoryTest extends BaseTest {
 		itemsPageSteps.checkDescriptionFromGrid("196", "Seo Risk");
 		itemsPageSteps.checkIfActiveCheckBoxIsChecked("196");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		//check risk category in risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.checkThatCategoryExists("196");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");

@@ -27,14 +27,17 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
+		// create RiskCategories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("711");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("711", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create RiskCriterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "711");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create business code
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
@@ -50,6 +53,7 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.clickOk();
 		itemsPageSteps.checkThatElementIsNotPresent("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		//delete items
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		itemsPageSteps.checkThatElementIsNotPresent("893");

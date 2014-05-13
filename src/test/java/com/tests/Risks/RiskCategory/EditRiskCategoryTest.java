@@ -34,6 +34,7 @@ public class EditRiskCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("298", "Edit Risk");
 		abstractPageSteps.selectItemFromGrid("298");
+		// edit
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputDescriptionField("Edit Risk Category");
@@ -46,11 +47,11 @@ public class EditRiskCategoryTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("298");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 
 		itemsPageSteps.checkIfElementIsPresent("RiskCategories", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Key: 298 from RiskCategories was Added");
+
 		itemsPageSteps
 				.checkIfElementIsPresent("Key: 298 from RiskCategories was Deleted");
 		itemsPageSteps
@@ -60,6 +61,9 @@ public class EditRiskCategoryTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Description", "Edit Risk",
 				"Edit Risk Category");
 		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+				.checkIfElementIsPresent("Key: 298 from RiskCategories was Added");
 	}
 
 }

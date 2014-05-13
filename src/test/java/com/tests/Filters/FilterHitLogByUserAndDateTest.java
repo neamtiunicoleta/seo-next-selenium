@@ -28,10 +28,11 @@ public class FilterHitLogByUserAndDateTest extends BaseTest {
 	@Test
 	public void filterHitLogByUserAndDateTest() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-//		abstractPageSteps.selectMenuOption("Hitlog");
-//		itemsPageSteps.clickOnDeleteLogItemsButton();
-//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
+		// create risk assets
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("185");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -44,7 +45,7 @@ public class FilterHitLogByUserAndDateTest extends BaseTest {
 
 		abstractPageSteps.selectMenuOption("Hitlog");
 		filterPageSteps.clickOnFilterDropdownList();
-
+		// filter by user
 		filterPageSteps.inputUsername("System Account");
 		filterPageSteps.clickOnFilterButton();
 
@@ -64,7 +65,7 @@ public class FilterHitLogByUserAndDateTest extends BaseTest {
 		itemsPageSteps
 				.checkThatElementIsNotPresent("Key: 185 from RiskAssets was Deleted");
 		filterPageSteps.clickOnClearFiltersButton();
-
+		// filter by date
 		filterPageSteps.clickOnFilterByDateCheckBox();
 		filterPageSteps.inputFromDateField("-1");
 		filterPageSteps.inputToDateField("0");

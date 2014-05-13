@@ -31,6 +31,7 @@ public class CreateLinkTypeTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("Client-Mandate1");
 		abstractPageSteps.deleteElementIfExists("Mandate-Mandate1");
 		abstractPageSteps.deleteElementIfExists("Mandate-Client1");
+		// create link categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("cl-cl1");
 		abstractPageSteps.deleteElementIfExists("cl-md1");
@@ -57,7 +58,7 @@ public class CreateLinkTypeTest extends BaseTest {
 				"Mandate-Client");
 		itemsPageSteps.checkIfElementIsPresent("md-cl1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// create link types
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkType("Client-Client1", "cl-cl1");
 		itemsPageSteps.checkIfElementIsPresent("Client-Client1");
@@ -77,7 +78,7 @@ public class CreateLinkTypeTest extends BaseTest {
 		linksPageSteps.createLinkType("Mandate-Client1", "md-cl1");
 		itemsPageSteps.checkIfElementIsPresent("Mandate-Client1");
 		linksPageSteps.checkLinkCategory("Mandate-Client1", "md-cl1");
-
+		// delete items
 		abstractPageSteps.deleteElementIfExists("Client-Client1");
 		itemsPageSteps.checkThatElementIsNotPresent("Client-Client1");
 		abstractPageSteps.deleteElementIfExists("Mandate-Mandate1");

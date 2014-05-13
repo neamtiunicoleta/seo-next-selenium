@@ -35,16 +35,19 @@ public class ExportBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create business codes
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -53,15 +56,17 @@ public class ExportBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createBusinessCode("595", "Kenya", "893");
 		itemsPageSteps.checkIfElementIsPresent("595");
+		// export
 		exportFiles.deleteFilesFromDownloadsFolder("BusinessCodesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("BusinessCodesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("BusinessCodes", "Exported");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");

@@ -30,13 +30,16 @@ public class FilterCountriesTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("754");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("91");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("91", "Edit Risk1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		itemsPageSteps.createRiskCriteria("754", "Risk", "91");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create countries
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("abd");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -46,6 +49,7 @@ public class FilterCountriesTest extends BaseTest {
 		itemsPageSteps.createCountryWithoutRisk("aaf4", "CF");
 		itemsPageSteps.checkIfElementIsPresent("aaf4");
 
+		// filter by code
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputCountryCode("NC");
 		filterPageSteps.clickOnFilterButton();
@@ -53,18 +57,21 @@ public class FilterCountriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by title
 		filterPageSteps.inputCountryTitle("abd");
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by risk
 		filterPageSteps.checkRiskyCheckBox();
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// delete items
 		abstractPageSteps.deleteElementIfExists("abd");
 		itemsPageSteps.checkThatElementIsNotPresent("abd");
 		abstractPageSteps.deleteElementIfExists("aaf4");

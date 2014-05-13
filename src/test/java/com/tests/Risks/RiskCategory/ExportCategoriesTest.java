@@ -36,6 +36,7 @@ public class ExportCategoriesTest extends BaseTest {
 		itemsPageSteps.createRiskCategoryOrAsset("136", "First Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("147", "Second Risk");
+		// export
 		exportFiles.deleteFilesFromDownloadsFolder("RiskCategoriesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
@@ -46,6 +47,7 @@ public class ExportCategoriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("147");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("RiskCategories", "Exported");
 	}

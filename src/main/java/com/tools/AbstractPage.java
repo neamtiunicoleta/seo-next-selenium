@@ -95,6 +95,7 @@ public class AbstractPage extends PageObject {
 		boolean foundOption = false;
 
 		for (WebElement option : ribbonButtonsList) {
+			System.out.println("!!!!!!!" + option.getText());
 			if (option.getText().contains(action)) {
 				foundOption = true;
 				option.click();
@@ -105,6 +106,14 @@ public class AbstractPage extends PageObject {
 
 		waitABit(3000);
 	}
+
+//	public void closeHitlogDetailsPage() {
+//		switchToCreateIframe();
+//		WebElement closeButton = getDriver()
+//				.findElement(
+//						By.cssSelector("div#RibbonContainer div[id*='RibbonContainer'] li span > a span"));
+//		element(closeButton).click();
+//	}
 
 	public WebElement returnField(String fieldType, String fieldName) {
 		WebElement element = null;

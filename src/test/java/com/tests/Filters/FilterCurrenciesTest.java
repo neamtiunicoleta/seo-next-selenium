@@ -28,6 +28,7 @@ public class FilterCurrenciesTest extends BaseTest {
 	@Test
 	public void filterCurrencies() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		// create currencies
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -39,6 +40,7 @@ public class FilterCurrenciesTest extends BaseTest {
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g60k");
 
+		// filter by country code
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputCountryCode("AUSTRIA");
 		filterPageSteps.clickOnFilterButton();
@@ -46,18 +48,21 @@ public class FilterCurrenciesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by iso code
 		filterPageSteps.inputISOCode("g59k");
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by active
 		filterPageSteps.checkActiveCheckBox();
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// delete items
 		abstractPageSteps.deleteElementIfExists("g59k");
 		itemsPageSteps.checkThatElementIsNotPresent("g59k");
 		abstractPageSteps.deleteElementIfExists("g60k");

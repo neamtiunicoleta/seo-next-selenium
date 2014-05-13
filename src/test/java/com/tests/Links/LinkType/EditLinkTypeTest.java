@@ -34,6 +34,7 @@ public class EditLinkTypeTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("Client11-Client11");
+		// create link categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("client-cl11");
 		abstractPageSteps.deleteElementIfExists("mandate-md11");
@@ -45,27 +46,30 @@ public class EditLinkTypeTest extends BaseTest {
 				"Mandate-Mandate");
 		itemsPageSteps.checkIfElementIsPresent("mandate-md11");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// create link types
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkType("Client11-Client11", "client-cl11");
 		abstractPageSteps.selectItemFromGrid("Client11-Client11");
+		// edit link type
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
-
 		linksPageSteps.inputTitle("Mandate11-Mandate11");
 		linksPageSteps.selectLinkCategory("mandate-md11");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("Mandate11-Mandate11");
 		linksPageSteps.checkLinkCategory("Mandate11-Mandate11", "mandate-md11");
-
+		// delete items
 		abstractPageSteps.deleteElementIfExists("Mandate11-Mandate11");
 		itemsPageSteps.checkThatElementIsNotPresent("Mandate11-Mandate11");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.deleteElementIfExists("client-cl11");
+		abstractPageSteps.deleteElementIfExists("mandate-md11");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("LinkTypes", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: Client11-Client11 from LinkTypes was Added");
+		
 		itemsPageSteps
 				.checkIfElementIsPresent("Title: Mandate11-Mandate11 from LinkTypes was Deleted");
 		itemsPageSteps
@@ -76,5 +80,8 @@ public class EditLinkTypeTest extends BaseTest {
 				"Mandate11-Mandate11");
 		hitLogPageSteps.checkIfChangesArePresent("LinkCategory", "client-cl11",
 				"mandate-md11");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+		.checkIfElementIsPresent("Title: Client11-Client11 from LinkTypes was Added");
 	}
 }

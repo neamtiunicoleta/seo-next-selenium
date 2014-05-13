@@ -40,6 +40,7 @@ public class EditLinkCategoryTest extends BaseTest {
 				"Client-Client");
 		itemsPageSteps.checkIfElementIsPresent("client-cl1");
 		abstractPageSteps.selectItemFromGrid("client-cl1");
+		// edit
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 
 		linksPageSteps.inputTitle("mandate-md2");
@@ -51,17 +52,16 @@ public class EditLinkCategoryTest extends BaseTest {
 		linksPageSteps.checkSource("mandate-md2", "Mandate");
 		linksPageSteps.checkTarget("mandate-md2", "Mandate");
 		linksPageSteps.checkRelations("mandate-md2", "Mandate-Mandate");
-
+		// delete items
 		abstractPageSteps.deleteElementIfExists("mandate-md2");
 		itemsPageSteps.checkThatElementIsNotPresent("mandate-cl2");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("LinkCategories", "accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: client-cl1 from LinkCategories was Added");
+
 		itemsPageSteps
 				.checkIfElementIsPresent("Title: mandate-md2 from LinkCategories was Deleted");
 		itemsPageSteps
@@ -76,5 +76,8 @@ public class EditLinkCategoryTest extends BaseTest {
 				"Mandate");
 		hitLogPageSteps.checkIfChangesArePresent("Relations", "Client-Client",
 				"Mandate-Mandate");
+		abstractPageSteps.closeHitlogDetailsPage();
+		itemsPageSteps
+				.checkIfElementIsPresent("Title: client-cl1 from LinkCategories was Added");
 	}
 }

@@ -24,15 +24,18 @@ public class CreateCountryTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("293");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("295");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("295", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("293", "Edit Risk", "295");
 		itemsPageSteps.checkIfElementIsPresent("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create country
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("CtTest");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -44,11 +47,13 @@ public class CreateCountryTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent("CtTest");
 		itemsPageSteps.checkCodeFromGrid("CtTest", "C2");
 		itemsPageSteps.checkRiskCriteriaFromGrid("CtTest", "293");
+		// delete items
 		abstractPageSteps.deleteElementIfExists("CtTest");
 		itemsPageSteps.checkThatElementIsNotPresent("CtTest");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("293");
+		itemsPageSteps.checkThatElementIsNotPresent("293");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("295");
 		itemsPageSteps.checkThatElementIsNotPresent("295");

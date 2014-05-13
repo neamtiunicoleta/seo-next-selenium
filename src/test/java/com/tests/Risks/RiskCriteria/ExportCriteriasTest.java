@@ -31,19 +31,23 @@ public class ExportCriteriasTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("212");
 		abstractPageSteps.deleteElementIfExists("125");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("35");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("35", "Category Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("212", "Edit Risk", "35");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("125", "Edit Risk", "35");
+		// export
 		exportFiles.deleteFilesFromDownloadsFolder("RiskCriteriasList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("RiskCriteriasList.xlsx");
+		// delete items
 		abstractPageSteps.deleteElementIfExists("212");
 		abstractPageSteps.deleteElementIfExists("125");
 		itemsPageSteps.checkThatElementIsNotPresent("212");
@@ -52,6 +56,7 @@ public class ExportCriteriasTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("35");
 		itemsPageSteps.checkThatElementIsNotPresent("35");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Exported");
 	}

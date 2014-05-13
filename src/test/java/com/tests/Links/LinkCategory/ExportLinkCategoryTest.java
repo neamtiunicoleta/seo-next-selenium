@@ -28,9 +28,9 @@ public class ExportLinkCategoryTest extends BaseTest {
 	@Test
 	public void exportLinkCategories() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-//		abstractPageSteps.selectMenuOption("Hitlog");
-//		itemsPageSteps.clickOnDeleteLogItemsButton();
-//		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// abstractPageSteps.selectMenuOption("Hitlog");
+		// itemsPageSteps.clickOnDeleteLogItemsButton();
+		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
@@ -39,6 +39,7 @@ public class ExportLinkCategoryTest extends BaseTest {
 		linksPageSteps.createLinkCategory("client-cl1", "Client", "Client",
 				"Client-Client");
 		itemsPageSteps.checkIfElementIsPresent("client-cl1");
+		// export
 		exportFiles.deleteFilesFromDownloadsFolder("LinkCategoriesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
 		exportFiles
@@ -48,6 +49,7 @@ public class ExportLinkCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("LinkCategories", "Exported");
 	}

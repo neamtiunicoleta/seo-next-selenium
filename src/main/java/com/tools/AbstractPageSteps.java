@@ -63,4 +63,10 @@ public class AbstractPageSteps extends AbstractSteps {
 	public void selectActionFromRibbon(String action) {
 		abstractPage().selectActionFromRibbon(action);
 	}
+
+	@Step
+	public void closeHitlogDetailsPage() {
+		switchToCreateIframe();
+		abstractPage().selectActionFromRibbon("Close");
+	}
 }

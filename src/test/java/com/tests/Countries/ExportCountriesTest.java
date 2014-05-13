@@ -31,11 +31,13 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("315");
 		abstractPageSteps.deleteElementIfExists("316");
+		// create risk categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("132");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("132", "Edit Risk1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criterias
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("315", "Edit Risk", "132");
 		itemsPageSteps.checkIfElementIsPresent("315");
@@ -43,10 +45,12 @@ public class ExportCountriesTest extends BaseTest {
 		itemsPageSteps.createRiskCriteria("316", "Edit Risk", "132");
 		itemsPageSteps.checkIfElementIsPresent("316");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create countries
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createCountryWithRisk("aaf3", "NC", "315");
+		// export
 		itemsPageSteps.checkIfElementIsPresent("aaf3");
 		exportFiles.deleteFilesFromDownloadsFolder("CountriesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
@@ -55,9 +59,11 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
 		itemsPageSteps.checkIfElementIsPresent("Countries", "Exported");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("315");
 		itemsPageSteps.checkThatElementIsNotPresent("315");

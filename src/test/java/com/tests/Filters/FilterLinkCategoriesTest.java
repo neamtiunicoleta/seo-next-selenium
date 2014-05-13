@@ -30,32 +30,34 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		// create link categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		 abstractPageSteps.deleteElementIfExists("cl-cl1");
-		 abstractPageSteps.deleteElementIfExists("cl-md1");
-		 abstractPageSteps.deleteElementIfExists("md-md1");
-		 abstractPageSteps.deleteElementIfExists("md-cl1");
-		
-		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		 linksPageSteps.createLinkCategory("cl-cl1", "Client", "Client",
-		 "Client-Client");
-		 itemsPageSteps.checkIfElementIsPresent("cl-cl1");
-		
-		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		 linksPageSteps.createLinkCategory("cl-md1", "Client", "Mandate",
-		 "Client-Mandate");
-		 itemsPageSteps.checkIfElementIsPresent("cl-md1");
-		
-		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		 linksPageSteps.createLinkCategory("md-md1", "Mandate", "Mandate",
-		 "Mandate-Mandate");
-		 itemsPageSteps.checkIfElementIsPresent("md-md1");
-		
-		 abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		 linksPageSteps.createLinkCategory("md-cl1", "Mandate", "Client",
-		 "Mandate-Client");
-		 itemsPageSteps.checkIfElementIsPresent("md-cl1");
+		abstractPageSteps.deleteElementIfExists("cl-cl1");
+		abstractPageSteps.deleteElementIfExists("cl-md1");
+		abstractPageSteps.deleteElementIfExists("md-md1");
+		abstractPageSteps.deleteElementIfExists("md-cl1");
 
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		linksPageSteps.createLinkCategory("cl-cl1", "Client", "Client",
+				"Client-Client");
+		itemsPageSteps.checkIfElementIsPresent("cl-cl1");
+
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		linksPageSteps.createLinkCategory("cl-md1", "Client", "Mandate",
+				"Client-Mandate");
+		itemsPageSteps.checkIfElementIsPresent("cl-md1");
+
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		linksPageSteps.createLinkCategory("md-md1", "Mandate", "Mandate",
+				"Mandate-Mandate");
+		itemsPageSteps.checkIfElementIsPresent("md-md1");
+
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		linksPageSteps.createLinkCategory("md-cl1", "Mandate", "Client",
+				"Mandate-Client");
+		itemsPageSteps.checkIfElementIsPresent("md-cl1");
+
+		// filter by title
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputTitle("cl-cl1");
 		filterPageSteps.clickOnFilterButton();
@@ -65,6 +67,7 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by source object
 		filterPageSteps.clickOnFilterDropdownList();
 		linksPageSteps.selectSourceObjectType("Client");
 		filterPageSteps.clickOnFilterButton();
@@ -74,6 +77,7 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by target object
 		filterPageSteps.clickOnFilterDropdownList();
 		linksPageSteps.selectTargetObject("Mandate");
 		filterPageSteps.clickOnFilterButton();
@@ -83,6 +87,7 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
 		filterPageSteps.clickOnClearFiltersButton();
 
+		// filter by relations
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputRelations("Client-Client");
 		filterPageSteps.clickOnFilterButton();
@@ -92,14 +97,15 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
 		filterPageSteps.clickOnClearFiltersButton();
 
-		 abstractPageSteps.deleteElementIfExists("cl-cl1");
-		 itemsPageSteps.checkThatElementIsNotPresent("cl-cl1");
-		 abstractPageSteps.deleteElementIfExists("cl-md1");
-		 itemsPageSteps.checkThatElementIsNotPresent("cl-md1");
-		 abstractPageSteps.deleteElementIfExists("md-md1");
-		 itemsPageSteps.checkThatElementIsNotPresent("md-md1");
-		 abstractPageSteps.deleteElementIfExists("md-cl1");
-		 itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
+		// delete items
+		abstractPageSteps.deleteElementIfExists("cl-cl1");
+		itemsPageSteps.checkThatElementIsNotPresent("cl-cl1");
+		abstractPageSteps.deleteElementIfExists("cl-md1");
+		itemsPageSteps.checkThatElementIsNotPresent("cl-md1");
+		abstractPageSteps.deleteElementIfExists("md-md1");
+		itemsPageSteps.checkThatElementIsNotPresent("md-md1");
+		abstractPageSteps.deleteElementIfExists("md-cl1");
+		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
 
 	}
 }

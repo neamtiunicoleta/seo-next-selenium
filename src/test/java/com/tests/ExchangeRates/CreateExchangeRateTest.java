@@ -31,19 +31,14 @@ public class CreateExchangeRateTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		// create currency
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
 				"AUSTRIA", "985");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
+		// create exchange rate
 		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
-		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"));
-		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("4")),
-				"dd/MM/yyyy"));
-		abstractPageSteps.deleteElementIfExists("Year To Date");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("2", "278");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
@@ -68,21 +63,8 @@ public class CreateExchangeRateTest extends BaseTest {
 		itemsPageSteps.checkEndDateFromGrid("Year To Date", DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("1")),
 				"dd/MM/yyyy"));
-		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"));
-		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"));
-		abstractPageSteps.deleteElementIfExists(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("4")),
-				"dd/MM/yyyy"));
-		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("4")),
-				"dd/MM/yyyy"));
-		abstractPageSteps.deleteElementIfExists("Year To Date");
-		itemsPageSteps.checkThatElementIsNotPresent("Year To Date");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// delete items
 		abstractPageSteps.deleteElementIfExists("g12k");
 		itemsPageSteps.checkThatElementIsNotPresent("g12k");
 	}

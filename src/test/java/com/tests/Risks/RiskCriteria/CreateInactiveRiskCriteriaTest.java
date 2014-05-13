@@ -24,11 +24,13 @@ public class CreateInactiveRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("52");
+		// create risk category
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("285");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("285", "Edit Risk");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// create risk criteria
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.inputKeyField("52");
 		itemsPageSteps.inputDescriptionField("Seo Next");
@@ -39,11 +41,13 @@ public class CreateInactiveRiskCriteriaTest extends BaseTest {
 		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("52", "285");
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("52");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		// check in risk criteria in business codes
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.checkThatCategoryDoesntExist("52");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
+		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("52");
 		itemsPageSteps.checkThatElementIsNotPresent("52");

@@ -64,7 +64,7 @@ public class CreateLinkCategoryTest extends BaseTest {
 		linksPageSteps.checkSource("md-cl1", "Mandate");
 		linksPageSteps.checkTarget("md-cl1", "Client");
 		linksPageSteps.checkRelations("md-cl1", "Mandate-Client");
-
+		// delete items
 		abstractPageSteps.deleteElementIfExists("cl-cl1");
 		itemsPageSteps.checkThatElementIsNotPresent("cl-cl1");
 		abstractPageSteps.deleteElementIfExists("cl-md1");
