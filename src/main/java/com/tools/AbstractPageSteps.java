@@ -58,4 +58,9 @@ public class AbstractPageSteps extends AbstractSteps {
 			abstractPage().clickOk();
 		}
 	}
+
+	@Step
+	public void selectActionFromRibbon(String action) {
+		abstractPage().selectActionFromRibbon(action);
+	}
 }

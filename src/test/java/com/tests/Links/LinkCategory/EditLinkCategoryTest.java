@@ -43,13 +43,13 @@ public class EditLinkCategoryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 
 		linksPageSteps.inputTitle("mandate-md2");
-		linksPageSteps.selectSourceObject("Mandate");
+		linksPageSteps.selectSourceObjectType("Mandate");
 		linksPageSteps.selectTargetObject("Mandate");
 		linksPageSteps.inputRelations("Mandate-Mandate");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("mandate-md2");
-		linksPageSteps.checkSourceForLinkCategories("mandate-md2", "Mandate");
-		linksPageSteps.checkTargetForLinkCategories("mandate-md2", "Mandate");
+		linksPageSteps.checkSource("mandate-md2", "Mandate");
+		linksPageSteps.checkTarget("mandate-md2", "Mandate");
 		linksPageSteps.checkRelations("mandate-md2", "Mandate-Mandate");
 
 		abstractPageSteps.deleteElementIfExists("mandate-md2");

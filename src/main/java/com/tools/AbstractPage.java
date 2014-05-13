@@ -167,6 +167,7 @@ public class AbstractPage extends PageObject {
 		gridList.remove(0);
 
 		for (WebElement elemNow : gridList) {
+
 			String elemId = elemNow.findElement(
 					By.cssSelector("a.ms-core-menu-root")).getText();
 			elemId = elemId.replace("\n", "");
@@ -175,6 +176,7 @@ public class AbstractPage extends PageObject {
 			if (elemId != null && id.contentEquals(elemId)) {
 				result = elemNow.findElement(By.cssSelector(fieldType))
 						.getText();
+				result = result.replace("\n", " ");
 				break;
 			}
 

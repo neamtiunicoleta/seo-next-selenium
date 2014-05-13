@@ -37,32 +37,32 @@ public class CreateLinkCategoryTest extends BaseTest {
 		linksPageSteps.createLinkCategory("cl-cl1", "Client", "Client",
 				"Client-Client");
 		itemsPageSteps.checkIfElementIsPresent("cl-cl1");
-		linksPageSteps.checkSourceForLinkCategories("cl-cl1", "Client");
-		linksPageSteps.checkTargetForLinkCategories("cl-cl1", "Client");
+		linksPageSteps.checkSource("cl-cl1", "Client");
+		linksPageSteps.checkTarget("cl-cl1", "Client");
 		linksPageSteps.checkRelations("cl-cl1", "Client-Client");
 
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkCategory("cl-md1", "Client", "Mandate",
 				"Client-Mandate");
 		itemsPageSteps.checkIfElementIsPresent("cl-md1");
-		linksPageSteps.checkSourceForLinkCategories("cl-md1", "Client");
-		linksPageSteps.checkTargetForLinkCategories("cl-md1", "Mandate");
+		linksPageSteps.checkSource("cl-md1", "Client");
+		linksPageSteps.checkTarget("cl-md1", "Mandate");
 		linksPageSteps.checkRelations("cl-md1", "Client-Mandate");
 
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkCategory("md-md1", "Mandate", "Mandate",
 				"Mandate-Mandate");
 		itemsPageSteps.checkIfElementIsPresent("md-md1");
-		linksPageSteps.checkSourceForLinkCategories("md-md1", "Mandate");
-		linksPageSteps.checkTargetForLinkCategories("md-md1", "Mandate");
+		linksPageSteps.checkSource("md-md1", "Mandate");
+		linksPageSteps.checkTarget("md-md1", "Mandate");
 		linksPageSteps.checkRelations("md-md1", "Mandate-Mandate");
 
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkCategory("md-cl1", "Mandate", "Client",
 				"Mandate-Client");
 		itemsPageSteps.checkIfElementIsPresent("md-cl1");
-		linksPageSteps.checkSourceForLinkCategories("md-cl1", "Mandate");
-		linksPageSteps.checkTargetForLinkCategories("md-cl1", "Client");
+		linksPageSteps.checkSource("md-cl1", "Mandate");
+		linksPageSteps.checkTarget("md-cl1", "Client");
 		linksPageSteps.checkRelations("md-cl1", "Mandate-Client");
 
 		abstractPageSteps.deleteElementIfExists("cl-cl1");

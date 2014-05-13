@@ -66,7 +66,7 @@ public class FilterLinkCategoriesTest extends BaseTest {
 		filterPageSteps.clickOnClearFiltersButton();
 
 		filterPageSteps.clickOnFilterDropdownList();
-		linksPageSteps.selectSourceObject("Client");
+		linksPageSteps.selectSourceObjectType("Client");
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("cl-cl1");
 		itemsPageSteps.checkIfElementIsPresent("cl-md1");

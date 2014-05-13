@@ -39,6 +39,10 @@ public class Application {
 		public class CreateLinkType {
 
 		}
+
+		public class CreateLink {
+
+		}
 	}
 
 	public class Edit {
@@ -77,6 +81,10 @@ public class Application {
 		}
 
 		public class EditLinkType {
+
+		}
+
+		public class EditLink {
 
 		}
 
@@ -130,6 +138,10 @@ public class Application {
 		public class ExporttLinkType {
 
 		}
+
+		public class ExportLink {
+
+		}
 	}
 
 	public class Filter {
@@ -178,6 +190,10 @@ public class Application {
 		}
 
 		public class FilterLinkType {
+
+		}
+
+		public class FilterLink {
 
 		}
 	}

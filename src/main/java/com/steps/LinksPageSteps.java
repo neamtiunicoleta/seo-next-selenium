@@ -21,13 +21,13 @@ public class LinksPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void selectSourceObject(String source) {
-		linksPage().selectSourceObject(source);
+	public void selectSourceObjectType(String source) {
+		linksPage().selectSourceObjectType(source);
 	}
 
 	@Step
-	public void selectTargetObject(String target) {
-		linksPage().selectTargetObject(target);
+	public void selectTargetObjectType(String target) {
+		linksPage().selectTargetObjectType(target);
 	}
 
 	@Step
@@ -36,13 +36,13 @@ public class LinksPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkSourceForLinkCategories(String id, String source) {
-		linksPage().checkSourceForLinkCategories(id, source);
+	public void checkSource(String id, String source) {
+		linksPage().checkSource(id, source);
 	}
 
 	@Step
-	public void checkTargetForLinkCategories(String id, String target) {
-		linksPage().checkTargetForLinkCategories(id, target);
+	public void checkTarget(String id, String target) {
+		linksPage().checkTarget(id, target);
 	}
 
 	@Step
@@ -55,8 +55,8 @@ public class LinksPageSteps extends AbstractSteps {
 			String relation) {
 		linksPage().switchToCreateIframe();
 		linksPage().inputTitle(title);
-		linksPage().selectSourceObject(source);
-		linksPage().selectTargetObject(target);
+		linksPage().selectSourceObjectType(source);
+		linksPage().selectTargetObjectType(target);
 		linksPage().inputRelations(relation);
 		abstractPage().selectActionFromRibbon("Save");
 	}
@@ -77,5 +77,76 @@ public class LinksPageSteps extends AbstractSteps {
 	@Step
 	public void checkLinkCategory(String id, String linkCategory) {
 		linksPage().checkLinkCategory(id, linkCategory);
+	}
+
+	@StepGroup
+	public void createActiveLink(String title, String sourceType,
+			String sourceObject, String targetType, String targetObject,
+			String linkType, String comment) {
+		linksPage().switchToCreateIframe();
+		linksPage().inputTitle(title);
+		linksPage().selectSourceObjectType(sourceType);
+		linksPage().selectSourceObject(sourceObject);
+		linksPage().selectTargetObjectType(targetType);
+		linksPage().selectTargetObject(targetObject);
+		linksPage().selectLinkType(linkType);
+		linksPage().clickOnActiveCheckBox();
+		linksPage().inputComments(comment);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@StepGroup
+	public void createInactiveLink(String title, String sourceType,
+			String sourceObject, String targetType, String targetObject,
+			String linkType, String comment) {
+		linksPage().switchToCreateIframe();
+		linksPage().inputTitle(title);
+		linksPage().selectSourceObjectType(sourceType);
+		linksPage().selectSourceObject(sourceObject);
+		linksPage().selectTargetObjectType(targetType);
+		linksPage().selectTargetObject(targetObject);
+		linksPage().selectLinkType(linkType);
+		linksPage().inputComments(comment);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@Step
+	public void selectSourceObject(String source) {
+		linksPage().selectSourceObject(source);
+	}
+
+	@Step
+	public void selectTargetObject(String source) {
+		linksPage().selectTargetObject(source);
+	}
+
+	@Step
+	public void selectLinkType(String linkType) {
+		linksPage().selectLinkType(linkType);
+	}
+
+	@Step
+	public void inputComments(String comment) {
+		linksPage().inputComments(comment);
+	}
+
+	@Step
+	public void clickOnActiveCheckBox() {
+		linksPage().clickOnActiveCheckBox();
+	}
+
+	@Step
+	public void checkLinkType(String id, String linkType) {
+		linksPage().checkLinkType(id, linkType);
+	}
+
+	@Step
+	public void checkIfActiveCheckBoxIsChecked(String id) {
+		linksPage().checkIfActiveCheckBoxIsChecked(id);
+	}
+
+	@Step
+	public void checkIfActiveCheckBoxIsNotChecked(String id) {
+		linksPage().checkIfActiveCheckBoxIsNotChecked(id);
 	}
 }
