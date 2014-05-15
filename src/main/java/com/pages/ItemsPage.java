@@ -50,10 +50,10 @@ public class ItemsPage extends AbstractPage {
 	public void selectCountry(String countryName) {
 		getDriver().findElement(By.cssSelector("div[id*='ddlCountry']"))
 				.click();
-		List<WebElement> CountriesList = getDriver().findElements(
+		List<WebElement> countriesList = getDriver().findElements(
 				By.cssSelector("select[id*='ddlCountry'] option"));
 		boolean foundOption = false;
-		for (WebElement country : CountriesList) {
+		for (WebElement country : countriesList) {
 			if (country.getText().equals(countryName)) {
 				foundOption = true;
 				country.click();

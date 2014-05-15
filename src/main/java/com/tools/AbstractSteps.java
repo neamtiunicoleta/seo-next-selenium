@@ -3,6 +3,7 @@ package com.tools;
 import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 
+import com.pages.ClientsPage;
 import com.pages.FilterPage;
 import com.pages.HitLogPage;
 import com.pages.ItemsPage;
@@ -43,5 +44,9 @@ public class AbstractSteps extends ScenarioSteps {
 
 	public LinksPage linksPage() {
 		return getPages().currentPageAt(LinksPage.class);
+	}
+
+	public ClientsPage clientsPage() {
+		return getPages().currentPageAt(ClientsPage.class);
 	}
 }

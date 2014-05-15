@@ -69,4 +69,9 @@ public class AbstractPageSteps extends AbstractSteps {
 		switchToCreateIframe();
 		abstractPage().selectActionFromRibbon("Close");
 	}
+
+	@Step
+	public void clickOnTab(String tabName) {
+		abstractPage().clickOnTab(tabName);
+	}
 }

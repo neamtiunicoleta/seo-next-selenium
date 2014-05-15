@@ -95,7 +95,6 @@ public class AbstractPage extends PageObject {
 		boolean foundOption = false;
 
 		for (WebElement option : ribbonButtonsList) {
-			System.out.println("!!!!!!!" + option.getText());
 			if (option.getText().contains(action)) {
 				foundOption = true;
 				option.click();
@@ -106,14 +105,6 @@ public class AbstractPage extends PageObject {
 
 		waitABit(3000);
 	}
-
-//	public void closeHitlogDetailsPage() {
-//		switchToCreateIframe();
-//		WebElement closeButton = getDriver()
-//				.findElement(
-//						By.cssSelector("div#RibbonContainer div[id*='RibbonContainer'] li span > a span"));
-//		element(closeButton).click();
-//	}
 
 	public WebElement returnField(String fieldType, String fieldName) {
 		WebElement element = null;
@@ -328,5 +319,20 @@ public class AbstractPage extends PageObject {
 		keyboard.type(text);
 		keyboard.keyDown(KeyEvent.VK_ENTER);
 		keyboard.keyUp(KeyEvent.VK_ENTER);
+	}
+
+	public void clickOnTab(String tabName) {
+		List<WebElement> tabList = getDriver().findElements(
+				By.cssSelector("div#accordion > h3"));
+		boolean foundOption = false;
+		for (WebElement item : tabList) {
+			System.out.println("@@@@@@@@@@@" + item.getText());
+			if (item.getText().contentEquals(tabName)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
 	}
 }

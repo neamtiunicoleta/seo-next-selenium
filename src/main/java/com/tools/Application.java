@@ -43,6 +43,10 @@ public class Application {
 		public class CreateLink {
 
 		}
+
+		public class CreateClient {
+
+		}
 	}
 
 	public class Edit {
@@ -85,6 +89,10 @@ public class Application {
 		}
 
 		public class EditLink {
+
+		}
+
+		public class EditClient {
 
 		}
 
@@ -142,6 +150,10 @@ public class Application {
 		public class ExportLink {
 
 		}
+
+		public class ExportClients {
+
+		}
 	}
 
 	public class Filter {
@@ -196,5 +208,6 @@ public class Application {
 		public class FilterLink {
 
 		}
+
 	}
 }
