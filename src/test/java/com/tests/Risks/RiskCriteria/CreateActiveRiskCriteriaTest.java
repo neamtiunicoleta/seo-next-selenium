@@ -45,7 +45,7 @@ public class CreateActiveRiskCriteriaTest extends BaseTest {
 		// check in risk criteria in business codes
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.checkThatCategoryExists("20");
+		itemsPageSteps.selectRisk("20");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 		// delete items

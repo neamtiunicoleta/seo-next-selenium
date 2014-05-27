@@ -25,9 +25,6 @@ public class ExportCountriesTest extends BaseTest {
 	@Test
 	public void exportListCountries() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// abstractPageSteps.selectMenuOption("Hitlog");
-		// itemsPageSteps.clickOnDeleteLogItemsButton();
-		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("315");
 		abstractPageSteps.deleteElementIfExists("316");
@@ -58,10 +55,6 @@ public class ExportCountriesTest extends BaseTest {
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CountriesList.xlsx");
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("Countries", "Exported");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");

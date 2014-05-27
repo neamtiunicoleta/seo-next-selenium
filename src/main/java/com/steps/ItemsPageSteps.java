@@ -77,6 +77,7 @@ public class ItemsPageSteps extends AbstractSteps {
 		abstractPage().switchToCreateIframe();
 		Assert.assertFalse("The category shouldn't be displayed!", itemsPage()
 				.checkIfCategoryExists(id));
+		abstractPage().pressEscape();
 	}
 
 	@Step
@@ -194,8 +195,8 @@ public class ItemsPageSteps extends AbstractSteps {
 	@StepGroup
 	public void createExchangeRateWithYearToDate(String rate) {
 		abstractPage().switchToCreateIframe();
-		itemsPage().clickOnYearToDateCheckBox();
 		itemsPage().inputRate(rate);
+		itemsPage().clickOnYearToDateCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
 
@@ -279,5 +280,70 @@ public class ItemsPageSteps extends AbstractSteps {
 	@Step
 	public void checkIfHighImportanceCheckBoxIsNotChecked(String id) {
 		itemsPage().checkIfHighImportanceCheckBoxIsNotChecked(id);
+	}
+
+	@Step
+	public void inputActualSituationForDocSituation(String situation) {
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputActualSituationForDocSituation(situation);
+	}
+
+	@Step
+	public void inputRiskForDocSituation(String risk) {
+		itemsPage().inputRiskForDocSituation(risk);
+	}
+
+	@Step
+	public void inputResolutionForDocSituation(String resolution) {
+		itemsPage().inputResolutionForDocSituation(resolution);
+	}
+
+	@Step
+	public void checkRiskForDocSituation(String title, String risk) {
+		itemsPage().checkRiskForDocSituation(title, risk);
+	}
+
+	@Step
+	public void checkResolutionForDocSituation(String title, String resolution) {
+		itemsPage().checkResolutionForDocSituation(title, resolution);
+	}
+
+	@Step
+	public void inputOrganizationUnit(String unit) {
+		itemsPage().inputOrganizationUnit(unit);
+	}
+
+	@Step
+	public void inputPopBox(String popBox) {
+		itemsPage().inputPopBox(popBox);
+	}
+
+	@Step
+	public void inputEmployees(String userName) {
+		itemsPage().inputEmployees(userName);
+	}
+
+	@StepGroup
+	public void createOfficeIfNotExists(String name, String unit,
+			String street, String zip, String city, String country,
+			String popBox, String userName) {
+		if (!itemsPage().checkIfElementIsPresent(name)) {
+			abstractPage().selectActionFromRibbon("Create");
+			abstractPage().switchToCreateIframe();
+			itemsPage().inputTitleField(name);
+			itemsPage().inputOrganizationUnit(unit);
+			clientsPage().inputStreet(street);
+			clientsPage().inputZIP(zip);
+			clientsPage().inputCity(city);
+			itemsPage().selectCountry(country);
+			itemsPage().inputPopBox(popBox);
+			itemsPage().inputEmployees(userName);
+			abstractPage().selectActionFromRibbon("Save");
+		}
+	}
+
+	@Step
+	public void checkOrganizationunit(String name, String unit) {
+		itemsPage().checkOrganizationUnit(name, unit);
 	}
 }

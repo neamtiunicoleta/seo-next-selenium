@@ -47,6 +47,22 @@ public class Application {
 		public class CreateClient {
 
 		}
+
+		public class CreateBasicDocumentation {
+
+		}
+
+		public class CreateMandate {
+
+		}
+
+		public class CreateMandateService {
+
+		}
+
+		public class CreateOffice {
+
+		}
 	}
 
 	public class Edit {
@@ -96,6 +112,9 @@ public class Application {
 
 		}
 
+		public class EditOffice {
+
+		}
 	}
 
 	public class Import {

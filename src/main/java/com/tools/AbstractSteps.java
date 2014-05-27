@@ -8,6 +8,8 @@ import com.pages.FilterPage;
 import com.pages.HitLogPage;
 import com.pages.ItemsPage;
 import com.pages.LinksPage;
+import com.pages.MandatesPage;
+import com.pages.SearchPage;
 import com.pages.UploadAssetsPage;
 
 public class AbstractSteps extends ScenarioSteps {
@@ -48,5 +50,13 @@ public class AbstractSteps extends ScenarioSteps {
 
 	public ClientsPage clientsPage() {
 		return getPages().currentPageAt(ClientsPage.class);
+	}
+
+	public MandatesPage mandatesPage() {
+		return getPages().currentPageAt(MandatesPage.class);
+	}
+
+	public SearchPage searchPage() {
+		return getPages().currentPageAt(SearchPage.class);
 	}
 }

@@ -37,6 +37,7 @@ public class FilterCountriesTest extends BaseTest {
 		itemsPageSteps.createRiskCategoryOrAsset("91", "Edit Risk1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create risk criterias
+		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		itemsPageSteps.createRiskCriteria("754", "Risk", "91");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create countries

@@ -50,10 +50,6 @@ public class EditRiskAssetTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("RiskAssets", "Accessed");
-
-		itemsPageSteps
-				.checkIfElementIsPresent("Key: 21 from RiskAssets was Deleted");
 		itemsPageSteps
 				.checkIfElementIsPresent("Key: 21 from RiskAssets was Changed");
 		hitLogPageSteps
@@ -63,6 +59,6 @@ public class EditRiskAssetTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
 		abstractPageSteps.closeHitlogDetailsPage();
 		itemsPageSteps
-				.checkIfElementIsPresent("Key: 21 from RiskAssets was Added");
+				.checkIfElementIsPresent("Key: 21 from RiskAssets was Accessed");
 	}
 }

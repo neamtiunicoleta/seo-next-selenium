@@ -7,6 +7,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.steps.ClientsPageSteps;
 import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.steps.LinksPageSteps;
@@ -24,60 +25,64 @@ public class EditLinkCategoryTest extends BaseTest {
 	public LinksPageSteps linksPageSteps;
 	@Steps
 	public HitLogPageSteps hitLogPageSteps;
+	@Steps
+	public ClientsPageSteps clientsPageSteps;
 
 	@Test
 	public void editLinkCategoryTest() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// abstractPageSteps.selectMenuOption("Hitlog");
-		// itemsPageSteps.clickOnDeleteLogItemsButton();
-		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Links");
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Clients");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Individual");
+		clientsPageSteps.createBasicIndividualClient("cluj", "Doe", "Jane");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Save");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("client-cl1");
+		abstractPageSteps.deleteElementIfExists("client-md1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		linksPageSteps.createLinkCategory("client-cl1", "Client", "Client",
-				"Client-Client");
-		itemsPageSteps.checkIfElementIsPresent("client-cl1");
-		abstractPageSteps.selectItemFromGrid("client-cl1");
+		linksPageSteps.createLinkCategory("client-md1", "Client", "Mandate",
+				"Client-Mandate");
+		itemsPageSteps.checkIfElementIsPresent("client-md1");
+		abstractPageSteps.selectItemFromGrid("client-md1");
 		// edit
 		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
 
-		linksPageSteps.inputTitle("mandate-md2");
+		linksPageSteps.inputTitle("mandate-cl2");
 		linksPageSteps.selectSourceObjectType("Mandate");
-		linksPageSteps.selectTargetObject("Mandate");
-		linksPageSteps.inputRelations("Mandate-Mandate");
+		linksPageSteps.selectTargetObjectType("Client");
+		linksPageSteps.inputRelations("Mandate-Client");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("mandate-md2");
-		linksPageSteps.checkSource("mandate-md2", "Mandate");
-		linksPageSteps.checkTarget("mandate-md2", "Mandate");
-		linksPageSteps.checkRelations("mandate-md2", "Mandate-Mandate");
+		itemsPageSteps.checkIfElementIsPresent("mandate-cl2");
+		linksPageSteps.checkSource("mandate-cl2", "Mandate");
+		linksPageSteps.checkTarget("mandate-cl2", "Client");
+		linksPageSteps.checkRelations("mandate-cl2", "Mandate-Client");
 		// delete items
-		abstractPageSteps.deleteElementIfExists("mandate-md2");
+		abstractPageSteps.deleteElementIfExists("mandate-cl2");
 		itemsPageSteps.checkThatElementIsNotPresent("mandate-cl2");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
+		abstractPageSteps.clickOk();
 		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("LinkCategories", "accessed");
-
 		itemsPageSteps
-				.checkIfElementIsPresent("Title: mandate-md2 from LinkCategories was Deleted");
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: mandate-md2 from LinkCategories was Changed");
+				.checkIfElementIsPresent("Title: mandate-cl2 from LinkCategories was Changed");
 		hitLogPageSteps
-				.clickOnviewLogDetails("Title: mandate-md2 from LinkCategories was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Title", "client-cl1",
-				"mandate-md2");
+				.clickOnviewLogDetails("Title: mandate-cl2 from LinkCategories was Changed");
+		hitLogPageSteps.checkIfChangesArePresent("Title", "client-md1",
+				"mandate-cl2");
 		hitLogPageSteps.checkIfChangesArePresent("SourceObject", "Client",
 				"Mandate");
-		hitLogPageSteps.checkIfChangesArePresent("TargetObject", "Client",
-				"Mandate");
-		hitLogPageSteps.checkIfChangesArePresent("Relations", "Client-Client",
-				"Mandate-Mandate");
+		hitLogPageSteps.checkIfChangesArePresent("TargetObject", "Mandate",
+				"Client");
+		hitLogPageSteps.checkIfChangesArePresent("Relations", "Client-Mandate",
+				"Mandate-Client");
 		abstractPageSteps.closeHitlogDetailsPage();
 		itemsPageSteps
-				.checkIfElementIsPresent("Title: client-cl1 from LinkCategories was Added");
+				.checkIfElementIsPresent("Title: client-md1 from LinkCategories was Accessed");
 	}
 }

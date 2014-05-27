@@ -25,9 +25,9 @@ public class EditCountryTest extends BaseTest {
 	@Test
 	public void editCountry() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// abstractPageSteps.selectMenuOption("Hitlog");
-		// itemsPageSteps.clickOnDeleteLogItemsButton();
-		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("315");
 		abstractPageSteps.deleteElementIfExists("316");
@@ -78,9 +78,6 @@ public class EditCountryTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("Countries", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: A58kn from Countries was Deleted");
 		itemsPageSteps
 				.checkIfElementIsPresent("Title: A58kn from Countries was Changed");
 
@@ -90,7 +87,7 @@ public class EditCountryTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Code", "NC", "C2");
 		abstractPageSteps.closeHitlogDetailsPage();
 		itemsPageSteps
-				.checkIfElementIsPresent("Title: aaf3 from Countries was Added");
+				.checkIfElementIsPresent("Title: aaf3 from Countries was Accessed");
 
 	}
 

@@ -28,6 +28,7 @@ public class FilterCurrenciesTest extends BaseTest {
 	@Test
 	public void filterCurrencies() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+
 		// create currencies
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
@@ -36,7 +37,7 @@ public class FilterCurrenciesTest extends BaseTest {
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createInactiveCurrency("385", "g60k", "EUR", "ANGOLA",
+		itemsPageSteps.createInactiveCurrency("385", "g60k", "EUR", "ARUBA",
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g60k");
 

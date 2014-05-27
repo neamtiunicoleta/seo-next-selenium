@@ -28,6 +28,12 @@ public class EditLinkTest extends BaseTest {
 	@Test
 	public void editLink() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+		
+		//create mandate
+		
+		//create client
+		
+		
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.deleteElementIfExists("Cl-cl Link1");
 		abstractPageSteps.deleteElementIfExists("Cl-md Link1");

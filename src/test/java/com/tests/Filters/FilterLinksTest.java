@@ -7,6 +7,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
 
+import com.steps.ClientsPageSteps;
 import com.steps.ExportFiles;
 import com.steps.FilterPageSteps;
 import com.steps.ItemsPageSteps;
@@ -26,11 +27,20 @@ public class FilterLinksTest extends BaseTest {
 	public ExportFiles exportFiles;
 	@Steps
 	public FilterPageSteps filterPageSteps;
+	@Steps
+	public ClientsPageSteps clientsPageSteps;
 
 	@Test
 	public void filterLinks() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Links");
+		abstractPageSteps.selectMenuOption("Clients");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Individual");
+		clientsPageSteps.createBasicIndividualClient("cluj", "Doe", "Mary");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Save");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Individual");
+		clientsPageSteps.createBasicIndividualClient("cluj", "Doe", "Mary");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Save");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Links");
 		abstractPageSteps.deleteElementIfExists("Cl-cl Link9");
 		abstractPageSteps.deleteElementIfExists("Md-md Link9");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
@@ -87,16 +97,8 @@ public class FilterLinksTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("Md-md Link9");
 		filterPageSteps.clickOnClearFiltersButton();
 		// delte items
-		abstractPageSteps.deleteElementIfExists("Cl-cl Link9");
-		abstractPageSteps.deleteElementIfExists("Cl-md Link9");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
-		abstractPageSteps.deleteElementIfExists("Client123-Client123");
-		abstractPageSteps.deleteElementIfExists("Client233-Mandate233");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("client-cl120");
-		abstractPageSteps.deleteElementIfExists("cl-md200");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
+		abstractPageSteps.clickOk();
 	}
 }

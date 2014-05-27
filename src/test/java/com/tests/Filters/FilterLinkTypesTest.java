@@ -7,6 +7,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
 
+import com.steps.ClientsPageSteps;
 import com.steps.FilterPageSteps;
 import com.steps.ItemsPageSteps;
 import com.steps.LinksPageSteps;
@@ -24,28 +25,24 @@ public class FilterLinkTypesTest extends BaseTest {
 	public LinksPageSteps linksPageSteps;
 	@Steps
 	public FilterPageSteps filterPageSteps;
+	@Steps
+	public ClientsPageSteps clientsPageSteps;
 
 	@Test
 	public void filterLinkTypes() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Links");
+		abstractPageSteps.selectMenuOption("Clients");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Individual");
+		clientsPageSteps.createBasicIndividualClient("cluj", "Doe", "Ana");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Save");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Links");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
-		abstractPageSteps.deleteElementIfExists("Client1-Client1");
 		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
-		abstractPageSteps.deleteElementIfExists("Mandate3-Mandate3");
 		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
 		// create link categories
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("client-cl1");
-		abstractPageSteps.deleteElementIfExists("mandate-md1");
 		abstractPageSteps.deleteElementIfExists("cl-md2");
 		abstractPageSteps.deleteElementIfExists("md1-cl2");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		linksPageSteps.createLinkCategory("client-cl1", "Client", "Client",
-				"Client-Client");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		linksPageSteps.createLinkCategory("mandate-md1", "Mandate", "Mandate",
-				"Mandate-Mandate");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkCategory("cl-md2", "Client", "Mandate",
 				"Client-Mandate");
@@ -55,44 +52,37 @@ public class FilterLinkTypesTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create link types
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		linksPageSteps.createLinkType("Client1-Client1", "client-cl1");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkType("Client2-Mandate2", "cl-md2");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		linksPageSteps.createLinkType("Mandate3-Mandate3", "mandate-md1");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
 		linksPageSteps.createLinkType("Mandate4-Client4", "md1-cl2");
 		// filter by title
 		filterPageSteps.clickOnFilterDropdownList();
 		filterPageSteps.inputTitle("Client");
 		filterPageSteps.clickOnFilterButton();
-		itemsPageSteps.checkIfElementIsPresent("Client1-Client1");
 		itemsPageSteps.checkIfElementIsPresent("Client2-Mandate2");
 		itemsPageSteps.checkIfElementIsPresent("Mandate4-Client4");
-		itemsPageSteps.checkThatElementIsNotPresent("Mandate3-Mandate3");
 		filterPageSteps.clickOnClearFiltersButton();
 		// filter by link category
-		linksPageSteps.selectLinkCategory("client-cl1");
+		linksPageSteps.selectLinkCategory("cl-md2");
 		filterPageSteps.clickOnFilterButton();
-		itemsPageSteps.checkIfElementIsPresent("Client1-Client1");
-		itemsPageSteps.checkThatElementIsNotPresent("Client2-Mandate2");
+		itemsPageSteps.checkIfElementIsPresent("Client2-Mandate2");
 		itemsPageSteps.checkThatElementIsNotPresent("Mandate4-Client4");
-		itemsPageSteps.checkThatElementIsNotPresent("Mandate3-Mandate3");
 		filterPageSteps.clickOnClearFiltersButton();
 		// delete items
-		abstractPageSteps.deleteElementIfExists("Client1-Client1");
-		itemsPageSteps.checkThatElementIsNotPresent("Client1-Client1");
 		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
 		itemsPageSteps.checkThatElementIsNotPresent("Client2-Mandate2");
 		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
 		itemsPageSteps.checkThatElementIsNotPresent("Mandate4-Client4");
-		abstractPageSteps.deleteElementIfExists("Mandate3-Mandate3");
-		itemsPageSteps.checkThatElementIsNotPresent("Mandate3-Mandate3");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("client-cl1");
-		abstractPageSteps.deleteElementIfExists("mandate-md1");
-		abstractPageSteps.deleteElementIfExists("cl-md2");
-		abstractPageSteps.deleteElementIfExists("md1-cl2");
+		abstractPageSteps.deleteElementIfExists("cl-md1");
+		itemsPageSteps.checkThatElementIsNotPresent("cl-md1");
+		abstractPageSteps.deleteElementIfExists("md-cl1");
+		itemsPageSteps.checkThatElementIsNotPresent("md-cl1");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
+		abstractPageSteps.clickOk();
 
 	}
 }

@@ -79,7 +79,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void clickOnActiveCheckBox() {
-		WebElement activeCheckBox = returnField("input", "idFormSectionActive");
+		WebElement activeCheckBox = returnField("input", "Active");
 		element(activeCheckBox).click();
 	}
 
@@ -221,5 +221,67 @@ public class ItemsPage extends AbstractPage {
 	public void checkIfHighImportanceCheckBoxIsNotChecked(String id) {
 		Assert.assertFalse("The checkbox is checked",
 				checkCheckBox("input[id*='highImportance']", id));
+	}
+
+	public void inputActualSituationForDocSituation(String situation) {
+		WebElement actualSituationField = returnField("textarea",
+				"ActualSituation");
+		element(actualSituationField).clear();
+		element(actualSituationField).type(situation);
+	}
+
+	public void inputRiskForDocSituation(String risk) {
+		WebElement riskField = returnField("input", "Risk");
+		element(riskField).clear();
+		element(riskField).type(risk);
+	}
+
+	public void inputResolutionForDocSituation(String resolution) {
+		WebElement resolutionField = returnField("textarea", "Resolution");
+		element(resolutionField).clear();
+		element(resolutionField).type(resolution);
+	}
+
+	public void checkRiskForDocSituation(String title, String risk) {
+		checkTextFromField("td:nth-child(4)", title, risk);
+	}
+
+	public void checkResolutionForDocSituation(String title, String risk) {
+		checkTextFromField("th:nth-child(5)", title, risk);
+	}
+
+	public void inputOrganizationUnit(String unit) {
+		WebElement organizationUnitField = returnField("input", "OU");
+		element(organizationUnitField).clear();
+		element(organizationUnitField).type(unit);
+	}
+
+	public void inputPopBox(String popBox) {
+		WebElement popBoxField = returnField("input", "POBox");
+		element(popBoxField).clear();
+		element(popBoxField).type(popBox);
+	}
+
+	public void inputEmployees(String userName) {
+		WebElement identificationMadeByField = getDriver().findElement(
+				By.cssSelector("input[id*='usersEditor_TopSpan_EditorInput']"));
+		element(identificationMadeByField).clear();
+		element(identificationMadeByField).type(userName);
+		List<WebElement> usersList = getDriver().findElements(
+				By.cssSelector("div[id*='AutoFillDiv'] ul li"));
+
+		boolean foundOption = false;
+		for (WebElement item : usersList) {
+			if (item.getText().contentEquals(userName)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+	}
+
+	public void checkOrganizationUnit(String name, String unit) {
+		checkTextFromField("td:nth-child(3)", name, unit);
 	}
 }

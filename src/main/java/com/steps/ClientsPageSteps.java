@@ -1,13 +1,9 @@
 package com.steps;
 
 import java.util.Date;
-import java.util.List;
-
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.pages.Pages;
 
 import com.tools.AbstractSteps;
@@ -210,5 +206,71 @@ public class ClientsPageSteps extends AbstractSteps {
 	@Step
 	public void selectLocationOfID(String location) {
 		clientsPage().selectLocationOfID(location);
+	}
+
+	@Step
+	public void checkEmploymentState(String id, String state) {
+		clientsPage().checkEmploymentState(id, state);
+	}
+
+	@Step
+	public void checkEmployer(String id, String employer) {
+		clientsPage().checkEmployer(id, employer);
+	}
+
+	@Step
+	public void checkClientType(String id, String type) {
+		clientsPage().checkClientType(id, type);
+	}
+
+	@Step
+	public void checkOffices(String id, String office) {
+		clientsPage().checkOffices(id, office);
+	}
+
+	@Step
+	public void checkCountriesOfDomicile(String id, String countries) {
+		clientsPage().checkCountriesOfDomicile(id, countries);
+	}
+
+	@Step
+	public void selectTypeOfShareholding(String type) {
+		clientsPage().selectTypeOfShareholding(type);
+	}
+
+	@Step
+	public void selectListedIn(String country) {
+		clientsPage().selectListedIn(country);
+	}
+
+	@Step
+	public void selectBusinessCode(String code) {
+		clientsPage().selectBusinessCode(code);
+	}
+
+	@Step
+	public void inputActualBusinessActivities(String activity) {
+		clientsPage().inputActualBusinessActivities(activity);
+	}
+
+	@Step
+	public void inputComments(String comment) {
+		clientsPage().inputComments(comment);
+	}
+
+	@Step
+	public void inputOther(String comment) {
+		clientsPage().inputOther(comment);
+	}
+
+	@StepGroup
+	public void createBasicIndividualClient(String office, String familyName,
+			String firstName) {
+		clientsPage().selectOffice(office);
+		clientsPage().inputFamilyName(familyName);
+		clientsPage().inputFirstName(firstName);
+		abstractPage().selectActionFromHeader("ACTIONS");
+		waitABit(3000);
+		abstractPage().selectActionFromRibbon("Save");
 	}
 }

@@ -25,9 +25,9 @@ public class EditBusinessCodeTest extends BaseTest {
 	@Test
 	public void editBusinessCode() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// abstractPageSteps.selectMenuOption("Hitlog");
-		// itemsPageSteps.clickOnDeleteLogItemsButton();
-		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectMenuOption("Hitlog");
+		itemsPageSteps.clickOnDeleteLogItemsButton();
+		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.deleteElementIfExists("595");
@@ -68,9 +68,6 @@ public class EditBusinessCodeTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("BusinessCodes", "Accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Code: 595 from BusinessCodes was Deleted");
 		itemsPageSteps
 				.checkIfElementIsPresent("Code: 595 from BusinessCodes was Changed");
 		hitLogPageSteps
@@ -80,7 +77,7 @@ public class EditBusinessCodeTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Risk", "893", "894");
 		abstractPageSteps.closeHitlogDetailsPage();
 		itemsPageSteps
-				.checkIfElementIsPresent("Code: 594 from BusinessCodes was Added");
+				.checkIfElementIsPresent("Code: 594 from BusinessCodes was Accessed");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// delete items
 		abstractPageSteps.selectMenuOption("Risk Management");

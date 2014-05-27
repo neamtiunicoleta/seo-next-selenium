@@ -30,8 +30,6 @@ public class AbstractPageSteps extends AbstractSteps {
 
 	@Step
 	public void selectActionFromManagePagesRibbon(String action) {
-		abstractPage().selectActionFromHeader("ACTIONS");
-		waitABit(3000);
 		abstractPage().selectActionFromRibbon(action);
 	}
 
@@ -62,6 +60,11 @@ public class AbstractPageSteps extends AbstractSteps {
 	@Step
 	public void selectActionFromRibbon(String action) {
 		abstractPage().selectActionFromRibbon(action);
+	}
+
+	@Step
+	public void selectActionFromLeftMenu(String action) {
+		abstractPage().selectActionFromLeftMenu(action);
 	}
 
 	@Step

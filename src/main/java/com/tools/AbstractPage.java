@@ -12,6 +12,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.sikuli.api.DesktopScreenRegion;
 import org.sikuli.api.ImageTarget;
 import org.sikuli.api.ScreenRegion;
@@ -106,6 +107,26 @@ public class AbstractPage extends PageObject {
 		waitABit(3000);
 	}
 
+	public void selectActionFromLeftMenu(String action) {
+
+		List<WebElement> leftMenuList = getDriver()
+				.findElements(
+						By.cssSelector("div#sideNavBox tr[id*='Navigation'] table tr td input"));
+		boolean foundOption = false;
+
+		for (WebElement option : leftMenuList) {
+			System.out.println("@@@@@@@@@@"+option.getAttribute("value"));
+			if (option.getAttribute("value").contentEquals(action)) {
+				foundOption = true;
+				option.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The" + action + " was not found!", foundOption);
+
+		waitABit(3000);
+	}
+
 	public WebElement returnField(String fieldType, String fieldName) {
 		WebElement element = null;
 		List<WebElement> inputList = getDriver().findElements(
@@ -177,6 +198,7 @@ public class AbstractPage extends PageObject {
 				result = elemNow.findElement(By.cssSelector(fieldType))
 						.getText();
 				result = result.replace("\n", " ");
+				System.out.println("@@@@@@@@@@@@" + result);
 				break;
 			}
 
@@ -321,9 +343,15 @@ public class AbstractPage extends PageObject {
 		keyboard.keyUp(KeyEvent.VK_ENTER);
 	}
 
+	public void pressEscape() {
+		Keyboard keyboard = new DesktopKeyboard();
+		keyboard.keyDown(KeyEvent.VK_ESCAPE);
+		keyboard.keyUp(KeyEvent.VK_ESCAPE);
+	}
+
 	public void clickOnTab(String tabName) {
 		List<WebElement> tabList = getDriver().findElements(
-				By.cssSelector("div#accordion > h3"));
+				By.cssSelector("div#tabs ul li"));
 		boolean foundOption = false;
 		for (WebElement item : tabList) {
 			System.out.println("@@@@@@@@@@@" + item.getText());
@@ -334,5 +362,10 @@ public class AbstractPage extends PageObject {
 			}
 		}
 		Assert.assertTrue("The option was not found!", foundOption);
+	}
+
+	public void mouseOver(WebElement element) {
+		Actions mouseOver = new Actions(getDriver());
+		mouseOver.moveToElement(element).build().perform();
 	}
 }

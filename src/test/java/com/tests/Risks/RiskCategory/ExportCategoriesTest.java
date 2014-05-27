@@ -25,9 +25,6 @@ public class ExportCategoriesTest extends BaseTest {
 	@Test
 	public void exportListOfCategories() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("136");
@@ -45,10 +42,5 @@ public class ExportCategoriesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("147");
 		itemsPageSteps.checkThatElementIsNotPresent("136");
 		itemsPageSteps.checkThatElementIsNotPresent("147");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("RiskCategories", "Exported");
 	}
 }

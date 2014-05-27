@@ -25,9 +25,6 @@ public class ExportCriteriasTest extends BaseTest {
 	@Test
 	public void exportListOfCriterias() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("212");
 		abstractPageSteps.deleteElementIfExists("125");
@@ -55,9 +52,5 @@ public class ExportCriteriasTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("35");
 		itemsPageSteps.checkThatElementIsNotPresent("35");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Exported");
 	}
 }

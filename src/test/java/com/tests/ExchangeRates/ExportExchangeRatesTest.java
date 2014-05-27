@@ -28,9 +28,6 @@ public class ExportExchangeRatesTest extends BaseTest {
 	@Test
 	public void exportListOfExchangeRates() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// abstractPageSteps.selectMenuOption("Hitlog");
-		// itemsPageSteps.clickOnDeleteLogItemsButton();
-		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g68k");
 		// create currency
@@ -58,9 +55,5 @@ public class ExportExchangeRatesTest extends BaseTest {
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("ExchangeRatesList.xlsx");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g68k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("ExchangeRates", "Exported");
 	}
 }

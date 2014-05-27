@@ -25,9 +25,6 @@ public class ExportAssetsTest extends BaseTest {
 	@Test
 	public void exportListOfAssets() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("13");
@@ -48,10 +45,5 @@ public class ExportAssetsTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("14");
 		itemsPageSteps.checkThatElementIsNotPresent("13");
 		itemsPageSteps.checkThatElementIsNotPresent("14");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("RiskAssets", "Exported");
 	}
 }

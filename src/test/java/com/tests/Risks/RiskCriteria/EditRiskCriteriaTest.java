@@ -65,10 +65,6 @@ public class EditRiskCriteriaTest extends BaseTest {
 		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// check hitlog
 		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("RiskCriterias", "Accessed");
-
-		itemsPageSteps
-				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Deleted");
 		itemsPageSteps
 				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Changed");
 		hitLogPageSteps
@@ -79,7 +75,7 @@ public class EditRiskCriteriaTest extends BaseTest {
 		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
 		abstractPageSteps.closeHitlogDetailsPage();
 		itemsPageSteps
-				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Added");
+				.checkIfElementIsPresent("Key: 293 from RiskCriterias was Accessed");
 	}
 
 }

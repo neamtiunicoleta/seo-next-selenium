@@ -16,15 +16,16 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void selectOffice(String offices) {
+		getDriver().findElement(By.cssSelector("div[id*='cbxOffices']"))
+				.click();
 		List<WebElement> officesList = getDriver().findElements(
-				By.cssSelector("div[id*='divcbxOffices'] tr td"));
+				By.cssSelector("select[id*='cbxOffices'] option"));
 		boolean foundOption = false;
 
 		for (WebElement item : officesList) {
-			System.out.println("!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contentEquals(offices)) {
 				foundOption = true;
-				item.findElement(By.cssSelector("td input")).click();
+				item.click();
 				break;
 			}
 		}
@@ -32,15 +33,17 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void selectCountriesOfDomicile(String country) {
+		getDriver().findElement(
+				By.cssSelector("div[id*='CountriesOfDomicile']")).click();
 		List<WebElement> countriesList = getDriver().findElements(
-				By.cssSelector("div[id*='divCheckBoxDomicile'] tr td"));
+				By.cssSelector("select[name*='CountriesOfDomicile'] option"));
 		boolean foundOption = false;
 
 		for (WebElement item : countriesList) {
 			System.out.println("!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contentEquals(country)) {
 				foundOption = true;
-				item.findElement(By.cssSelector("td input")).click();
+				item.click();
 				break;
 			}
 		}
@@ -48,15 +51,17 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void selectNationality(String nationality) {
+		getDriver().findElement(By.cssSelector("div[id*='Nationalities']"))
+				.click();
 		List<WebElement> nationalitiesList = getDriver().findElements(
-				By.cssSelector("div[id*='divNationalities'] tr td"));
+				By.cssSelector("select[name*='Nationalities'] option"));
 		boolean foundOption = false;
 
 		for (WebElement item : nationalitiesList) {
 			System.out.println("!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contentEquals(nationality)) {
 				foundOption = true;
-				item.findElement(By.cssSelector("td input")).click();
+				item.click();
 				break;
 			}
 		}
@@ -288,6 +293,18 @@ public class ClientsPage extends AbstractPage {
 				By.cssSelector("input[id*='EditorInput']"));
 		element(identificationMadeByField).clear();
 		element(identificationMadeByField).type(userName);
+		List<WebElement> usersList = getDriver().findElements(
+				By.cssSelector("div[id*='AutoFillDiv'] ul li"));
+
+		boolean foundOption = false;
+		for (WebElement item : usersList) {
+			if (item.getText().contentEquals(userName)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
 	}
 
 	public void selectTypeOfID(String type) {
@@ -376,5 +393,98 @@ public class ClientsPage extends AbstractPage {
 		}
 		Assert.assertTrue("The option was not found!", foundOption);
 
+	}
+
+	public void checkEmploymentState(String id, String state) {
+		checkTextFromField("td:nth-child(3)", id, state);
+	}
+
+	public void checkEmployer(String id, String employer) {
+		checkTextFromField("td:nth-child(4)", id, employer);
+	}
+
+	public void checkClientType(String id, String type) {
+		checkTextFromField("td:nth-child(5)", id, type);
+	}
+
+	public void checkOffices(String id, String office) {
+		checkTextFromField("td:nth-child(6)", id, office);
+	}
+
+	public void checkCountriesOfDomicile(String id, String countries) {
+		checkTextFromField("td:nth-child(7)", id, countries);
+	}
+
+	public void selectTypeOfShareholding(String type) {
+		getDriver()
+				.findElement(By.cssSelector("div[id*='TypeOfShareHolding']"))
+				.click();
+		List<WebElement> typeList = getDriver().findElements(
+				By.cssSelector("select[id*='TypeOfShareHolding'] option"));
+		boolean foundOption = false;
+		for (WebElement item : typeList) {
+			if (item.getText().equals(type)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+
+	}
+
+	public void selectListedIn(String country) {
+		getDriver().findElement(By.cssSelector("div[id*='ListedIn']")).click();
+		List<WebElement> countriesList = getDriver().findElements(
+				By.cssSelector("select[id*='ListedIn'] option"));
+		boolean foundOption = false;
+		for (WebElement item : countriesList) {
+			if (item.getText().equals(country)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+
+	}
+
+	public void selectBusinessCode(String code) {
+		getDriver().findElement(By.cssSelector("div[id*='BusinessCode']"))
+				.click();
+		List<WebElement> codesList = getDriver().findElements(
+				By.cssSelector("select[id*='BusinessCode'] option"));
+		boolean foundOption = false;
+		for (WebElement item : codesList) {
+			if (item.getText().equals(code)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+
+	}
+
+	public void inputActualBusinessActivities(String activity) {
+		WebElement actualBusinessActivityField = getDriver().findElement(
+				By.cssSelector("input[name*='ActualBusinessActivities']"));
+		element(actualBusinessActivityField).clear();
+		element(actualBusinessActivityField).type(activity);
+	}
+
+	public void inputComments(String comment) {
+		WebElement commentsField = getDriver().findElement(
+				By.cssSelector("input[name*='txtComments']"));
+		element(commentsField).clear();
+		element(commentsField).type(comment);
+
+	}
+
+	public void inputOther(String comment) {
+		WebElement otherField = getDriver().findElement(
+				By.cssSelector("input[name*='Other']"));
+		element(otherField).clear();
+		element(otherField).type(comment);
 	}
 }
