@@ -261,9 +261,8 @@ public class ClientsPageSteps extends AbstractSteps {
 	}
 
 	@StepGroup
-	public void createBasicStandardIndividualClient(String profile,
-			String office, String familyName, String firstName) {
-		clientsPage().selectProfileType(profile);
+	public void createBasicStandardIndividualClient(String office,
+			String familyName, String firstName) {
 		clientsPage().selectOffice(office);
 		clientsPage().inputFamilyName(familyName);
 		clientsPage().inputFirstName(firstName);
@@ -271,9 +270,7 @@ public class ClientsPageSteps extends AbstractSteps {
 	}
 
 	@StepGroup
-	public void createBasicStandardLegalClient(String profile, String office,
-			String entityName) {
-		clientsPage().selectProfileType(profile);
+	public void createBasicStandardLegalClient(String office, String entityName) {
 		clientsPage().selectOffice(office);
 		clientsPage().inputFamilyName(entityName);
 		abstractPage().selectActionFromRibbon("Save");
@@ -396,7 +393,7 @@ public class ClientsPageSteps extends AbstractSteps {
 		clientsPage().checkRemarks(remarks);
 		clientsPage().checkIfHighRiskIsChecked();
 		clientsPage().checkIfPEPIsChecked();
-		clientsPage().checkClientComments(comments);
+		clientsPage().checkClientComments(clientComments);
 
 		abstractPage().clickOnTab("Business Activities");
 		clientsPage().checkBusinessCodes(businessCode);

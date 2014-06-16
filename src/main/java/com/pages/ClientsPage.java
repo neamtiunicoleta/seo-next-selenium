@@ -486,14 +486,14 @@ public class ClientsPage extends AbstractPage {
 
 	public void inputActualBusinessActivities(String activity) {
 		WebElement actualBusinessActivityField = getDriver().findElement(
-				By.cssSelector("input[name*='ActualBusinessActivities']"));
+				By.cssSelector("textarea[name*='ActualBusinessActivities']"));
 		element(actualBusinessActivityField).clear();
 		element(actualBusinessActivityField).type(activity);
 	}
 
 	public void inputComments(String comment) {
 		WebElement commentsField = getDriver().findElement(
-				By.cssSelector("input[name*='txtComments']"));
+				By.cssSelector("textarea[name*='txtComments']"));
 		element(commentsField).clear();
 		element(commentsField).type(comment);
 
@@ -501,7 +501,7 @@ public class ClientsPage extends AbstractPage {
 
 	public void inputOther(String comment) {
 		WebElement otherField = getDriver().findElement(
-				By.cssSelector("input[name*='Other']"));
+				By.cssSelector("textarea[name*='Other']"));
 		element(otherField).clear();
 		element(otherField).type(comment);
 	}
@@ -726,12 +726,12 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void checkClientComments(String comment) {
-		String commentField = getDriver().findElement(
-				By.cssSelector("tr[id*='ClientProfileCommentsTR'] textarea"))
-				.getAttribute("value");
-		System.out.println("@@@@@@@@@@"+commentField);
+		String commentField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='InputformsectionClientProfileCommentsTR'] textarea"))
+				.getText();
 		Assert.assertTrue("Client comments are not correct",
-				commentField.contentEquals(comment));
+				commentField.contains(comment));
 	}
 
 	public void checkIdentificationMadeBy(String user) {
@@ -994,25 +994,26 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void checkActualBusinessActivities(String activity) {
-		String actualBusinessActivityField = getDriver().findElement(
-				By.cssSelector("tr[id*='ActualBusinessActivitiesTR'] input"))
-				.getAttribute("value");
+		String actualBusinessActivityField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='ActualBusinessActivitiesTR'] textarea"))
+				.getText();
 		Assert.assertTrue("Source of wealth is not correct",
 				actualBusinessActivityField.contentEquals(activity));
 	}
 
 	public void checkComments(String activity) {
-		String commentsField = getDriver().findElement(
-				By.cssSelector("tr[id*='Comments'] input")).getAttribute(
-				"value");
+		String commentsField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='InputformsectionCommentsTR'] textarea"))
+				.getText();
 		Assert.assertTrue("Comments are not correct",
 				commentsField.contentEquals(activity));
 	}
 
 	public void checkOther(String other) {
 		String otherField = getDriver().findElement(
-				By.cssSelector("tr[id*='OtherTR'] input"))
-				.getAttribute("value");
+				By.cssSelector("tr[id*='OtherTR'] textarea")).getText();
 		Assert.assertTrue("Source of wealth is not correct",
 				otherField.contentEquals(other));
 	}

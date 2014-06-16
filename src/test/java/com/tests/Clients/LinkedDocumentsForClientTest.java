@@ -39,16 +39,14 @@ public class LinkedDocumentsForClientTest extends BaseTest {
 		itemsPageSteps.checkIfElementIsPresent("19f");
 		// create office
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		 itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii",
-		 "325",
-		 "Cluj", "19f", "12", "John Doe");
-		 // create client
+		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
+				"Cluj", "19f", "12", "John Doe");
+		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
 		searchPageSteps.searchAndDeleteItem("Jane doe");
 		abstractPageSteps.selectActionFromRibbon("Individual");
-		clientsPageSteps.createBasicStandardIndividualClient("Standard", "cluj",
-				"Doe", "Jane");
-		clientsPageSteps.checkIfClientExists("Jane Doe");
+		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Doe",
+				"Jane");
 		// upload documents
 		abstractPageSteps.selectActionFromLeftMenu("Linked Documents");
 		uploadItemsSteps.selectDocumentType("Other");

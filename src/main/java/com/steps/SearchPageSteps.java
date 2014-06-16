@@ -56,17 +56,19 @@ public class SearchPageSteps extends AbstractSteps {
 
 	@StepGroup
 	public void searchAndDeleteItem(String key) {
-
-		inputSearchText(key);
-		clickOnSearchIcon();
-		if (searchPage().moreButtonIsDisplayed()) {
-			clickOnMoreButton();
-			checkIfElementIsPresentInSearchResultsList(key);
-			searchPage().selectItemFromSearchResultsList(key);
-			abstractPage().selectActionFromRibbon("Delete");
-			abstractPage().clickOk();
-		} else {
-			clickOnHideButton();
-		}
+		do {
+			inputSearchText(key);
+			clickOnSearchIcon();
+			waitABit(2000);
+			if (searchPage().moreButtonIsDisplayed()) {
+				clickOnMoreButton();
+				checkIfElementIsPresentInSearchResultsList(key);
+				searchPage().selectItemFromSearchResultsList(key);
+				abstractPage().selectActionFromRibbon("Delete");
+				abstractPage().clickOk();
+			} else {
+				clickOnHideButton();
+			}
+		} while (searchPage().moreButtonIsDisplayed());
 	}
 }

@@ -67,15 +67,17 @@ public class SearchPage extends AbstractPage {
 	public void selectItemFromSearchResultsList(String key) {
 
 		List<WebElement> resultsList = getDriver().findElements(
-				By.cssSelector("div#page_container > ul > li> table > tbody"));
+				By.cssSelector("div#page_container > ul > li:first-child > table > tbody"));
 
 		for (WebElement item : resultsList) {
 			WebElement title = item.findElement(By
 					.cssSelector("tr:nth-child(2)>td:nth-child(2)"));
+			System.out.println("****************" + title.getText());
 			if (title.getText().contentEquals(key)) {
 				System.out.println("@@@@@@@@@" + title.getText());
 				mouseOver(item.findElement(By
 						.cssSelector("tr:nth-child(1)>td:nth-child(4)")));
+				waitABit(2000);
 				item.findElement(
 						By.cssSelector("tr:nth-child(1)>td:nth-child(4)"))
 						.click();
@@ -87,7 +89,7 @@ public class SearchPage extends AbstractPage {
 		WebElement moreButton = getDriver()
 				.findElement(
 						By.cssSelector("div#searchResultsContainerButtons > input#moreButton"));
-		if (moreButton.getAttribute("style").contains("inline")) {
+		if (moreButton.isDisplayed()) {
 			return true;
 		}
 		return false;

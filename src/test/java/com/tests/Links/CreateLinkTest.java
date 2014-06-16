@@ -34,7 +34,7 @@ public class CreateLinkTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Clients");
 		abstractPageSteps.deleteElementIfExists("Doe Joe");
 		abstractPageSteps.selectActionFromRibbon("Individual");
-		clientsPageSteps.createBasicStandardIndividualClient("Light","Argentina", "Doe", "Joe");
+		clientsPageSteps.createBasicStandardIndividualClient("Argentina", "Doe", "Joe");
 		abstractPageSteps.selectActionFromRibbon("Save");
 		abstractPageSteps.selectActionFromRibbon("Links");
 		abstractPageSteps.selectActionFromRibbon("Types");

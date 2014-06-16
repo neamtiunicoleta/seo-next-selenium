@@ -42,9 +42,8 @@ public class CreateClientSituationTest extends BaseTest {
 		abstractPageSteps.selectActionFromTopMenu("Clients");
 		searchPageSteps.searchAndDeleteItem("John Smith");
 		abstractPageSteps.selectActionFromRibbon("Individual");
-		clientsPageSteps.createBasicStandardIndividualClient("Standard", "cluj",
-				"Smith", "John");
-		clientsPageSteps.checkIfClientExists("John Smith");
+		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Smith",
+				"John");
 		// upload documents
 		abstractPageSteps.selectActionFromLeftMenu("Client Situation");
 		abstractPageSteps.selectActionFromRibbon("Create");

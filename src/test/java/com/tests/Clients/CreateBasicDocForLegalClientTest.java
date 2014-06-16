@@ -33,66 +33,63 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
-//		abstractPageSteps.deleteElementIfExists("19f");
-//		abstractPageSteps.deleteElementIfExists("20f");
-//		abstractPageSteps.selectActionFromRibbon("Create");
-//		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
-//		itemsPageSteps.checkIfElementIsPresent("19f");
-//		abstractPageSteps.selectActionFromRibbon("Create");
-//		itemsPageSteps.createCountryWithoutRisk("20f", "1F");
-//		itemsPageSteps.checkIfElementIsPresent("20f");
-//		// create risk criteria
-//		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
-//		abstractPageSteps.deleteElementIfExists("594");
-//		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
-//		abstractPageSteps.deleteElementIfExists("893");
-//		abstractPageSteps.selectActionFromRibbon("Create");
-//		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "B");
-//		// create business code
-//		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
-//		abstractPageSteps.selectActionFromRibbon("Create");
-//		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
-//		// create office
-//		abstractPageSteps.selectActionFromLeftMenu("Offices");
-//		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-//				"Cluj", "19f", "12", "John Doe");
-//		itemsPageSteps.createOfficeIfNotExists("alba", "abb", "Independentei",
-//				"95", "Alba", "19f", "12", "John Doe");
+		abstractPageSteps.deleteElementIfExists("19f");
+		abstractPageSteps.deleteElementIfExists("20f");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
+		itemsPageSteps.checkIfElementIsPresent("19f");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("20f", "1F");
+		itemsPageSteps.checkIfElementIsPresent("20f");
+		// create risk criteria
+		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
+		abstractPageSteps.deleteElementIfExists("594");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
+		abstractPageSteps.deleteElementIfExists("893");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "B (Category B)");
+		// create business code
+		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
+		// create office
+		abstractPageSteps.selectActionFromLeftMenu("Offices");
+		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
+				"Cluj", "19f", "12", "John Doe");
+		itemsPageSteps.createOfficeIfNotExists("alba", "abb", "Independentei",
+				"95", "Alba", "19f", "12", "John Doe");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
-//		searchPageSteps.searchAndDeleteItem("Doe Mary");
-//		abstractPageSteps.selectActionFromRibbon("Legal");
-//		clientsPageSteps.createBasicStandardLegalClient("Standard", "cluj",
-//				"Doe Mary");
-		clientsPageSteps.checkIfClientExists("Doe Mary");
+		searchPageSteps.searchAndDeleteItem("Doe Mary");
+		abstractPageSteps.selectActionFromRibbon("Legal Standard");
+		clientsPageSteps.createBasicStandardLegalClient("cluj", "Doe Mary");
 		// create basic doc situation
-		abstractPageSteps.selectActionFromLeftMenu("Basic Documentation");
-//		abstractPageSteps.selectActionFromRibbon("Edit");
-//		clientsPageSteps.inputNicknameOrAbbreviation("Test");
-//		clientsPageSteps.selectListedIn("19f");
-//		clientsPageSteps.selectTypeOfShareholding("Public");
-//		clientsPageSteps.inputStreet("Abator");
-//		clientsPageSteps.inputZIP("122");
-//		clientsPageSteps.inputCity("Cluj");
-//		itemsPageSteps.selectCountry("19f");
-//		clientsPageSteps.inputDateOfBirthOrIncorporation(DateUtils.toString(
-//				DateUtils.addDays(new Date(), Integer.parseInt("-100")),
-//				"dd/MM/yyyy"));
-//		clientsPageSteps.inputRemarks("Test");
-//		clientsPageSteps.clickOnPEP();
-//		clientsPageSteps.inputClientComments("Test");
-//
-//		abstractPageSteps.clickOnTab("Business Activities");
-//		clientsPageSteps.selectBusinessCode("594");
-//		clientsPageSteps.inputActualBusinessActivities("Dev");
-//		clientsPageSteps.inputComments("Testing");
-//
-//		abstractPageSteps.clickOnTab("Identification");
-//		clientsPageSteps.inputIdentificationMadeBy("Jane Doe");
-//		clientsPageSteps.selectTypeOfID("Passport");
-//		clientsPageSteps.inputIdentificationDate("0");
-//		clientsPageSteps.inputOther("Just test");
-//		abstractPageSteps.selectActionFromRibbon("Save");
+		abstractPageSteps.selectActionFromRibbon("Edit");
+		clientsPageSteps.inputNicknameOrAbbreviation("Test");
+		clientsPageSteps.selectListedIn("19f");
+		clientsPageSteps.selectTypeOfShareholding("Public");
+		clientsPageSteps.inputStreet("Abator");
+		clientsPageSteps.inputZIP("122");
+		clientsPageSteps.inputCity("Cluj");
+		itemsPageSteps.selectCountry("19f");
+		clientsPageSteps.inputDateOfBirthOrIncorporation(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("-100")),
+				"dd/MM/yyyy"));
+		clientsPageSteps.inputRemarks("Test");
+		clientsPageSteps.clickOnPEP();
+		clientsPageSteps.inputClientComments("Test");
+
+		abstractPageSteps.clickOnTab("Business Activities");
+		clientsPageSteps.selectBusinessCode("594");
+		clientsPageSteps.inputActualBusinessActivities("Dev");
+		clientsPageSteps.inputComments("Testing");
+
+		abstractPageSteps.clickOnTab("Identification");
+		clientsPageSteps.inputIdentificationMadeBy("Jane Doe");
+		clientsPageSteps.selectTypeOfID("Passport");
+		clientsPageSteps.inputIdentificationDate("0");
+		clientsPageSteps.inputOther("Just test");
+		abstractPageSteps.selectActionFromRibbon("Save");
 
 		abstractPageSteps.selectActionFromLeftMenu("Basic Documentation");
 		clientsPageSteps.checkLegalClientInformation("Standard", "cluj",
@@ -125,7 +122,7 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
-		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("893");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
 
