@@ -5,7 +5,6 @@ import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -22,26 +21,24 @@ public class EditExchangeRateTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
-	@Steps
-	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
 	public void editExchangeRate() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		// create currency
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
-				"AUSTRIA", "985");
+
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.inputKeyField("384");
+		itemsPageSteps.inputCodeField("g12k");
+		itemsPageSteps.inputTitleField("edit currency");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
 		// create exchange rates
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Exchange");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("2", "278");
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
@@ -49,8 +46,8 @@ public class EditExchangeRateTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
-		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
-		abstractPageSteps.switchToCreateIframe();
+		abstractPageSteps.selectActionFromRibbon("View");
+		abstractPageSteps.selectEditModeButton();
 		itemsPageSteps.inputRate("589");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
@@ -65,20 +62,9 @@ public class EditExchangeRateTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g12k");
 		itemsPageSteps.checkThatElementIsNotPresent("g12k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps
-				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Changed");
-		hitLogPageSteps
-				.clickOnviewLogDetails("Currency: g12k from ExchangeRates was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Rate", "278", "589");
-		abstractPageSteps.closeHitlogDetailsPage();
-		itemsPageSteps
-				.checkIfElementIsPresent("Currency: g12k from ExchangeRates was Accessed");
 	}
 
 }

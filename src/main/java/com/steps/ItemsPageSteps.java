@@ -124,18 +124,8 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void inputRoundingValue(String value) {
-		itemsPage().inputRoundingValue(value);
-	}
-
-	@Step
 	public void clickOnHighImportanceCheckBox() {
 		itemsPage().clickOnHighImportanceCheckBox();
-	}
-
-	@Step
-	public void checkRoundingValueFromGrid(String id, String code) {
-		itemsPage().checkRoundingValueFromGrid(id, code);
 	}
 
 	@Step
@@ -151,7 +141,6 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputCodeField(code);
 		itemsPage().inputTitleField(title);
 		itemsPage().selectCountry(country);
-		itemsPage().inputRoundingValue(value);
 		itemsPage().clickOnActiveCheckBox();
 		itemsPage().clickOnHighImportanceCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
@@ -165,7 +154,6 @@ public class ItemsPageSteps extends AbstractSteps {
 		itemsPage().inputCodeField(code);
 		itemsPage().inputTitleField(title);
 		itemsPage().selectCountry(country);
-		itemsPage().inputRoundingValue(value);
 		itemsPage().clickOnHighImportanceCheckBox();
 		abstractPage().selectActionFromRibbon("Save");
 	}
@@ -190,19 +178,6 @@ public class ItemsPageSteps extends AbstractSteps {
 								Integer.parseInt(daysInFuture)), "dd/MM/yyyy"));
 		itemsPage().inputRate(rate);
 		abstractPage().selectActionFromRibbon("Save");
-	}
-
-	@StepGroup
-	public void createExchangeRateWithYearToDate(String rate) {
-		abstractPage().switchToCreateIframe();
-		itemsPage().inputRate(rate);
-		itemsPage().clickOnYearToDateCheckBox();
-		abstractPage().selectActionFromRibbon("Save");
-	}
-
-	@Step
-	public void checkEndDateFromGrid(String startDate, String endDate) {
-		itemsPage().checkEndDateFromGrid(startDate, endDate);
 	}
 
 	@Step

@@ -12,15 +12,15 @@ import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Create.CreateOffice.class)
+@Story(Application.Edit.EditOffice.class)
 @RunWith(ThucydidesRunner.class)
-public class CreateOfficeTest extends BaseTest {
+public class EditOfficeTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 
 	@Test
-	public void createOffice() {
+	public void editOffice() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
@@ -33,7 +33,14 @@ public class CreateOfficeTest extends BaseTest {
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "15f", "12", "John Doe");
 		itemsPageSteps.checkIfElementIsPresent("cluj");
-		itemsPageSteps.checkOrganizationunit("cluj", "cjj");
+		abstractPageSteps.selectItemFromGrid("cluj");
+		abstractPageSteps.selectActionFromRibbon("View");
+		abstractPageSteps.selectEditModeButton();
+		itemsPageSteps.inputTitleField("alba");
+		itemsPageSteps.inputOrganizationUnit("abb");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		itemsPageSteps.checkIfElementIsPresent("alba");
+		itemsPageSteps.checkOrganizationunit("alba", "abb");
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.deleteElementIfExists("15f");
 		itemsPageSteps.checkThatElementIsNotPresent("15f");

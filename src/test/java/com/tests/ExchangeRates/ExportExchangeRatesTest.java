@@ -9,7 +9,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.ExportFiles;
+import com.steps.ExportFilesPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -21,7 +21,7 @@ import com.tools.DateUtils;
 public class ExportExchangeRatesTest extends BaseTest {
 
 	@Steps
-	public ExportFiles exportFiles;
+	public ExportFilesPageSteps exportFilesPageSteps;
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 
@@ -31,16 +31,19 @@ public class ExportExchangeRatesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g68k");
 		// create currency
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g68k",
-				"export exchange rate", "AUSTRIA", "985");
+		abstractPageSteps.selectActionFromRibbon("Create");
+
+		itemsPageSteps.inputKeyField("381");
+		itemsPageSteps.inputCodeField("g68k");
+		itemsPageSteps.inputTitleField("edit currency");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("g68k");
 		abstractPageSteps.selectItemFromGrid("g68k");
 		// create exchange rates
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Exchange");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("2", "278");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("4", "204");
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("2")),
@@ -49,11 +52,12 @@ public class ExportExchangeRatesTest extends BaseTest {
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"));
 		// export
-		exportFiles.deleteFilesFromDownloadsFolder("ExchangeRatesList.xlsx");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
-		exportFiles
+		exportFilesPageSteps
+				.deleteFilesFromDownloadsFolder("ExchangeRatesList.xlsx");
+		abstractPageSteps.selectActionFromRibbon("Export");
+		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("ExchangeRatesList.xlsx");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.deleteElementIfExists("g68k");
 	}
 }

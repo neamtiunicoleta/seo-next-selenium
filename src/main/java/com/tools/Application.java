@@ -48,7 +48,11 @@ public class Application {
 
 		}
 
-		public class CreateBasicDocumentation {
+		public class CreateClientBasicDocumentation {
+
+		}
+
+		public class CreateClientSituation {
 
 		}
 
@@ -61,6 +65,10 @@ public class Application {
 		}
 
 		public class CreateOffice {
+
+		}
+
+		public class CreateOfficeLink {
 
 		}
 	}
@@ -115,6 +123,10 @@ public class Application {
 		public class EditOffice {
 
 		}
+
+		public class EditOfficeLink {
+
+		}
 	}
 
 	public class Import {
@@ -122,7 +134,7 @@ public class Application {
 
 		}
 
-		public class ImportExchangeRates {
+		public class ImportCurrencies {
 
 		}
 	}
@@ -171,6 +183,14 @@ public class Application {
 		}
 
 		public class ExportClients {
+
+		}
+
+		public class ExportOffices {
+
+		}
+
+		public class ExportOfficeLink {
 
 		}
 	}
@@ -228,5 +248,19 @@ public class Application {
 
 		}
 
+	}
+
+	public class Upload {
+		public class UploadForClients {
+
+		}
+
+		public class UploadForMandates {
+
+		}
+
+		public class UploadForTransactions {
+
+		}
 	}
 }

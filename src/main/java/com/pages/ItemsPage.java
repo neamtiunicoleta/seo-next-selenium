@@ -1,7 +1,6 @@
 package com.pages;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import junit.framework.Assert;
 
@@ -10,7 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.tools.AbstractPage;
-import com.tools.Delay;
 
 public class ItemsPage extends AbstractPage {
 
@@ -69,6 +67,7 @@ public class ItemsPage extends AbstractPage {
 		List<WebElement> gridList = getDriver().findElements(
 				By.cssSelector("div[class*='select2-drop'] ul li"));
 		for (WebElement item : gridList) {
+			System.out.println("!!!!!!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contains(id)) {
 				item.click();
 				return true;
@@ -119,39 +118,8 @@ public class ItemsPage extends AbstractPage {
 		checkTextFromField("td:nth-child(3)", id, code);
 	}
 
-	public void checkRoundingValueFromGrid(String id, String value) {
-		checkTextFromField("td:nth-child(6)", id, value);
-	}
-
 	public void checkCountryFromGrid(String id, String country) {
 		checkTextFromField("td:nth-child(5)", id, country);
-	}
-
-	public boolean checkIfElementIsPresent(String... key) {
-		// getDriver().navigate().refresh();
-		boolean hasMorePages = true;
-		boolean foundDocument = false;
-		while (hasMorePages && !foundDocument) {
-			foundDocument = checkIfElementWithSpecifiedTextExistsInList(
-					By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"),
-					true, false, key);
-			WebElement nextPageButton = getElementIfExists(
-					By.cssSelector("a[id*='btn_Next']"), Delay.SMALL,
-					TimeUnit.SECONDS);
-			if (nextPageButton == null) {
-				hasMorePages = false;
-			} else if (!foundDocument) {
-				nextPageButton.click();
-				waitABit(2000);
-			}
-		}
-		return foundDocument;
-	}
-
-	public void inputRoundingValue(String roundingValue) {
-		WebElement value = returnField("input", "idRoundingValue");
-		element(value).clear();
-		element(value).type(roundingValue);
 	}
 
 	public void clickOnHighImportanceCheckBox() {
@@ -172,17 +140,8 @@ public class ItemsPage extends AbstractPage {
 		element(exchangeRate).type(rate);
 	}
 
-	public void clickOnYearToDateCheckBox() {
-		WebElement yearToDateCheckbox = returnField("input", "YTD");
-		element(yearToDateCheckbox).click();
-	}
-
-	public void checkEndDateFromGrid(String startDate, String endDate) {
-		checkTextFromField("td:nth-child(3)", startDate, endDate);
-	}
-
 	public void checkRateFromGrid(String startDate, String rate) {
-		checkTextFromField("td:nth-child(4)", startDate, rate);
+		checkTextFromField("td:nth-child(3)", startDate, rate);
 	}
 
 	public void checkNameForBusinessCodesFromGrid(String id, String name) {

@@ -26,9 +26,9 @@ public class CreateMandateServicesTest extends BaseTest {
 	public void createMandateService() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Mandates");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Services");
+		abstractPageSteps.selectActionFromRibbon("Services");
 		abstractPageSteps.deleteElementIfExists("456");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		mandatesPageSteps.inputKeyField("456");
 		mandatesPageSteps.inputDescriptionField("MandateService");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");

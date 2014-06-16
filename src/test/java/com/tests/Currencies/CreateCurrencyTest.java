@@ -24,23 +24,30 @@ public class CreateCurrencyTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("594f");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		// create country
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("56l");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("56l", "5L");
+		itemsPageSteps.checkIfElementIsPresent("56l");
+		// create currency
+		abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.inputKeyField("562");
 		itemsPageSteps.inputCodeField("594f");
 		itemsPageSteps.inputTitleField("Euro");
-		itemsPageSteps.selectCountry("ANDORRA");
-		itemsPageSteps.inputRoundingValue("345");
 		itemsPageSteps.clickOnActiveCheckBox();
 		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594f");
 		itemsPageSteps.checkTitleFromGrid("594f", "Euro");
-		itemsPageSteps.checkRoundingValueFromGrid("594f", "345");
-		itemsPageSteps.checkCountryFromGrid("594f", "ANDORRA");
+		itemsPageSteps.checkCountryFromGrid("594f", "56l");
 		itemsPageSteps.checkIfActiveCheckBoxIsChecked("594f");
 		itemsPageSteps.checkIfHighImportanceCheckBoxIsChecked("594f");
 		abstractPageSteps.deleteElementIfExists("594f");
 		itemsPageSteps.checkThatElementIsNotPresent("694f");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("56l");
 	}
 
 }

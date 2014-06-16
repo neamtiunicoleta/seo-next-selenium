@@ -3,7 +3,6 @@ package com.tests.Currencies;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.AbstractPageSteps;
@@ -22,58 +21,47 @@ public class EditCurrencyTest extends BaseTest {
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public AbstractPageSteps abstractPageSteps;
-	@Steps
-	public HitLogPageSteps hitLogPageSteps;
 
 	@Test
 	public void editCurrency() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.clickOnDeleteLogItemsButton();
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "AUSTRIA",
-				"985");
+		// create country
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("7ji");
+		abstractPageSteps.deleteElementIfExists("9ji");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("7ji", "7J");
+		itemsPageSteps.checkIfElementIsPresent("7ji");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("9ji", "9J");
+		itemsPageSteps.checkIfElementIsPresent("9ji");
+		abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "9ji", "985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		abstractPageSteps.selectItemFromGrid("g59k");
 		// edit currency
-		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
-		abstractPageSteps.switchToCreateIframe();
+		abstractPageSteps.selectActionFromRibbon("View");
+		abstractPageSteps.selectEditModeButton();
 		itemsPageSteps.inputCodeField("g60k");
 		itemsPageSteps.inputTitleField("Euro");
-		itemsPageSteps.inputRoundingValue("112");
-		itemsPageSteps.selectCountry("ANGOLA");
+		itemsPageSteps.selectCountry("7ji");
 		itemsPageSteps.clickOnActiveCheckBox();
 		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("g60k");
 		itemsPageSteps.checkTitleFromGrid("g60k", "Euro");
-		itemsPageSteps.checkCountryFromGrid("g60k", "ANGOLA");
-		itemsPageSteps.checkRoundingValueFromGrid("g60k", "112");
+		itemsPageSteps.checkCountryFromGrid("g60k", "7ji");
 		itemsPageSteps.checkIfActiveCheckBoxIsNotChecked("g60k");
 		itemsPageSteps.checkIfHighImportanceCheckBoxIsNotChecked("g60k");
 		abstractPageSteps.deleteElementIfExists("g60k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps
-				.checkIfElementIsPresent("ISOCode: g60k from Currencies was Changed");
-		hitLogPageSteps
-				.clickOnviewLogDetails("ISOCode: g60k from Currencies was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Title", "USD", "Euro");
-		hitLogPageSteps.checkIfChangesArePresent("ISOCode", "g59k", "g60k");
-		hitLogPageSteps
-				.checkIfChangesArePresent("Country", "AUSTRIA", "ANGOLA");
-		hitLogPageSteps.checkIfChangesArePresent("RoundingValue", "985", "112");
-		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
-		hitLogPageSteps.checkIfChangesArePresent("HighImportance", "True",
-				"False");
-		abstractPageSteps.closeHitlogDetailsPage();
-		itemsPageSteps
-				.checkIfElementIsPresent("ISOCode: g59k from Currencies was Accessed");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteAllItems();
+		itemsPageSteps.checkThatElementIsNotPresent("7ji");
+		itemsPageSteps.checkThatElementIsNotPresent("9ji");
 	}
 
 }

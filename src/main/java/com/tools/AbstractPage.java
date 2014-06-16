@@ -94,9 +94,11 @@ public class AbstractPage extends PageObject {
 				.findElements(
 						By.cssSelector("div#RibbonContainer div[class*='tabContainer'] li span > a span"));
 		boolean foundOption = false;
-
+		String optionName = "";
 		for (WebElement option : ribbonButtonsList) {
-			if (option.getText().contains(action)) {
+			optionName = option.getText();
+			optionName = optionName.replace("\n", " ");
+			if (optionName.contains(action)) {
 				foundOption = true;
 				option.click();
 				break;
@@ -115,7 +117,24 @@ public class AbstractPage extends PageObject {
 		boolean foundOption = false;
 
 		for (WebElement option : leftMenuList) {
-			System.out.println("@@@@@@@@@@"+option.getAttribute("value"));
+			if (option.getAttribute("value").contentEquals(action)) {
+				foundOption = true;
+				option.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The" + action + " was not found!", foundOption);
+
+		waitABit(3000);
+	}
+
+	public void selectActionFromTopMenu(String action) {
+
+		List<WebElement> leftMenuList = getDriver().findElements(
+				By.cssSelector("div#DeltaTopNavigation tr td input"));
+		boolean foundOption = false;
+
+		for (WebElement option : leftMenuList) {
 			if (option.getAttribute("value").contentEquals(action)) {
 				foundOption = true;
 				option.click();
@@ -162,12 +181,20 @@ public class AbstractPage extends PageObject {
 		}
 	}
 
+	public boolean checkIfElementIsPresent(String... key) {
+		boolean foundDocument = false;
+		foundDocument = checkIfElementWithSpecifiedTextExistsInList(
+				By.cssSelector("div[id*='seoGridView'] > table > tbody > tr td[class*='title']"),
+				true, false, key);
+		return foundDocument;
+	}
+
 	public void clickOk() {
 		Alert alert = getDriver().switchTo().alert();
 		alert.accept();
 	}
 
-	private boolean isAttributePresent(WebElement element, String attribute) {
+	public boolean isAttributePresent(WebElement element, String attribute) {
 		Boolean result = false;
 		try {
 			String result1 = element.getAttribute(attribute);
@@ -198,7 +225,32 @@ public class AbstractPage extends PageObject {
 				result = elemNow.findElement(By.cssSelector(fieldType))
 						.getText();
 				result = result.replace("\n", " ");
-				System.out.println("@@@@@@@@@@@@" + result);
+				break;
+			}
+
+		}
+
+		Assert.assertTrue("The text is not correct", result.contains(text));
+	}
+
+	public void checkTextFromGrid(String fieldType, String id, String text) {
+		String result = "";
+		List<WebElement> gridList = getVisibleElementsFromList(getDriver()
+				.findElements(
+						By.cssSelector("div[id*='UpdatePanel1'] div[id*='SeoSPGridView'] tbody > tr")));
+		gridList.remove(0);
+
+		for (WebElement elemNow : gridList) {
+
+			String elemId = elemNow.findElement(
+					By.cssSelector("a.ms-core-menu-root")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			if (elemId != null && id.contentEquals(elemId)) {
+				result = elemNow.findElement(By.cssSelector(fieldType))
+						.getText();
+				result = result.replace("\n", " ");
 				break;
 			}
 
@@ -354,7 +406,6 @@ public class AbstractPage extends PageObject {
 				By.cssSelector("div#tabs ul li"));
 		boolean foundOption = false;
 		for (WebElement item : tabList) {
-			System.out.println("@@@@@@@@@@@" + item.getText());
 			if (item.getText().contentEquals(tabName)) {
 				foundOption = true;
 				item.click();
@@ -364,8 +415,32 @@ public class AbstractPage extends PageObject {
 		Assert.assertTrue("The option was not found!", foundOption);
 	}
 
+	public boolean checkIfTabIsPresent(String tabName) {
+		List<WebElement> tabList = getDriver().findElements(
+				By.cssSelector("div#tabs ul li"));
+		for (WebElement item : tabList) {
+			if (item.getText().contentEquals(tabName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void mouseOver(WebElement element) {
 		Actions mouseOver = new Actions(getDriver());
 		mouseOver.moveToElement(element).build().perform();
+	}
+
+	public void clickOnLogo() {
+		WebElement logoImage = getDriver().findElement(
+				By.cssSelector("div#DeltaSiteLogo"));
+		element(logoImage).click();
+	}
+
+	public void clickOnTitleCheckBox() {
+		getDriver()
+				.findElement(
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody>tr:first-child>th"))
+				.click();
 	}
 }

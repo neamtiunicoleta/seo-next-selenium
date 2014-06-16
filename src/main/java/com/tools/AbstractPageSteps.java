@@ -1,5 +1,7 @@
 package com.tools;
 
+import org.junit.Assert;
+
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.pages.Pages;
 
@@ -29,11 +31,6 @@ public class AbstractPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void selectActionFromManagePagesRibbon(String action) {
-		abstractPage().selectActionFromRibbon(action);
-	}
-
-	@Step
 	public void switchToCreateIframe() {
 		abstractPage().switchToCreateIframe();
 	}
@@ -50,11 +47,18 @@ public class AbstractPageSteps extends AbstractSteps {
 
 	@Step
 	public void deleteElementIfExists(String id) {
-		while ((itemsPage().checkIfElementIsPresent(id))) {
+		while ((abstractPage().checkIfElementIsPresent(id))) {
 			abstractPage().selectItemFromGrid(id);
-			selectActionFromManagePagesRibbon("Delete");
+			selectActionFromRibbon("Delete");
 			abstractPage().clickOk();
 		}
+	}
+
+	@Step
+	public void deleteAllItems() {
+		abstractPage().clickOnTitleCheckBox();
+		selectActionFromRibbon("Delete");
+		abstractPage().clickOk();
 	}
 
 	@Step
@@ -68,6 +72,11 @@ public class AbstractPageSteps extends AbstractSteps {
 	}
 
 	@Step
+	public void selectActionFromTopMenu(String action) {
+		abstractPage().selectActionFromTopMenu(action);
+	}
+
+	@Step
 	public void closeHitlogDetailsPage() {
 		switchToCreateIframe();
 		abstractPage().selectActionFromRibbon("Close");
@@ -76,5 +85,28 @@ public class AbstractPageSteps extends AbstractSteps {
 	@Step
 	public void clickOnTab(String tabName) {
 		abstractPage().clickOnTab(tabName);
+	}
+
+	@Step
+	public void goToHomePage() {
+		abstractPage().clickOnLogo();
+	}
+
+	@Step
+	public void selectEditModeButton() {
+		abstractPage().switchToCreateIframe();
+		abstractPage().selectActionFromRibbon("Edit");
+	}
+
+	@Step
+	public void checkIfTabIsPresent(String tabName) {
+		Assert.assertTrue("The tab is not present", abstractPage()
+				.checkIfTabIsPresent(tabName));
+	}
+
+	@Step
+	public void checkThatTabIsNotPresent(String tabName) {
+		Assert.assertFalse("The tab is not present", abstractPage()
+				.checkIfTabIsPresent(tabName));
 	}
 }

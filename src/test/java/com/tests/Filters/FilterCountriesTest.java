@@ -31,22 +31,21 @@ public class FilterCountriesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Risk Management");
 		abstractPageSteps.deleteElementIfExists("754");
 		// create risk categories
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromLeftMenu("Categories");
 		abstractPageSteps.deleteElementIfExists("91");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("91", "Edit Risk1");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create risk criterias
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCriteria("754", "Risk", "91");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create countries
-		abstractPageSteps.selectMenuOption("Countries");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.deleteElementIfExists("abd");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithRisk("abd", "NC", "754");
 		itemsPageSteps.checkIfElementIsPresent("abd");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithoutRisk("aaf4", "CF");
 		itemsPageSteps.checkIfElementIsPresent("aaf4");
 
@@ -77,10 +76,9 @@ public class FilterCountriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("abd");
 		abstractPageSteps.deleteElementIfExists("aaf4");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
 		abstractPageSteps.deleteElementIfExists("754");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromLeftMenu("Categories");
 		abstractPageSteps.deleteElementIfExists("91");
 	}
 }

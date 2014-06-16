@@ -24,22 +24,14 @@ public class CreateBusinessCodeTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("893");
-		// create RiskCategories
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("711");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("711", "Edit Risk");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create RiskCriterias
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "711");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "B (Category B)");
 		// create business code
-		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputCodeField("594");
 		itemsPageSteps.inputTitleField("Kenya");
@@ -49,17 +41,13 @@ public class CreateBusinessCodeTest extends BaseTest {
 		itemsPageSteps.checkNameForBusinessCodesFromGrid("594", "Kenya");
 		itemsPageSteps.checkRiskCriteriaFromGrid("594", "893");
 		abstractPageSteps.selectItemFromGrid("594");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Delete");
+		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		itemsPageSteps.checkThatElementIsNotPresent("594");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		//delete items
-		abstractPageSteps.selectMenuOption("Risk Management");
+		// delete items
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("893");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("711");
-		itemsPageSteps.checkThatElementIsNotPresent("711");
 	}
 
 }

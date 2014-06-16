@@ -31,27 +31,25 @@ public class FilterBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.deleteElementIfExists("595");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
 		// create risk categories
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromLeftMenu("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create risk criterias
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		// create business codes
-		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createBusinessCode("595", "Germany", "894");
 
 		// filter by code
@@ -74,13 +72,12 @@ public class FilterBusinessCodesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
 		itemsPageSteps.checkThatElementIsNotPresent("894");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromLeftMenu("Categories");
 		abstractPageSteps.deleteElementIfExists("78");
 		itemsPageSteps.checkThatElementIsNotPresent("78");
 

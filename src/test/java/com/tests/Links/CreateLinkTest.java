@@ -1,4 +1,4 @@
-package com.tests.Links.Link;
+package com.tests.Links;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,38 +30,36 @@ public class CreateLinkTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create mandate
 
-		
-		
 		// create client
 		abstractPageSteps.selectMenuOption("Clients");
 		abstractPageSteps.deleteElementIfExists("Doe Joe");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Individual");
-		clientsPageSteps.createBasicIndividualClient("Argentina", "Doe", "Joe");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Save");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Links");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		abstractPageSteps.selectActionFromRibbon("Individual");
+		clientsPageSteps.createBasicStandardIndividualClient("Light","Argentina", "Doe", "Joe");
+		abstractPageSteps.selectActionFromRibbon("Save");
+		abstractPageSteps.selectActionFromRibbon("Links");
+		abstractPageSteps.selectActionFromRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
 		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
 		// create linkCategories
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("cl-md29");
 		abstractPageSteps.deleteElementIfExists("md1-cl29");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkCategory("cl-md29", "Client", "Mandate",
 				"Client-Mandate");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkCategory("md1-cl29", "Mandate", "Client",
 				"Mandate-Client");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create linkTypes
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkType("Client2-Mandate2", "cl-md29");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkType("Mandate4-Client4", "md1-cl29");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create links
 
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createActiveLink("Cl-md Link", "Client", "Walters",
 				"Mandate", "PAEMandate", "Client2-Mandate2",
 				"Client mandate link");
@@ -71,7 +69,7 @@ public class CreateLinkTest extends BaseTest {
 		linksPageSteps.checkLinkType("Cl-md Link", "Client2-Mandate2");
 		linksPageSteps.checkIfActiveCheckBoxIsChecked("Cl-md Link");
 
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createActiveLink("Md-cl Link", "Mandate", "MTPMandate",
 				"Client", "Muller", "Mandate4-Client4", "Mandate client link");
 		itemsPageSteps.checkIfElementIsPresent("Md-cl Link");
@@ -84,24 +82,24 @@ public class CreateLinkTest extends BaseTest {
 
 		abstractPageSteps.selectItemFromGrid("Cl-md Link");
 		abstractPageSteps.selectItemFromGrid("Md-cl Link");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Activate");
+		abstractPageSteps.selectActionFromRibbon("Activate");
 		linksPageSteps.checkIfActiveCheckBoxIsChecked("Cl-md Link");
 		linksPageSteps.checkIfActiveCheckBoxIsChecked("Md-cl Link");
 
 		// deactivate links
 		abstractPageSteps.selectItemFromGrid("Cl-md Link");
 		abstractPageSteps.selectItemFromGrid("Md-cl Link");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Deactivate");
+		abstractPageSteps.selectActionFromRibbon("Deactivate");
 		linksPageSteps.checkIfActiveCheckBoxIsNotChecked("Cl-md Link");
 		linksPageSteps.checkIfActiveCheckBoxIsNotChecked("Md-cl Link");
 
 		// delete items
 		abstractPageSteps.deleteElementIfExists("Cl-md Link");
 		abstractPageSteps.deleteElementIfExists("Md-cl Link");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		abstractPageSteps.selectActionFromRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
 		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("cl-md29");
 		abstractPageSteps.deleteElementIfExists("md1-cl29");
 	}

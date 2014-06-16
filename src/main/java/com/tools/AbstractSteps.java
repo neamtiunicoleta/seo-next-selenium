@@ -10,7 +10,7 @@ import com.pages.ItemsPage;
 import com.pages.LinksPage;
 import com.pages.MandatesPage;
 import com.pages.SearchPage;
-import com.pages.UploadAssetsPage;
+import com.pages.UploadItemsPage;
 
 public class AbstractSteps extends ScenarioSteps {
 
@@ -32,8 +32,8 @@ public class AbstractSteps extends ScenarioSteps {
 		return StringUtils.getSubstringsSplitByKey(parameter, "/");
 	}
 
-	public UploadAssetsPage uploadAssetsPage() {
-		return getPages().currentPageAt(UploadAssetsPage.class);
+	public UploadItemsPage uploadItemsPage() {
+		return getPages().currentPageAt(UploadItemsPage.class);
 	}
 
 	public HitLogPage hitLogPage() {

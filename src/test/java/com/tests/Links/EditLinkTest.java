@@ -1,4 +1,4 @@
-package com.tests.Links.Link;
+package com.tests.Links;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,43 +28,42 @@ public class EditLinkTest extends BaseTest {
 	@Test
 	public void editLink() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		
-		//create mandate
-		
-		//create client
-		
-		
+
+		// create mandate
+
+		// create client
+
 		abstractPageSteps.selectMenuOption("Links");
 		abstractPageSteps.deleteElementIfExists("Cl-cl Link1");
 		abstractPageSteps.deleteElementIfExists("Cl-md Link1");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		abstractPageSteps.selectActionFromRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("Client12-Client12");
 		abstractPageSteps.deleteElementIfExists("Client23-Mandate23");
 		// create link categories
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("client-cl20");
 		abstractPageSteps.deleteElementIfExists("cl-md20");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkCategory("client-cl20", "Client", "Client",
 				"Client-Client");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkCategory("cl-md20", "Client", "Mandate",
 				"Client-Mandate");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create link types
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createLinkType("Client1-Client1", "client-cl19");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 
 		linksPageSteps.createLinkType("Client2-Mandate2", "cl-md29");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// create link
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		linksPageSteps.createActiveLink("Cl-cl Link1", "Client", "Walters",
 				"Client", "Muller", "Client1-Client1", "Client client link");
 		// edit link
 		abstractPageSteps.selectItemFromGrid("Cl-cl Link1");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Edit");
+		abstractPageSteps.selectActionFromRibbon("Edit");
 
 		linksPageSteps.createActiveLink("Cl-md Link1", "Client", "Muller",
 				"Mandate", "PAEMandate", "Client23-Mandate23",
@@ -77,41 +76,14 @@ public class EditLinkTest extends BaseTest {
 		// delete items
 		abstractPageSteps.deleteElementIfExists("Cl-cl Link1");
 		abstractPageSteps.deleteElementIfExists("Cl-md Link1");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Types");
+		abstractPageSteps.selectActionFromRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("Client12-Client12");
 		abstractPageSteps.deleteElementIfExists("Client23-Mandate23");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Categories");
+		abstractPageSteps.selectActionFromRibbon("Categories");
 		abstractPageSteps.deleteElementIfExists("client-cl20");
 		abstractPageSteps.deleteElementIfExists("cl-md20");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		// check hitlog
-		abstractPageSteps.selectMenuOption("Hitlog");
-		itemsPageSteps.checkIfElementIsPresent("Links", "accessed");
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: Cl-md Link1 from Links was Deleted");
-
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: Cl-md Link1 from Links was Changed");
-		hitLogPageSteps
-				.clickOnviewLogDetails("Title: Cl-md Link1 from Links was Changed");
-		hitLogPageSteps.checkIfChangesArePresent("Title", "Cl-cl Link1",
-				"Cl-md Link1");
-		hitLogPageSteps.checkIfChangesArePresent("SourceClient", "Walters",
-				"Muller");
-		hitLogPageSteps.checkIfChangesArePresent("TargetClient", "Muller", "");
-		hitLogPageSteps.checkIfChangesArePresent("TargetMandate", "",
-				"PAEMandate");
-		hitLogPageSteps.checkIfChangesArePresent("TargetMandate", "",
-				"PAEMandate");
-		hitLogPageSteps.checkIfChangesArePresent("LinkType",
-				"Client12-Client12", "Client23-Mandate23");
-		hitLogPageSteps.checkIfChangesArePresent("Active", "True", "False");
-		hitLogPageSteps.checkIfChangesArePresent("Comment",
-				"Client client link", "Client mandate link");
-		abstractPageSteps.closeHitlogDetailsPage();
-		itemsPageSteps
-				.checkIfElementIsPresent("Title: Cl-cl Link1 from LinkCategories was Added");
+		abstractPageSteps.selectActionFromRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 	}
 }

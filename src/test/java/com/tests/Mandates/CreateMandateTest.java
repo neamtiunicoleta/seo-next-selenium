@@ -35,16 +35,16 @@ public class CreateMandateTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("1a2");
 		abstractPageSteps.deleteElementIfExists("1b2");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithoutRisk("1a2", "1A");
 		itemsPageSteps.checkIfElementIsPresent("1A");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithoutRisk("1b2", "1B");
 		itemsPageSteps.checkIfElementIsPresent("1B");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectMenuOption("Mandates");
 		searchPageSteps.searchAndDeleteItem("AMLMandate");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		mandatesPageSteps.selectMandateType("Non AML");
 
 		mandatesPageSteps.selectServiceType("Process Agent");

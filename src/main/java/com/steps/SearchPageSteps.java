@@ -63,8 +63,6 @@ public class SearchPageSteps extends AbstractSteps {
 			clickOnMoreButton();
 			checkIfElementIsPresentInSearchResultsList(key);
 			searchPage().selectItemFromSearchResultsList(key);
-			abstractPage().selectActionFromHeader("ACTIONS");
-			waitABit(3000);
 			abstractPage().selectActionFromRibbon("Delete");
 			abstractPage().clickOk();
 		} else {

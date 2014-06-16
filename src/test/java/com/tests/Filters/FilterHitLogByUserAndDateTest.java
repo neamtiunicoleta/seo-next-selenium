@@ -3,6 +3,7 @@ package com.tests.Filters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
@@ -25,6 +26,7 @@ public class FilterHitLogByUserAndDateTest extends BaseTest {
 	@Steps
 	public FilterPageSteps filterPageSteps;
 
+	@Pending
 	@Test
 	public void filterHitLogByUserAndDateTest() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
@@ -33,15 +35,15 @@ public class FilterHitLogByUserAndDateTest extends BaseTest {
 		// abstractPageSteps.selectActionFromManagePagesRibbon("Close");
 		abstractPageSteps.selectMenuOption("Risk Management");
 		// create risk assets
-		abstractPageSteps.selectActionFromManagePagesRibbon("Assets");
+		abstractPageSteps.selectActionFromRibbon("Assets");
 		abstractPageSteps.deleteElementIfExists("185");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCategoryOrAsset("185", "Edit Risk");
 		itemsPageSteps.checkIfElementIsPresent("185");
 		abstractPageSteps.deleteElementIfExists("185");
 		itemsPageSteps.checkThatElementIsNotPresent("185");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 
 		abstractPageSteps.selectMenuOption("Hitlog");
 		filterPageSteps.clickOnFilterDropdownList();

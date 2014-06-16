@@ -15,6 +15,22 @@ public class ClientsPage extends AbstractPage {
 		super(driver);
 	}
 
+	public void selectProfileType(String profile) {
+		getDriver().findElement(
+				By.cssSelector("div[id*='ddlClientProfileType']")).click();
+		List<WebElement> profileTypeList = getDriver().findElements(
+				By.cssSelector("div[class*='select2-drop'] ul li"));
+		boolean foundOption = false;
+		for (WebElement type : profileTypeList) {
+			if (type.getText().contains(profile)) {
+				foundOption = true;
+				type.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+	}
+
 	public void selectOffice(String offices) {
 		getDriver().findElement(By.cssSelector("div[id*='cbxOffices']"))
 				.click();
@@ -40,7 +56,6 @@ public class ClientsPage extends AbstractPage {
 		boolean foundOption = false;
 
 		for (WebElement item : countriesList) {
-			System.out.println("!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contentEquals(country)) {
 				foundOption = true;
 				item.click();
@@ -58,7 +73,6 @@ public class ClientsPage extends AbstractPage {
 		boolean foundOption = false;
 
 		for (WebElement item : nationalitiesList) {
-			System.out.println("!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contentEquals(nationality)) {
 				foundOption = true;
 				item.click();
@@ -89,7 +103,7 @@ public class ClientsPage extends AbstractPage {
 		element(additionalNameField).type(name);
 	}
 
-	public void inputNickname(String name) {
+	public void inputNicknameOrAbbreviation(String name) {
 		WebElement nicknameField = getDriver().findElement(
 				By.cssSelector("input[name*='Nickname']"));
 		element(nicknameField).clear();
@@ -110,7 +124,7 @@ public class ClientsPage extends AbstractPage {
 		element(placeOfBirthField).type(place);
 	}
 
-	public void inputDateOfBirth(String date) {
+	public void inputDateOfBirthOrIncorporation(String date) {
 		WebElement dateOfBirthField = getDriver().findElement(
 				By.cssSelector("input[name*='DateOfBirthDate']"));
 		element(dateOfBirthField).clear();
@@ -134,6 +148,30 @@ public class ClientsPage extends AbstractPage {
 	public void inputCity(String city) {
 		WebElement cityField = getDriver().findElement(
 				By.cssSelector("input[name*='City']"));
+		element(cityField).clear();
+		element(cityField).type(city);
+	}
+
+	public void inputAdditionalStreet(String street) {
+		WebElement streetField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] input[name*='StreetNumber']"));
+		element(streetField).clear();
+		element(streetField).type(street);
+	}
+
+	public void inputAdditionalZIP(String zip) {
+		WebElement ZIPField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] input[name*='ZIP']"));
+		element(ZIPField).clear();
+		element(ZIPField).type(zip);
+	}
+
+	public void inputAdditionalCity(String city) {
+		WebElement cityField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] input[name*='City']"));
 		element(cityField).clear();
 		element(cityField).type(city);
 	}
@@ -186,7 +224,7 @@ public class ClientsPage extends AbstractPage {
 
 	public void inputClientComments(String comment) {
 		WebElement clientProfileCommentsField = getDriver().findElement(
-				By.cssSelector("input[name*='ClientProfileComments']"));
+				By.cssSelector("textarea[name*='ClientProfileComments']"));
 		element(clientProfileCommentsField).clear();
 		element(clientProfileCommentsField).type(comment);
 	}
@@ -268,7 +306,7 @@ public class ClientsPage extends AbstractPage {
 		WebElement sourceOfWealthField = getDriver().findElement(
 				By.cssSelector("input[name*='SourceOfWealth']"));
 		element(sourceOfWealthField).clear();
-		element(sourceOfWealthField).click();
+		element(sourceOfWealthField).type(source);
 	}
 
 	public void selectMaritalStatus(String status) {
@@ -395,26 +433,6 @@ public class ClientsPage extends AbstractPage {
 
 	}
 
-	public void checkEmploymentState(String id, String state) {
-		checkTextFromField("td:nth-child(3)", id, state);
-	}
-
-	public void checkEmployer(String id, String employer) {
-		checkTextFromField("td:nth-child(4)", id, employer);
-	}
-
-	public void checkClientType(String id, String type) {
-		checkTextFromField("td:nth-child(5)", id, type);
-	}
-
-	public void checkOffices(String id, String office) {
-		checkTextFromField("td:nth-child(6)", id, office);
-	}
-
-	public void checkCountriesOfDomicile(String id, String countries) {
-		checkTextFromField("td:nth-child(7)", id, countries);
-	}
-
 	public void selectTypeOfShareholding(String type) {
 		getDriver()
 				.findElement(By.cssSelector("div[id*='TypeOfShareHolding']"))
@@ -487,4 +505,516 @@ public class ClientsPage extends AbstractPage {
 		element(otherField).clear();
 		element(otherField).type(comment);
 	}
+
+	public boolean checkIfClientExists(String terms) {
+		List<WebElement> clientsList = getDriver()
+				.findElements(
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr td:first-child"));
+		for (WebElement item : clientsList) {
+			if (item.getText().contains(terms)) {
+				return true;
+
+			}
+		}
+		return false;
+
+	}
+
+	public void checkClientProfileType(String profile) {
+		List<WebElement> profileTypeList = getDriver().findElements(
+				By.cssSelector("tr[id*='trClientProfileType'] select option"));
+		for (WebElement item : profileTypeList) {
+			if (item.getText().contentEquals(profile)) {
+
+				Assert.assertTrue("Type is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkOffice(String office) {
+		List<WebElement> officeList = getDriver()
+				.findElements(
+						By.cssSelector("tr[id*='InputformsectionOfficesTR'] select option"));
+		for (WebElement item : officeList) {
+			if (item.getText().contentEquals(office)) {
+
+				Assert.assertTrue("Office is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkFamilyName(String name) {
+		String familyName = getDriver().findElement(
+				By.cssSelector("tr[id*='FamilyName'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Family name is not correct",
+				familyName.contentEquals(name));
+	}
+
+	public void checkFirstName(String name) {
+		String firstName = getDriver().findElement(
+				By.cssSelector("tr[id*='FirstNames'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("First name is not correct",
+				firstName.contentEquals(name));
+	}
+
+	public void checkAdditionalName(String name) {
+		String additionalName = getDriver().findElement(
+				By.cssSelector("tr[id*='AdditionalNames'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Additional name is not correct",
+				additionalName.contentEquals(name));
+	}
+
+	public void checkNickName(String name) {
+		String additionalName = getDriver().findElement(
+				By.cssSelector("tr[id*='Nickname'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Nickname is not correct",
+				additionalName.contentEquals(name));
+	}
+
+	public void checkAlternativeSpelling(String name) {
+		String alternativeSpelling = getDriver().findElement(
+				By.cssSelector("tr[id*='AlternativeSpellings'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Alternative spelling is not correct",
+				alternativeSpelling.contentEquals(name));
+	}
+
+	public void checkStreet(String street) {
+		String streetField = getDriver().findElement(
+				By.cssSelector("tr[id*='Tr1'] tbody tr:first-child input"))
+				.getAttribute("value");
+		Assert.assertTrue("Street is not correct",
+				streetField.contentEquals(street));
+	}
+
+	public void checkZip(String zip) {
+		String zipField = getDriver().findElement(
+				By.cssSelector("tr[id*='Tr1'] tbody tr:nth-child(2) input"))
+				.getAttribute("value");
+		Assert.assertTrue("ZIP is not correct", zipField.contentEquals(zip));
+	}
+
+	public void checkCity(String city) {
+		String cityField = getDriver().findElement(
+				By.cssSelector("tr[id*='Tr1'] tbody tr:nth-child(3) input"))
+				.getAttribute("value");
+		Assert.assertTrue("City is not correct", cityField.contentEquals(city));
+	}
+
+	public void checkAdditionalStreet(String street) {
+		String streetField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] tbody tr:first-child input"))
+				.getAttribute("value");
+		Assert.assertTrue("Street is not correct",
+				streetField.contentEquals(street));
+	}
+
+	public void checkAdditionalZip(String zip) {
+		String zipField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] tbody tr:nth-child(2) input"))
+				.getAttribute("value");
+		Assert.assertTrue("ZIP is not correct", zipField.contentEquals(zip));
+	}
+
+	public void checkAdditionalCity(String city) {
+		String cityField = getDriver()
+				.findElement(
+						By.cssSelector("tr[id*='additionalAddressRow'] tbody tr:nth-child(3) input"))
+				.getAttribute("value");
+		Assert.assertTrue("City is not correct", cityField.contentEquals(city));
+	}
+
+	public void checkCountry(String country) {
+		List<WebElement> countriesList = getDriver()
+				.findElements(
+						By.cssSelector("tr[id*='Tr1'] tbody tr:nth-child(4) select option"));
+		for (WebElement item : countriesList) {
+			if (item.getText().contentEquals(country)) {
+
+				Assert.assertTrue("Country is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkPlaceOfBirth(String place) {
+		String placeOfBirth = getDriver().findElement(
+				By.cssSelector("tr[id*='BirthPlaceTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Place of birth is not correct",
+				placeOfBirth.contentEquals(place));
+	}
+
+	public void checkDateOfBirthOrIncorporation(String date) {
+		String dateOfBirth = getDriver().findElement(
+				By.cssSelector("tr[id*='DateOfBirthTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Date of birth is not correct",
+				dateOfBirth.contentEquals(date));
+	}
+
+	public void checkCountryOfDomicile(String country) {
+		List<WebElement> countriesList = getDriver().findElements(
+				By.cssSelector("tr[id*='CountriesOfDomicileTR'] li div"));
+		boolean foundItem = false;
+		for (WebElement item : countriesList) {
+			if (item.getText().contentEquals(country)) {
+				foundItem = true;
+				break;
+			}
+		}
+		Assert.assertTrue("Country is not correct", foundItem);
+	}
+
+	public void checkNationality(String nationality) {
+		List<WebElement> nationalitiesList = getDriver().findElements(
+				By.cssSelector("tr[id*='NationalitiesTR'] li div"));
+		boolean foundItem = false;
+		for (WebElement item : nationalitiesList) {
+			if (item.getText().contentEquals(nationality)) {
+				foundItem = true;
+				break;
+			}
+		}
+		Assert.assertTrue("nationality is not correct", foundItem);
+	}
+
+	public void checkPhoneNumber(String phone) {
+		String phoneNumber = getDriver().findElement(
+				By.cssSelector("tr[id*='honeNumberTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Phone number is not correct",
+				phoneNumber.contentEquals(phone));
+	}
+
+	public void checkEmail(String email) {
+		String emailAddress = getDriver().findElement(
+				By.cssSelector("tr[id*='EmailAddressTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Email is not correct",
+				emailAddress.contentEquals(email));
+	}
+
+	public void checkRemarks(String remarks) {
+		String remarksField = getDriver().findElement(
+				By.cssSelector("tr[id*='RemarksTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Remarks are not correct",
+				remarksField.contentEquals(remarks));
+	}
+
+	public void checkIfHighRiskIsChecked() {
+		WebElement highRisk = getDriver().findElement(
+				By.cssSelector("tr[id*='HighRiskTR'] input"));
+		Assert.assertTrue("High risk is not checked",
+				isAttributePresent(highRisk, "checked"));
+	}
+
+	public void checkIfPEPIsChecked() {
+		WebElement pep = getDriver().findElement(
+				By.cssSelector("tr[id*='PoliticalActivitiesTR'] input"));
+		Assert.assertTrue("Political Activities is not checked",
+				isAttributePresent(pep, "checked"));
+	}
+
+	public void checkClientComments(String comment) {
+		String commentField = getDriver().findElement(
+				By.cssSelector("tr[id*='ClientProfileCommentsTR'] textarea"))
+				.getAttribute("value");
+		System.out.println("@@@@@@@@@@"+commentField);
+		Assert.assertTrue("Client comments are not correct",
+				commentField.contentEquals(comment));
+	}
+
+	public void checkIdentificationMadeBy(String user) {
+		WebElement indentificationMadeByField = getDriver().findElement(
+				By.cssSelector("span[id*='UserDisplay']"));
+		Assert.assertTrue("Client comments are not correct",
+				indentificationMadeByField.getText().contentEquals(user));
+	}
+
+	public void checkTypeOfId(String type) {
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("tr[id*='TypeOfIDTR'] select option"));
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+
+				Assert.assertTrue("Type of ID is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkPassportNumber(String number) {
+		String passportNumber = getDriver().findElement(
+				By.cssSelector("tr[id*='PassportNumberTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Passport Number is not correct",
+				passportNumber.contentEquals(number));
+	}
+
+	public void checkTypeOfProcedure(String type) {
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("tr[id*='TypeOfIDProcedureTR'] select option"));
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+
+				Assert.assertTrue("Type of procedure is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkDate(String date) {
+		String identificationDate = getDriver().findElement(
+				By.cssSelector("tr[id*='IdentificationDateTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Passport Number is not correct",
+				identificationDate.contentEquals(date));
+	}
+
+	public void checkTypeOfCopy(String type) {
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("tr[id*='TypeOfCopyTR'] select option"));
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+
+				Assert.assertTrue("Type of copy is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkIdValidUntil(String date) {
+		String idValidUntilField = getDriver().findElement(
+				By.cssSelector("tr[id*='IDValidUntilTR'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Id Valid Until is not correct",
+				idValidUntilField.contentEquals(date));
+	}
+
+	public void checkLocationOfOriginalId(String location) {
+		List<WebElement> locationsList = getDriver()
+				.findElements(
+						By.cssSelector("tr[id*='LocationOfOriginalIDTR'] select option"));
+		for (WebElement item : locationsList) {
+			if (item.getText().contentEquals(location)) {
+
+				Assert.assertTrue("Location is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkEmploymentState(String state) {
+		List<WebElement> statesList = getDriver().findElements(
+				By.cssSelector("tr[id*='EmploymentStateTR'] select option"));
+		for (WebElement item : statesList) {
+			if (item.getText().contentEquals(state)) {
+
+				Assert.assertTrue("Employment state is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkProfessionalActivity(String activity) {
+		String professionalActivityField = getDriver().findElement(
+				By.cssSelector("tr[id*='ProfessionalActivityTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Professional activity is not correct",
+				professionalActivityField.contentEquals(activity));
+	}
+
+	public void checkActualFunction(String function) {
+		String actualFunctionField = getDriver().findElement(
+				By.cssSelector("tr[id*='EmployedFunctionTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Actual function is not correct",
+				actualFunctionField.contentEquals(function));
+	}
+
+	public void checkNameOfEmployer(String name) {
+		String nameOfEMployerField = getDriver().findElement(
+				By.cssSelector("tr[id*='EmployedEmployeerTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Actual function is not correct",
+				nameOfEMployerField.contentEquals(name));
+	}
+
+	public void checkAnnualIncome(String income) {
+		List<WebElement> incomesList = getDriver().findElements(
+				By.cssSelector("tr[id*='AnnualIncomeTR'] select option"));
+		for (WebElement item : incomesList) {
+			if (item.getText().contentEquals(income)) {
+
+				Assert.assertTrue("Annual income is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkEstimatedWealth(String wealth) {
+		List<WebElement> wealthList = getDriver().findElements(
+				By.cssSelector("tr[id*='EstimatedWealthTR'] select option"));
+		for (WebElement item : wealthList) {
+			if (item.getText().contentEquals(wealth)) {
+
+				Assert.assertTrue("Estimated wealth is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkSourceOfWealth(String source) {
+		String sourceOfWealthField = getDriver().findElement(
+				By.cssSelector("tr[id*='SourceOfWealthTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Source of wealth is not correct",
+				sourceOfWealthField.contentEquals(source));
+	}
+
+	public void checkMaritalStatus(String status) {
+		List<WebElement> statusList = getDriver().findElements(
+				By.cssSelector("tr[id*='MaritalStatusTR'] select option"));
+		for (WebElement item : statusList) {
+			if (item.getText().contentEquals(status)) {
+
+				Assert.assertTrue("Marital status is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void changeProfileType(String profile) {
+		getDriver().findElement(By.cssSelector("div[id*='ddlType']")).click();
+		List<WebElement> profileTypeList = getDriver().findElements(
+				By.cssSelector("div[class*='select2-drop'] ul li"));
+		boolean foundOption = false;
+		for (WebElement type : profileTypeList) {
+			if (type.getText().contains(profile)) {
+				foundOption = true;
+				type.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The option was not found!", foundOption);
+	}
+
+	public void changeOffice(String office) {
+		getDriver().findElement(By.cssSelector("div[id*='listOffices']"))
+				.click();
+
+		WebElement officeBox = getDriver().findElement(
+				By.cssSelector("div[id*='listOffices'] input"));
+		element(officeBox).type(office);
+		List<WebElement> officesList = getDriver().findElements(
+				By.cssSelector("select[id*='listOffices'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : officesList) {
+			if (item.getText().contentEquals(office)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The item was not found!", foundOption);
+	}
+
+	public void inputActualSituation(String situation) {
+		WebElement actualSituationField = returnField("textarea",
+				"ActualSituation");
+		element(actualSituationField).clear();
+		element(actualSituationField).type(situation);
+	}
+
+	public void inputRiskForSituation(String risk) {
+		WebElement riskField = returnField("input", "Risk");
+		element(riskField).clear();
+		element(riskField).type(risk);
+	}
+
+	public void inputResolution(String resolution) {
+		WebElement resolutionField = returnField("textarea", "Resolution");
+		element(resolutionField).clear();
+		element(resolutionField).type(resolution);
+	}
+
+	public void checkRiskForSituation(String title, String risk) {
+		checkTextFromGrid("td:nth-child(3)", title, risk);
+	}
+
+	public void checkResolution(String title, String resolution) {
+		checkTextFromGrid("td:nth-child(4)", title, resolution);
+	}
+
+	public void checkTypeOfShareholding(String type) {
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("tr[id*='TypeOfShareHoldingTR'] select option"));
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+
+				Assert.assertTrue("Type of shareholding is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkListedIn(String country) {
+		List<WebElement> countriesList = getDriver().findElements(
+				By.cssSelector("tr[id*='ListedInTR'] select option"));
+		for (WebElement item : countriesList) {
+			if (item.getText().contentEquals(country)) {
+
+				Assert.assertTrue("Listed In is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkBusinessCodes(String code) {
+		List<WebElement> codesList = getDriver().findElements(
+				By.cssSelector("tr[id*='BusinessCodeTR'] select option"));
+		for (WebElement item : codesList) {
+			if (item.getText().contentEquals(code)) {
+
+				Assert.assertTrue("Business Code is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkActualBusinessActivities(String activity) {
+		String actualBusinessActivityField = getDriver().findElement(
+				By.cssSelector("tr[id*='ActualBusinessActivitiesTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Source of wealth is not correct",
+				actualBusinessActivityField.contentEquals(activity));
+	}
+
+	public void checkComments(String activity) {
+		String commentsField = getDriver().findElement(
+				By.cssSelector("tr[id*='Comments'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Comments are not correct",
+				commentsField.contentEquals(activity));
+	}
+
+	public void checkOther(String other) {
+		String otherField = getDriver().findElement(
+				By.cssSelector("tr[id*='OtherTR'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Source of wealth is not correct",
+				otherField.contentEquals(other));
+	}
+
 }

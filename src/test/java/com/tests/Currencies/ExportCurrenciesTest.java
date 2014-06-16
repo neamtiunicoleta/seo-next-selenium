@@ -3,7 +3,7 @@ package com.tests.Currencies;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.steps.ExportFiles;
+import com.steps.ExportFilesPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -18,7 +18,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 public class ExportCurrenciesTest extends BaseTest {
 
 	@Steps
-	public ExportFiles exportFiles;
+	public ExportFilesPageSteps exportFilesPageSteps;
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 
@@ -28,23 +28,40 @@ public class ExportCurrenciesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("a67b");
 		abstractPageSteps.deleteElementIfExists("a68b");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createInactiveCurrency("384", "a67b", "export currency",
-				"AUSTRIA", "985");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createInactiveCurrency("325", "a68b", "export currency",
-				"ANGOLA", "912");
+		// create country
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("8km");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("8km", "8K");
+		itemsPageSteps.checkIfElementIsPresent("8km");
+		abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.inputKeyField("67");
+		itemsPageSteps.inputCodeField("a67b");
+		itemsPageSteps.inputTitleField("Euro");
+		itemsPageSteps.clickOnHighImportanceCheckBox();
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.inputKeyField("68");
+		itemsPageSteps.inputCodeField("a68b");
+		itemsPageSteps.inputTitleField("Euro");
+		itemsPageSteps.clickOnHighImportanceCheckBox();
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("a67b");
 		itemsPageSteps.checkIfElementIsPresent("a68b");
 		// export
-		exportFiles.deleteFilesFromDownloadsFolder("CurrenciesList.xlsx");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Export");
-		exportFiles
+		exportFilesPageSteps
+				.deleteFilesFromDownloadsFolder("CurrenciesList.xlsx");
+		abstractPageSteps.selectActionFromRibbon("Export");
+		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CurrenciesList.xlsx");
 		// delete items
-		abstractPageSteps.deleteElementIfExists("a67b");
-		abstractPageSteps.deleteElementIfExists("a68b");
+		abstractPageSteps.goToHomePage();
+		abstractPageSteps.selectMenuOption("Currencies");
+		abstractPageSteps.deleteAllItems();
 		itemsPageSteps.checkThatElementIsNotPresent("a67b");
 		itemsPageSteps.checkThatElementIsNotPresent("a68b");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("8km");
 	}
 }

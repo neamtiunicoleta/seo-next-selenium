@@ -7,11 +7,11 @@ import net.thucydides.core.pages.Pages;
 import com.tools.AbstractSteps;
 import com.tools.FileUtils;
 
-public class ExportFiles extends AbstractSteps {
+public class ExportFilesPageSteps extends AbstractSteps {
 
 	private static final long serialVersionUID = 1L;
 
-	public ExportFiles(Pages pages) {
+	public ExportFilesPageSteps(Pages pages) {
 		super(pages);
 	}
 

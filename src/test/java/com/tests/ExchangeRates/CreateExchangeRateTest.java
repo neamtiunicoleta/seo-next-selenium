@@ -29,44 +29,44 @@ public class CreateExchangeRateTest extends BaseTest {
 	@Test
 	public void createExchangeRate() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
+
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g12k");
+		// create country
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("91m");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("91m", "9M");
+		itemsPageSteps.checkIfElementIsPresent("91m");
 		// create currency
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g12k", "edit currency",
-				"AUSTRIA", "985");
+		abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.inputKeyField("384");
+		itemsPageSteps.inputCodeField("g12k");
+		itemsPageSteps.inputTitleField("edit currency");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+
 		itemsPageSteps.checkIfElementIsPresent("g12k");
 		abstractPageSteps.selectItemFromGrid("g12k");
 		// create exchange rate
-		abstractPageSteps.selectActionFromManagePagesRibbon("Exchange");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Exchange");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("2", "278");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createExchangeRateWithStartDate("4", "485");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
-		itemsPageSteps.createExchangeRateWithYearToDate("954");
-		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"));
-		itemsPageSteps.checkEndDateFromGrid(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("2")),
-				"dd/MM/yyyy"), DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("3")),
-				"dd/MM/yyyy"));
+
 		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("4")),
 				"dd/MM/yyyy"));
-		itemsPageSteps.checkEndDateFromGrid(DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("4")),
-				"dd/MM/yyyy"), "");
-		itemsPageSteps.checkIfElementIsPresent("Year To Date");
-		itemsPageSteps.checkEndDateFromGrid("Year To Date", DateUtils.toString(
-				DateUtils.addDays(new Date(), Integer.parseInt("1")),
+		itemsPageSteps.checkIfElementIsPresent(DateUtils.toString(
+				DateUtils.addDays(new Date(), Integer.parseInt("2")),
 				"dd/MM/yyyy"));
-		abstractPageSteps.selectActionFromManagePagesRibbon("Close");
+		abstractPageSteps.selectActionFromRibbon("Close");
 		// delete items
 		abstractPageSteps.deleteElementIfExists("g12k");
 		itemsPageSteps.checkThatElementIsNotPresent("g12k");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("91m");
 	}
 
 }

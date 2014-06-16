@@ -32,11 +32,11 @@ public class FilterCurrenciesTest extends BaseTest {
 		// create currencies
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "AUSTRIA",
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
-		abstractPageSteps.selectActionFromManagePagesRibbon("Create");
+		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createInactiveCurrency("385", "g60k", "EUR", "ARUBA",
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g60k");

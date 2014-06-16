@@ -3,7 +3,6 @@ package com.steps;
 import java.util.Date;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.pages.Pages;
 
 import com.tools.AbstractSteps;
