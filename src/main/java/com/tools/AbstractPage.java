@@ -443,4 +443,36 @@ public class AbstractPage extends PageObject {
 						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody>tr:first-child>th"))
 				.click();
 	}
+
+	public WebElement getElementWithSpecifiedTextFromList(By by,
+			boolean ignoreCase, boolean equals, String... terms) {
+		waitUntilElementExists(by, Delay.MEDIUM);
+		waitForRenderedElements(by);
+		List<WebElement> elementsList = getVisibleElementsFromList(getDriver()
+				.findElements(by));
+		for (WebElement element : elementsList) {
+			String currentElementName = element.getText().trim();
+			if (ignoreCase)
+				currentElementName = currentElementName.toLowerCase();
+			boolean matched = false;
+			if (terms.length == 1) {
+				if (ignoreCase)
+					matched = equals ? currentElementName.equals(terms[0]
+							.toLowerCase()) : currentElementName
+							.contains(terms[0].toLowerCase());
+				else
+					matched = equals ? currentElementName.equals(terms[0])
+							: currentElementName.contains(terms[0]);
+			} else
+				matched = StringUtils.checkIfTextContainsTerms(
+						currentElementName, ignoreCase, terms);
+			if (matched)
+				return element;
+		}
+		Assert.fail("No element matching these terms: '"
+				+ StringUtils
+						.getConcatenatedStringRepresentationOfTheElementsOfAnArray(
+								", ", terms) + "' was found in the list!");
+		return null;
+	}
 }
