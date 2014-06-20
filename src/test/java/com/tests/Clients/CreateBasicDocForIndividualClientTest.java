@@ -122,7 +122,7 @@ public class CreateBasicDocForIndividualClientTest extends BaseTest {
 		// delete items
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
-		clientsPageSteps.checkThatClientDoesntExists("Johnny Doe");
+		clientsPageSteps.checkThatEntityDoesntExists("Johnny Doe");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("19f");

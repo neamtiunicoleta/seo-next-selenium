@@ -12,7 +12,7 @@ import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Edit.EditRisks.EditRiskCriteria.class)
+@Story(Application.Edit.EditRiskCriteria.class)
 @RunWith(ThucydidesRunner.class)
 public class EditRiskCriteriaTest extends BaseTest {
 	@Steps

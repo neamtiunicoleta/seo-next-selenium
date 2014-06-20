@@ -169,7 +169,7 @@ public class AbstractPage extends PageObject {
 		gridList.remove(0);
 		for (WebElement elemNow : gridList) {
 			String elemId = elemNow.findElement(
-					By.cssSelector("a.ms-core-menu-root")).getText();
+					By.cssSelector("a")).getText();
 			elemId = elemId.replace("\n", "");
 			elemId = elemId.replace(
 					"Use SHIFT+ENTER to open the menu (new window).", "");

@@ -2,6 +2,8 @@ package com.steps;
 
 import java.util.Date;
 
+import org.junit.Assert;
+
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.StepGroup;
 import net.thucydides.core.pages.Pages;
@@ -94,11 +96,6 @@ public class MandatesPageSteps extends AbstractSteps {
 		mandatesPage().inputContactLabel(label);
 		abstractPage().selectActionFromRibbon("Save");
 		getDriver().switchTo().defaultContent();
-	}
-
-	@Step
-	public void inputActualBusinessActivities(String activity) {
-		mandatesPage().inputActualBusinessActivities(activity);
 	}
 
 	@Step
@@ -261,5 +258,179 @@ public class MandatesPageSteps extends AbstractSteps {
 				DateUtils.toString(
 						DateUtils.addDays(new Date(), Integer.parseInt(days)),
 						"dd/MM/yyyy"));
+	}
+
+	@StepGroup
+	public void checkMandateInformation(String type1, String type2,
+			String fileNumber, String name, String street, String zip,
+			String city, String country, String poBox, String office,
+			String user, String officeLink, String companyType, String purpose,
+			String days, String contactLabel, String contactUser,
+			String activity, String businessCode, String valuationAmount,
+			String valuationCurrency, String yearlyTurnoverAmount,
+			String yearlyTurnoverCurrency, String netProfitAmount,
+			String netProfitCurrency, String staffNr, String businessComments,
+			String year, String corporateAmount, String corporateCurrency,
+			String auditor, String bank, String bankAmount,
+			String bankCurrency, String bankComments, String participationName,
+			String participationValue, String participationCurrency,
+			String participationActivity, String participationPercentage,
+			String participationComments, String participationCountry,
+			String estateDescription, String estateValue,
+			String estateCurrency, String estateComments, String estateCountry,
+			String otherValue, String otherCurrency, String otherPlace,
+			String otherComments, String transactionType,
+			String domicileCountry, String transactionComments,
+			String tinNumber, String registrationDays) {
+		mandatesPage().checkServiceType(type1);
+		mandatesPage().checkServiceType(type2);
+		mandatesPage().checkOfficeFileNumber(fileNumber);
+		mandatesPage().checkFullName(name);
+		mandatesPage().checkStreet(street);
+		mandatesPage().checkZipCode(zip);
+		mandatesPage().checkCity(city);
+		mandatesPage().checkCountry(country);
+		mandatesPage().checkPoBox(poBox);
+		clientsPage().checkOffice(office);
+		mandatesPage().checkAccountManager(user);
+		mandatesPage().checkOfficeLink(officeLink);
+		mandatesPage().checkCompanyType(companyType);
+		mandatesPage().checkPurpose(purpose);
+		mandatesPage().checkAgreementDate(
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+		mandatesPage().checkIfContactIsPresent();
+		checkContactInformation(contactLabel, contactUser);
+		abstractPage().clickOnTab("Business Activities");
+		clientsPage().checkActualBusinessActivities(activity);
+		clientsPage().checkBusinessCodes(businessCode);
+		mandatesPage().checkValuationOfTheLegalEntityAmount(valuationAmount);
+		mandatesPage()
+				.checkValuationOfTheLegalEntityCurrency(valuationCurrency);
+		mandatesPage().checkYearlyTurnoverAmount(yearlyTurnoverAmount);
+		mandatesPage().checkYearlyTurnoverCurrency(yearlyTurnoverCurrency);
+		mandatesPage().checkYearlyNetProfitAmount(netProfitAmount);
+		mandatesPage().checkYearlyNetProfitCurrency(netProfitCurrency);
+		mandatesPage().checkStaffNumber(staffNr);
+		mandatesPage().checkBusinessActivitiesComments(businessComments);
+		abstractPage().clickOnTab("Economic Background");
+		mandatesPage().checkFinanciarYear(year);
+		mandatesPage().checkCorporateCapitalAmount(corporateAmount);
+		mandatesPage().checkCorporateCapitalCurrency(corporateCurrency);
+		mandatesPage().checkAuditor(auditor);
+		checkBankableAssetInformation(bank, bankAmount, bankCurrency,
+				bankComments);
+		checkParticipationInformation(participationName, participationValue,
+				participationCurrency, participationActivity,
+				participationPercentage, participationComments,
+				participationCountry);
+		checkRealEstateInformation(estateDescription, estateValue,
+				estateCurrency, estateComments, estateCountry);
+		checkOtherInformation(otherValue, otherCurrency, otherPlace,
+				otherComments);
+		abstractPage().clickOnTab("Transactions");
+		mandatesPage().checkTypeOfTransaction(transactionType);
+		mandatesPage().checkDomicileOfCounterParties(domicileCountry);
+		mandatesPage().checkTransactionComments(transactionComments);
+		abstractPage().clickOnTab("FATCA");
+		mandatesPage().checkIfFFIIsChecked();
+		mandatesPage().checkIfNFFIIsChecked();
+		mandatesPage().checkTINNumber(tinNumber);
+		mandatesPage().checkRegistrationDate(
+				DateUtils.toString(
+						DateUtils.addDays(new Date(),
+								Integer.parseInt(registrationDays)),
+						"dd/MM/yyyy"));
+	}
+
+	@StepGroup
+	public void checkContactInformation(String label, String user) {
+		mandatesPage().checkIfContactIsPresent(label);
+		mandatesPage().checkUserFromContacts(label, user);
+	}
+
+	@StepGroup
+	public void checkBankableAssetInformation(String bank, String amount,
+			String currency, String comments) {
+		mandatesPage().checkIfBankableAssetIsPresent(bank);
+		mandatesPage().checkInformationFromBankableAssets(bank, amount,
+				currency, comments);
+	}
+
+	@StepGroup
+	public void checkParticipationInformation(String name, String value,
+			String currency, String activity, String percentage,
+			String comments, String country) {
+		mandatesPage().checkIfParticipationIsPresent(name);
+		mandatesPage().checkInformationFromParticipation(name, value, currency,
+				activity, percentage, comments, country);
+	}
+
+	@StepGroup
+	public void checkRealEstateInformation(String description, String value,
+			String currency, String comments, String country) {
+		mandatesPage().checkIfRealEstateIsPresent(description);
+		mandatesPage().checkInformationFromRealEstate(description, value,
+				currency, comments, country);
+	}
+
+	@StepGroup
+	public void checkOtherInformation(String value, String currency,
+			String place, String comments) {
+		mandatesPage().checkIfOtherInformationIsPresent(value);
+		mandatesPage().checkInformationFromOtherInformation(value, currency,
+				place, comments);
+	}
+
+	@Step
+	public void checkMandateProfileType(String type) {
+		mandatesPage().checkMandateProfileType(type);
+	}
+
+	@Step
+	public void checkThatServiceTypeIsNotChecked(String... type) {
+		mandatesPage().checkThatServiceTypeIsNotChecked(type);
+	}
+
+	@StepGroup
+	public void createBasicMandate(String service, String name, String office,
+			String manager) {
+		abstractPage().selectActionFromRibbon("Create");
+		mandatesPage().selectServiceType(service);
+		mandatesPage().inputFullName(name);
+		mandatesPage().selectOffice(office);
+		mandatesPage().inputAccountManager(manager);
+		abstractPage().selectActionFromRibbon("Save");
+	}
+
+	@Step
+	public void inputUser(String userName) {
+		mandatesPage().inputUser(userName);
+	}
+
+	@Step
+	public void clickOnGetMandatesButton() {
+		mandatesPage().clickOnGetMandatesButton();
+	}
+
+	@Step
+	public void checkIfMandateIsPresent(String name) {
+		Assert.assertTrue("The mandate is not displayed", mandatesPage()
+				.checkIfMandateIsPresent(name));
+	}
+
+	@Step
+	public void checkThatMandateIsNotPresent(String name) {
+		Assert.assertFalse("The mandate is displayed", mandatesPage()
+				.checkIfMandateIsPresent(name));
+	}
+
+	@Step
+	public void changeAccountManager(String name) {
+		abstractPage().switchToCreateIframe();
+		mandatesPage().inputUser(name);
+		abstractPage().selectActionFromRibbon("Save");
+		getDriver().switchTo().defaultContent();
 	}
 }

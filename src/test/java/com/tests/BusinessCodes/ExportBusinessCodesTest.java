@@ -53,12 +53,14 @@ public class ExportBusinessCodesTest extends BaseTest {
 		abstractPageSteps.goToHomePage();
 		// delete items
 		abstractPageSteps.selectMenuOption("Business Codes");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
+		abstractPageSteps.deleteElementIfExists("595");
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("893");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
+		abstractPageSteps.deleteElementIfExists("894");
 		itemsPageSteps.checkThatElementIsNotPresent("894");
 
 	}

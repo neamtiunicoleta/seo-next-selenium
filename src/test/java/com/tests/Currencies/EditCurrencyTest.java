@@ -59,8 +59,9 @@ public class EditCurrencyTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("g60k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("7ji");
 		itemsPageSteps.checkThatElementIsNotPresent("7ji");
+		abstractPageSteps.deleteElementIfExists("9ji");
 		itemsPageSteps.checkThatElementIsNotPresent("9ji");
 	}
 

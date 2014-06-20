@@ -12,7 +12,7 @@ import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Create.CreateRisks.CreateRiskCriteria.class)
+@Story(Application.Create.CreateRiskCriteria.class)
 @RunWith(ThucydidesRunner.class)
 public class CreateInactiveRiskCriteriaTest extends BaseTest {
 

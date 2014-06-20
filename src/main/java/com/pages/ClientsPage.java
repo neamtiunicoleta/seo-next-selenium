@@ -506,10 +506,10 @@ public class ClientsPage extends AbstractPage {
 		element(otherField).type(comment);
 	}
 
-	public boolean checkIfClientExists(String terms) {
+	public boolean checkIfEntityExists(String terms) {
 		List<WebElement> clientsList = getDriver()
 				.findElements(
-						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr td:first-child"));
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr td:nth-child(2)"));
 		for (WebElement item : clientsList) {
 			if (item.getText().contains(terms)) {
 				return true;
@@ -636,13 +636,16 @@ public class ClientsPage extends AbstractPage {
 		List<WebElement> countriesList = getDriver()
 				.findElements(
 						By.cssSelector("tr[id*='Tr1'] tbody tr:nth-child(4) select option"));
+		boolean selected = false;
 		for (WebElement item : countriesList) {
 			if (item.getText().contentEquals(country)) {
+				if (isAttributePresent(item, "selected"))
+					selected = true;
+				break;
 
-				Assert.assertTrue("Country is not correct",
-						isAttributePresent(item, "selected"));
 			}
 		}
+		Assert.assertTrue("Country is not correct", selected);
 	}
 
 	public void checkPlaceOfBirth(String place) {
@@ -737,7 +740,7 @@ public class ClientsPage extends AbstractPage {
 	public void checkIdentificationMadeBy(String user) {
 		WebElement indentificationMadeByField = getDriver().findElement(
 				By.cssSelector("span[id*='UserDisplay']"));
-		Assert.assertTrue("Client comments are not correct",
+		Assert.assertTrue("Identification made by is not correct",
 				indentificationMadeByField.getText().contentEquals(user));
 	}
 
@@ -983,7 +986,7 @@ public class ClientsPage extends AbstractPage {
 
 	public void checkBusinessCodes(String code) {
 		List<WebElement> codesList = getDriver().findElements(
-				By.cssSelector("tr[id*='BusinessCodeTR'] select option"));
+				By.cssSelector("tr[id*='BusinessCode'] select option"));
 		for (WebElement item : codesList) {
 			if (item.getText().contentEquals(code)) {
 
@@ -994,9 +997,8 @@ public class ClientsPage extends AbstractPage {
 	}
 
 	public void checkActualBusinessActivities(String activity) {
-		String actualBusinessActivityField = getDriver()
-				.findElement(
-						By.cssSelector("tr[id*='ActualBusinessActivitiesTR'] textarea"))
+		String actualBusinessActivityField = getDriver().findElement(
+				By.cssSelector("tr[id*='ActualBusinessActivities'] textarea"))
 				.getText();
 		Assert.assertTrue("Source of wealth is not correct",
 				actualBusinessActivityField.contentEquals(activity));

@@ -45,8 +45,9 @@ public class ExportOfficeLinkTest extends BaseTest {
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("OfficeLinksList.xlsx");
 		abstractPageSteps.goToHomePage();
 		abstractPageSteps.selectMenuOption("OfficeLinks");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("office 1");
 		itemsPageSteps.checkThatElementIsNotPresent("office 1");
+		abstractPageSteps.deleteElementIfExists("office 2");
 		itemsPageSteps.checkThatElementIsNotPresent("office 2");
 
 	}

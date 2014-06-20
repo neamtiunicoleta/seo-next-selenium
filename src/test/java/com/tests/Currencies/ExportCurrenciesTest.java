@@ -58,8 +58,9 @@ public class ExportCurrenciesTest extends BaseTest {
 		// delete items
 		abstractPageSteps.goToHomePage();
 		abstractPageSteps.selectMenuOption("Currencies");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("a67b");
 		itemsPageSteps.checkThatElementIsNotPresent("a67b");
+		abstractPageSteps.deleteElementIfExists("a68b");
 		itemsPageSteps.checkThatElementIsNotPresent("a68b");
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.deleteElementIfExists("8km");

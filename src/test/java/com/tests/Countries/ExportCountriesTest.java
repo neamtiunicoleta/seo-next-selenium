@@ -54,8 +54,9 @@ public class ExportCountriesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
 		// delete items
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("315");
 		itemsPageSteps.checkThatElementIsNotPresent("315");
+		abstractPageSteps.deleteElementIfExists("316");
 		itemsPageSteps.checkThatElementIsNotPresent("316");
 	}
 }

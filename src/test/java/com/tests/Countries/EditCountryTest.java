@@ -54,8 +54,9 @@ public class EditCountryTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("A58kn");
 		itemsPageSteps.checkThatElementIsNotPresent("A58kn");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("315");
 		itemsPageSteps.checkThatElementIsNotPresent("315");
+		abstractPageSteps.deleteElementIfExists("316");
 		itemsPageSteps.checkThatElementIsNotPresent("316");
 	}
 

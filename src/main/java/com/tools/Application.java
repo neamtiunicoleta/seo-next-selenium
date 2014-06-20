@@ -5,15 +5,7 @@ import net.thucydides.core.annotations.Feature;
 public class Application {
 	@Feature
 	public class Create {
-		public class CreateRisks {
-			public class CreateRiskCriteria {
-			}
-
-			public class CreateRiskCategory {
-			}
-
-			public class CreateRiskAsset {
-			}
+		public class CreateRiskCriteria {
 		}
 
 		public class CreateBusinessCode {
@@ -32,19 +24,7 @@ public class Application {
 
 		}
 
-		public class CreateLinkCategory {
-
-		}
-
-		public class CreateLinkType {
-
-		}
-
 		public class CreateLink {
-
-		}
-
-		public class CreateClient {
 
 		}
 
@@ -57,6 +37,10 @@ public class Application {
 		}
 
 		public class CreateMandate {
+
+		}
+
+		public class CreateMandateSituation {
 
 		}
 
@@ -74,18 +58,9 @@ public class Application {
 	}
 
 	public class Edit {
-		public class EditRisks {
-			public class EditRiskCriteria {
 
-			}
+		public class EditRiskCriteria {
 
-			public class EditRiskCategory {
-
-			}
-
-			public class EditRiskAssets {
-
-			}
 		}
 
 		public class EditBusinessode {
@@ -104,19 +79,7 @@ public class Application {
 
 		}
 
-		public class EditLinkCategory {
-
-		}
-
-		public class EditLinkType {
-
-		}
-
 		public class EditLink {
-
-		}
-
-		public class EditClient {
 
 		}
 
@@ -140,18 +103,8 @@ public class Application {
 	}
 
 	public class Export {
-		public class ExportRisks {
-			public class ExportRiskCriterias {
+		public class ExportRiskCriterias {
 
-			}
-
-			public class ExportRiskCategories {
-
-			}
-
-			public class ExportRiskAssets {
-
-			}
 		}
 
 		public class ExportExchangeRates {
@@ -167,14 +120,6 @@ public class Application {
 		}
 
 		public class ExportBusinessCodes {
-
-		}
-
-		public class ExportLinkCategory {
-
-		}
-
-		public class ExporttLinkType {
 
 		}
 
@@ -220,30 +165,6 @@ public class Application {
 
 		}
 
-		public class FilterRiskCategories {
-
-		}
-
-		public class FilterRiskAssets {
-
-		}
-
-		public class FilterClients {
-
-		}
-
-		public class FilterMandates {
-
-		}
-
-		public class FilterLinkCategory {
-
-		}
-
-		public class FilterLinkType {
-
-		}
-
 		public class FilterLink {
 
 		}
@@ -262,5 +183,9 @@ public class Application {
 		public class UploadForTransactions {
 
 		}
+	}
+
+	public class ChangeAccountManager {
+
 	}
 }

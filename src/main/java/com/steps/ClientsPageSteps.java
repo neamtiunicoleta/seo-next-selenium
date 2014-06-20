@@ -277,15 +277,15 @@ public class ClientsPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void checkIfClientExists(String name) {
+	public void checkIfEntityExists(String name) {
 		Assert.assertTrue("The client is not present", clientsPage()
-				.checkIfClientExists(name));
+				.checkIfEntityExists(name));
 	}
 
 	@Step
-	public void checkThatClientDoesntExists(String name) {
+	public void checkThatEntityDoesntExists(String name) {
 		Assert.assertFalse("The client is present", clientsPage()
-				.checkIfClientExists(name));
+				.checkIfEntityExists(name));
 	}
 
 	@Step

@@ -13,7 +13,7 @@ import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
 
-@Story(Application.Export.ExportRisks.ExportRiskCriterias.class)
+@Story(Application.Export.ExportRiskCriterias.class)
 @RunWith(ThucydidesRunner.class)
 public class ExportCriteriasTest extends BaseTest {
 
@@ -42,8 +42,9 @@ public class ExportCriteriasTest extends BaseTest {
 		// delete items
 		abstractPageSteps.goToHomePage();
 		abstractPageSteps.selectMenuOption("Risk Criterias");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("212");
 		itemsPageSteps.checkThatElementIsNotPresent("212");
+		abstractPageSteps.deleteElementIfExists("125");
 		itemsPageSteps.checkThatElementIsNotPresent("125");
 	}
 }

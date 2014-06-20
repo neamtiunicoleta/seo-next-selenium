@@ -112,7 +112,7 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		// delete items
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
-		clientsPageSteps.checkThatClientDoesntExists("Doe Mary");
+		clientsPageSteps.checkThatEntityDoesntExists("Doe Mary");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("19f");

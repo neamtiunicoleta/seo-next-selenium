@@ -53,8 +53,9 @@ public class EditBusinessCodeTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		// delete items
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
-		abstractPageSteps.deleteAllItems();
+		abstractPageSteps.deleteElementIfExists("893");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
+		abstractPageSteps.deleteElementIfExists("894");
 		itemsPageSteps.checkThatElementIsNotPresent("894");
 	}
 }
