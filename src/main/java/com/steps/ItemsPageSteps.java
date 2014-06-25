@@ -317,6 +317,17 @@ public class ItemsPageSteps extends AbstractSteps {
 		}
 	}
 
+	@StepGroup
+	public void createBasicOfficeIfNotExists(String name, String unit) {
+		if (!itemsPage().checkIfElementIsPresent(name)) {
+			abstractPage().selectActionFromRibbon("Create");
+			abstractPage().switchToCreateIframe();
+			itemsPage().inputTitleField(name);
+			itemsPage().inputOrganizationUnit(unit);
+			abstractPage().selectActionFromRibbon("Save");
+		}
+	}
+
 	@Step
 	public void checkOrganizationunit(String name, String unit) {
 		itemsPage().checkOrganizationUnit(name, unit);

@@ -41,11 +41,12 @@ public class ChangeAccountManagerTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "345", "12", "John Doe");
-		// create client
+		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate11");
 		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate11", "cluj",
 				"John Doe");
+		searchPageSteps.searchAndDeleteItem("Mandate22");
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate22", "cluj",
 				"Jane Doe");

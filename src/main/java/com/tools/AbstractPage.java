@@ -168,12 +168,28 @@ public class AbstractPage extends PageObject {
 						By.cssSelector("div[id*='seoGridView']  table.ms-listviewtable > tbody > tr"));
 		gridList.remove(0);
 		for (WebElement elemNow : gridList) {
-			String elemId = elemNow.findElement(
-					By.cssSelector("a")).getText();
+			String elemId = elemNow.findElement(By.cssSelector("a")).getText();
 			elemId = elemId.replace("\n", "");
 			elemId = elemId.replace(
 					"Use SHIFT+ENTER to open the menu (new window).", "");
 
+			if (elemId != null && itemId.contentEquals(elemId)) {
+				elemNow.findElement(By.cssSelector("input")).click();
+				break;
+			}
+		}
+	}
+	public void selectItemFromMandateSection(String itemId) {
+		List<WebElement> gridList = getDriver()
+				.findElements(
+						By.cssSelector("div[id*='DeltaPlaceHolderMain'] > div:nth-of-type(3) tbody > tr"));
+		gridList.remove(0);
+		for (WebElement elemNow : gridList) {
+			String elemId = elemNow.findElement(By.cssSelector("a")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			
 			if (elemId != null && itemId.contentEquals(elemId)) {
 				elemNow.findElement(By.cssSelector("input")).click();
 				break;
@@ -215,7 +231,6 @@ public class AbstractPage extends PageObject {
 		gridList.remove(0);
 
 		for (WebElement elemNow : gridList) {
-
 			String elemId = elemNow.findElement(
 					By.cssSelector("a.ms-core-menu-root")).getText();
 			elemId = elemId.replace("\n", "");
@@ -241,7 +256,6 @@ public class AbstractPage extends PageObject {
 		gridList.remove(0);
 
 		for (WebElement elemNow : gridList) {
-
 			String elemId = elemNow.findElement(
 					By.cssSelector("a.ms-core-menu-root")).getText();
 			elemId = elemId.replace("\n", "");
@@ -257,6 +271,33 @@ public class AbstractPage extends PageObject {
 		}
 
 		Assert.assertTrue("The text is not correct", result.contains(text));
+	}
+
+	public void checkTextFromMandateSection(String fieldType, String id,
+			String text) {
+		String result = "";
+		List<WebElement> gridList = getVisibleElementsFromList(getDriver()
+				.findElements(
+						By.cssSelector("div[id*='DeltaPlaceHolderMain'] > div:nth-of-type(3) tbody > tr")));
+		gridList.remove(0);
+
+		for (WebElement elemNow : gridList) {
+			String elemId = elemNow.findElement(
+					By.cssSelector("a.ms-core-menu-root")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			if (elemId != null && id.contentEquals(elemId)) {
+				result = elemNow.findElement(By.cssSelector(fieldType))
+						.getText();
+				result = result.replace("\n", " ");
+				break;
+			}
+
+		}
+
+		Assert.assertTrue("The text is not correct", result.contentEquals(text));
+
 	}
 
 	public boolean checkCheckBox(String fieldName, String id) {

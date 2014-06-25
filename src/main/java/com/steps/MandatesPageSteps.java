@@ -191,6 +191,11 @@ public class MandatesPageSteps extends AbstractSteps {
 		getDriver().switchTo().defaultContent();
 	}
 
+	@Step
+	public void selectCurrency(String currency) {
+		mandatesPage().selectCurrency(currency);
+	}
+
 	@StepGroup
 	public void addRealEstate(String description, String value,
 			String currency, String street, String code, String city,
@@ -432,5 +437,109 @@ public class MandatesPageSteps extends AbstractSteps {
 		mandatesPage().inputUser(name);
 		abstractPage().selectActionFromRibbon("Save");
 		getDriver().switchTo().defaultContent();
+	}
+
+	@StepGroup
+	public void createTasktype(String key, String title) {
+		abstractPage().selectActionFromRibbon("Create");
+		abstractPage().switchToCreateIframe();
+		itemsPage().inputKeyField(key);
+		itemsPage().inputTitleField(title);
+		abstractPage().selectActionFromRibbon("Save");
+		getDriver().switchTo().defaultContent();
+	}
+
+	@Step
+	public void selectTypeOfIssue(String type) {
+		mandatesPage().selectTypeOfIssue(type);
+	}
+
+	@Step
+	public void selectTaskType(String type) {
+		mandatesPage().selectTaskType(type);
+	}
+
+	@Step
+	public void inputKeyField(String key) {
+		itemsPage().inputKeyField(key);
+	}
+
+	@Step
+	public void inputDeadlineDate(String days) {
+		mandatesPage().inputDeadlineDate(
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void selectTypeOfDeficiency(String type) {
+		mandatesPage().selectTypeOfDeficiency(type);
+	}
+
+	@Step
+	public void inputFindings(String findings) {
+		mandatesPage().inputFindings(findings);
+	}
+
+	@Step
+	public void inputAddionalRemarks(String remarks) {
+		mandatesPage().inputAddionalRemarks(remarks);
+	}
+
+	@Step
+	public void checkCreatedOnForOpenIssues(String id, String days) {
+		mandatesPage().checkCreatedOnForOpenIssues(
+				id,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void checkDeadlineForOpenIssues(String id, String days) {
+		mandatesPage().checkDeadlineForOpenIssues(
+				id,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void checkTypeOfIssue(String id, String type) {
+		mandatesPage().checkTypeOfIssue(id, type);
+	}
+
+	@Step
+	public void checkTypeOfDeficiency(String id, String type) {
+		mandatesPage().checkTypeOfDeficiency(id, type);
+	}
+
+	@Step
+	public void selectItemFromMandateSection(String itemId) {
+		abstractPage().selectItemFromMandateSection(itemId);
+	}
+
+	@Step
+	public void selectPayment(String payment) {
+		mandatesPage().selectPayment(payment);
+	}
+
+	@Step
+	public void selectDirection(String direction) {
+		mandatesPage().selectDirection(direction);
+	}
+
+	@Step
+	public void inputDateOfTransaction(String days) {
+		mandatesPage().inputDateOfTransaction(
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void inputAmountFX(String amount) {
+		mandatesPage().inputAmountFX(amount);
 	}
 }

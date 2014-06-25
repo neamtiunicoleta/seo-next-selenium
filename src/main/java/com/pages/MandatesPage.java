@@ -1010,4 +1010,135 @@ public class MandatesPage extends AbstractPage {
 				true, false, name);
 		return foundDocument;
 	}
+
+	public void selectTypeOfIssue(String type) {
+		getDriver().findElement(By.cssSelector("div[id*='TypeOfIssue']"))
+				.click();
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("select[name*='TypeOfIssue'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The item was not found!", foundOption);
+	}
+
+	public void selectTaskType(String type) {
+		getDriver().findElement(By.cssSelector("div[id*='TaskType']")).click();
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("select[name*='TaskType'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The item was not found!", foundOption);
+	}
+
+	public void inputDeadlineDate(String date) {
+		WebElement deadlineField = returnField("input", "DeadlineDate");
+		element(deadlineField).clear();
+		element(deadlineField).type(date);
+	}
+
+	public void selectTypeOfDeficiency(String type) {
+		getDriver().findElement(By.cssSelector("div[id*='TypeOfDeficiency']"))
+				.click();
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("select[name*='TypeOfDeficiency'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : typesList) {
+			if (item.getText().contentEquals(type)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The item was not found!", foundOption);
+	}
+
+	public void inputFindings(String findings) {
+		WebElement findingsField = returnField("input", "Findings");
+		element(findingsField).clear();
+		element(findingsField).type(findings);
+	}
+
+	public void inputAddionalRemarks(String remarks) {
+		WebElement remarksField = returnField("input", "AddionalRemarks");
+		element(remarksField).clear();
+		element(remarksField).type(remarks);
+	}
+
+	public void checkCreatedOnForOpenIssues(String id, String date) {
+		checkTextFromMandateSection("td:nth-child(3)", id, date);
+	}
+
+	public void checkDeadlineForOpenIssues(String id, String date) {
+		checkTextFromMandateSection("td:nth-child(4)", id, date);
+	}
+
+	public void checkTypeOfIssue(String id, String type) {
+		checkTextFromMandateSection("td:nth-child(5)", id, type);
+	}
+
+	public void checkTypeOfDeficiency(String id, String type) {
+		checkTextFromMandateSection("td:nth-child(6)", id, type);
+	}
+
+	public void selectPayment(String payment) {
+		getDriver().findElement(By.cssSelector("div[id*='ddlPayment']"))
+				.click();
+		List<WebElement> paymentList = getDriver().findElements(
+				By.cssSelector("select[name*='ddlPayment'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : paymentList) {
+			if (item.getText().contentEquals(payment)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The payment was not found!", foundOption);
+	}
+
+	public void selectDirection(String direction) {
+		getDriver().findElement(By.cssSelector("div[id*='ddlDirection']"))
+				.click();
+		List<WebElement> directionList = getDriver().findElements(
+				By.cssSelector("select[name*='ddlDirection'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : directionList) {
+			if (item.getText().contentEquals(direction)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The direction was not found!", foundOption);
+	}
+
+	public void inputDateOfTransaction(String date) {
+		WebElement transactionDateField = returnField("input",
+				"dateOfTransactionDate");
+		element(transactionDateField).clear();
+		element(transactionDateField).type(date);
+	}
+
+	public void inputAmountFX(String amount) {
+		WebElement amountFXField = returnField("input", "amountFX");
+		element(amountFXField).clear();
+		element(amountFXField).type(amount);
+	}
 }

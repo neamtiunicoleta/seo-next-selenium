@@ -44,7 +44,7 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "19f", "12", "John Doe");
-		// create client
+		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate 1");
 		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate 1", "cluj",

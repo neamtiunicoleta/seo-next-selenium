@@ -41,7 +41,7 @@ public class CreateMandateSituationTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "89f", "12", "John Doe");
-		// create client
+		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate2");
 		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate2", "cluj",

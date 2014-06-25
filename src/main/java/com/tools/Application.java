@@ -55,6 +55,22 @@ public class Application {
 		public class CreateOfficeLink {
 
 		}
+
+		public class CreateTaskType {
+
+		}
+
+		public class CreateTaskDeficiencies {
+
+		}
+
+		public class CreateOpenIssues {
+
+		}
+
+		public class CreateTransactions {
+
+		}
 	}
 
 	public class Edit {
@@ -90,6 +106,7 @@ public class Application {
 		public class EditOfficeLink {
 
 		}
+
 	}
 
 	public class Import {
@@ -138,6 +155,14 @@ public class Application {
 		public class ExportOfficeLink {
 
 		}
+
+		public class ExportTaskType {
+
+		}
+
+		public class ExportTaskDeficiencies {
+
+		}
 	}
 
 	public class Filter {
@@ -166,6 +191,14 @@ public class Application {
 		}
 
 		public class FilterLink {
+
+		}
+
+		public class FilterTaskType {
+
+		}
+
+		public class FilterTaskDeficiencies {
 
 		}
 
