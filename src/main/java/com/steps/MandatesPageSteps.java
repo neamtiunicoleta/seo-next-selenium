@@ -542,4 +542,78 @@ public class MandatesPageSteps extends AbstractSteps {
 	public void inputAmountFX(String amount) {
 		mandatesPage().inputAmountFX(amount);
 	}
+
+	@Step
+	public void inputRelationWithMandate(String relation) {
+		mandatesPage().inputRelationWithMandate(relation);
+	}
+
+	@Step
+	public void inputSenderOrRecipient(String text) {
+		mandatesPage().inputSenderOrRecipient(text);
+	}
+
+	@Step
+	public void selectOriginOfFunds(String country) {
+		mandatesPage().selectOriginOfFunds(country);
+	}
+
+	@Step
+	public void inputNameOfBank(String name) {
+		mandatesPage().inputNameOfBank(name);
+	}
+
+	@Step
+	public void inputPlausability(String plausability) {
+		mandatesPage().inputPlausability(plausability);
+	}
+
+	@Step
+	public void checkIfTransactionExists(String days) {
+		Assert.assertTrue(
+				"The transaction doesn't exist!",
+				mandatesPage().checkItemByDate(
+						DateUtils.toString(
+
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+								"dd/MM/yyyy")));
+	}
+
+	@Step
+	public void checkThatTransactionDoesntExists(String days) {
+		Assert.assertFalse(
+				"The transaction is present!",
+				mandatesPage().checkItemByDate(
+						DateUtils.toString(
+
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+								"dd/MM/yyyy")));
+	}
+
+	@Step
+	public void selectTransactionFromGrid(String days) {
+		mandatesPage().selectTransactionFromGrid(DateUtils.toString(
+
+		DateUtils.addDays(new Date(), Integer.parseInt(days)), "dd/MM/yyyy"));
+	}
+
+	@StepGroup
+	public void checkTransactionInformation(String payment, String direction,
+			String days, String currency, String amountFx, String amountEuro,
+			String name, String relation, String country, String bank,
+			String plausability) {
+		abstractPage().switchToCreateIframe();
+		mandatesPage().checkPayment(payment);
+		mandatesPage().checkDirection(direction);
+		mandatesPage().checkTransactionDate(DateUtils.toString(
+
+		DateUtils.addDays(new Date(), Integer.parseInt(days)), "dd/MM/yyyy"));
+		mandatesPage().checkCurrency(currency);
+		mandatesPage().checkAmountFx(amountFx);
+		mandatesPage().checkAmountInEuro(amountEuro);
+		mandatesPage().checkSenderOrRecipient(name);
+		mandatesPage().checkRelation(relation);
+		mandatesPage().checkOriginOfFunds(country);
+		mandatesPage().checkPlausability(plausability);
+	}
 }

@@ -50,9 +50,7 @@ public class ExportBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("BusinessCodesList.xlsx");
-		abstractPageSteps.goToHomePage();
 		// delete items
-		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
 		abstractPageSteps.deleteElementIfExists("595");

@@ -48,8 +48,6 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CountriesList.xlsx");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
 		// delete items

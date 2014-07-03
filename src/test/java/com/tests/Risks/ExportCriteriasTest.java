@@ -40,8 +40,6 @@ public class ExportCriteriasTest extends BaseTest {
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("RiskCriteriasList.xlsx");
 		// delete items
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("212");
 		itemsPageSteps.checkThatElementIsNotPresent("212");
 		abstractPageSteps.deleteElementIfExists("125");

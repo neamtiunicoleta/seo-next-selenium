@@ -1141,4 +1141,181 @@ public class MandatesPage extends AbstractPage {
 		element(amountFXField).clear();
 		element(amountFXField).type(amount);
 	}
+
+	public void inputRelationWithMandate(String relation) {
+		WebElement relationField = returnField("input", "relation");
+		element(relationField).clear();
+		element(relationField).type(relation);
+	}
+
+	public void inputSenderOrRecipient(String text) {
+		WebElement senderOrReceipientField = returnField("input",
+				"senderOrRecipient");
+		element(senderOrReceipientField).clear();
+		element(senderOrReceipientField).type(text);
+	}
+
+	public void selectOriginOfFunds(String country) {
+		getDriver().findElement(By.cssSelector("div[id*='ddlOriginOfFunds']"))
+				.click();
+		List<WebElement> countriesList = getDriver().findElements(
+				By.cssSelector("select[name*='ddlOriginOfFunds'] option"));
+		boolean foundOption = false;
+
+		for (WebElement item : countriesList) {
+			if (item.getText().contentEquals(country)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The country was not found!", foundOption);
+	}
+
+	public void inputNameOfBank(String name) {
+		WebElement nameOfBankField = returnField("input", "newBank");
+		element(nameOfBankField).type(name);
+	}
+
+	public void inputPlausability(String plausability) {
+		WebElement plausabilityField = returnField("textarea", "plausability");
+		element(plausabilityField).clear();
+		element(plausabilityField).type(plausability);
+	}
+
+	public boolean checkItemByDate(String date) {
+		List<WebElement> itemsList = getDriver()
+				.findElements(
+						By.cssSelector("div[id*='seoGridView'] table.ms-listviewtable > tbody > tr td:nth-child(2)"));
+		for (WebElement item : itemsList) {
+			if (item.getText().contains(date)) {
+				return true;
+
+			}
+		}
+		return false;
+
+	}
+
+	public void selectTransactionFromGrid(String date) {
+		List<WebElement> gridList = getDriver()
+				.findElements(
+						By.cssSelector("div[id*='DeltaPlaceHolderMain'] > div:nth-of-type(2) tbody > tr"));
+		gridList.remove(0);
+		for (WebElement elemNow : gridList) {
+			String elemId = elemNow.findElement(By.cssSelector("a")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			if (elemId != null && date.contentEquals(elemId)) {
+				elemNow.findElement(By.cssSelector("input")).click();
+				break;
+			}
+		}
+	}
+
+	public void checkPayment(String payment) {
+		List<WebElement> paymentList = getDriver().findElements(
+				By.cssSelector("tr[id*='Payment'] select option"));
+		for (WebElement item : paymentList) {
+			if (item.getText().contentEquals(payment)) {
+
+				Assert.assertTrue("Payment is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkDirection(String direction) {
+		List<WebElement> directionList = getDriver().findElements(
+				By.cssSelector("tr[id*='Direction'] select option"));
+		for (WebElement item : directionList) {
+			if (item.getText().contentEquals(direction)) {
+
+				Assert.assertTrue("Direction is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkTransactionDate(String date) {
+		String transcationDate = getDriver().findElement(
+				By.cssSelector("tr[id*='DateOfTransacrionRow'] input"))
+				.getAttribute("value");
+		Assert.assertTrue("Transcation date is not correct",
+				transcationDate.contentEquals(date));
+	}
+
+	public void checkCurrency(String currency) {
+		List<WebElement> currenciesList = getDriver().findElements(
+				By.cssSelector("tr[id*='Currency'] select option"));
+		for (WebElement item : currenciesList) {
+			if (item.getText().contentEquals(currency)) {
+
+				Assert.assertTrue("Currency is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkAmountFx(String amount) {
+		String amountFXField = getDriver().findElement(
+				By.cssSelector("tr[id*='AmountFX'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Amount FX is not correct",
+				amountFXField.contentEquals(amount));
+	}
+
+	public void checkAmountInEuro(String amount) {
+		String amountEuroField = getDriver().findElement(
+				By.cssSelector("tr[id*='AmontEURORow'] span")).getText();
+		Assert.assertTrue("Amount EURO is not correct",
+				amountEuroField.contentEquals(amount));
+	}
+
+	public void checkSenderOrRecipient(String name) {
+		String senderOrRecipientField = getDriver().findElement(
+				By.cssSelector("tr[id*='Tr1'] input")).getAttribute("value");
+		Assert.assertTrue("Sender is not correct",
+				senderOrRecipientField.contentEquals(name));
+	}
+
+	public void checkRelation(String relation) {
+		String relationWithMandateField = getDriver().findElement(
+				By.cssSelector("tr[id*='LinkRelation'] input")).getAttribute(
+				"value");
+		Assert.assertTrue("Relation with the mandate is not correct",
+				relationWithMandateField.contentEquals(relation));
+	}
+
+	public void checkOriginOfFunds(String country) {
+		List<WebElement> countriesList = getDriver().findElements(
+				By.cssSelector("tr[id*='Tr4'] select option"));
+		for (WebElement item : countriesList) {
+			if (item.getText().contentEquals(country)) {
+
+				Assert.assertTrue("Origin of funds is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkNameOfBank(String bank) {
+		List<WebElement> bankList = getDriver().findElements(
+				By.cssSelector("tr[id*='Tr5'] select option"));
+		for (WebElement item : bankList) {
+			if (item.getText().contentEquals(bank)) {
+
+				Assert.assertTrue("OName of Bank is not correct",
+						isAttributePresent(item, "selected"));
+			}
+		}
+	}
+
+	public void checkPlausability(String plausability) {
+		String plausabilityField = getDriver().findElement(
+				By.cssSelector("tr[id*='Tr7'] textarea")).getAttribute("value");
+		Assert.assertTrue("Plausability is not correct",
+				plausabilityField.contentEquals(plausability));
+	}
 }

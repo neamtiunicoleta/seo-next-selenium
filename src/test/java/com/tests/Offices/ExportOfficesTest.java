@@ -41,8 +41,6 @@ public class ExportOfficesTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("OfficesList.xlsx");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("15f");
 		itemsPageSteps.checkThatElementIsNotPresent("15f");
 	}

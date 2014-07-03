@@ -1,4 +1,4 @@
-package com.tests.Offices.OfficeLink;
+package com.tests.DocumentType;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ import net.thucydides.junit.runners.ThucydidesRunner;
 
 @Story(Application.Export.ExportOfficeLink.class)
 @RunWith(ThucydidesRunner.class)
-public class ExportOfficeLinkTest extends BaseTest {
+public class ExportDocumentTypesTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
@@ -23,30 +23,30 @@ public class ExportOfficeLinkTest extends BaseTest {
 	public ExportFilesPageSteps exportFilesPageSteps;
 
 	@Test
-	public void exportOfficeLinks() {
+	public void exportDocumentType() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("OfficeLinks");
-		abstractPageSteps.deleteElementIfExists("office 1");
-		abstractPageSteps.deleteElementIfExists("office 2");
+		abstractPageSteps.selectMenuOption("Document Types");
+		abstractPageSteps.deleteElementIfExists("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
-		itemsPageSteps.inputTitleField("office 1");
+		itemsPageSteps.inputTitleField("type1");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
-		itemsPageSteps.inputTitleField("office 2");
+		itemsPageSteps.inputTitleField("type2");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("office 1");
-		itemsPageSteps.checkIfElementIsPresent("office 2");
+		itemsPageSteps.checkIfElementIsPresent("type1");
+		itemsPageSteps.checkIfElementIsPresent("type2");
 		exportFilesPageSteps
-				.deleteFilesFromDownloadsFolder("OfficeLinksList.xlsx");
+				.deleteFilesFromDownloadsFolder("DocumentTypesList.xlsx");
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
-				.checkIfTheFileHasBeenSuccessfullyDownloaded("OfficeLinksList.xlsx");
-		abstractPageSteps.deleteElementIfExists("office 1");
-		itemsPageSteps.checkThatElementIsNotPresent("office 1");
-		abstractPageSteps.deleteElementIfExists("office 2");
-		itemsPageSteps.checkThatElementIsNotPresent("office 2");
+				.checkIfTheFileHasBeenSuccessfullyDownloaded("DocumentTypesList.xlsx");
+		abstractPageSteps.deleteElementIfExists("type1");
+		itemsPageSteps.checkThatElementIsNotPresent("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
+		itemsPageSteps.checkThatElementIsNotPresent("type2");
 
 	}
 

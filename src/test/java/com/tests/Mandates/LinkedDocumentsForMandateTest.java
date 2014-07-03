@@ -44,6 +44,14 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "19f", "12", "John Doe");
+		// create document type
+		abstractPageSteps.selectActionFromLeftMenu("Document Types");
+		abstractPageSteps.deleteElementIfExists("type1");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputTitleField("type1");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+
 		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate 1");
@@ -51,7 +59,7 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 				"John Doe");
 		// upload documents
 		abstractPageSteps.selectActionFromLeftMenu("Linked Documents");
-		uploadItemsSteps.selectDocumentType("Other");
+		uploadItemsSteps.selectDocumentType("type1");
 		uploadItemsSteps.inputDocumentDate("-20");
 		uploadItemsSteps.inputAbstract("Upload doc for mandates");
 		uploadItemsSteps.clickOnChooseButton();
@@ -67,5 +75,8 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Countries");
 		abstractPageSteps.deleteElementIfExists("19f");
 		itemsPageSteps.checkThatElementIsNotPresent("19f");
+		abstractPageSteps.selectActionFromLeftMenu("Document Types");
+		abstractPageSteps.deleteElementIfExists("type1");
+		itemsPageSteps.checkThatElementIsNotPresent("type1");
 	}
 }

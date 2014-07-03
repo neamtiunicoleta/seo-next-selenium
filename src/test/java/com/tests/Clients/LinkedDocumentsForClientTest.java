@@ -41,6 +41,13 @@ public class LinkedDocumentsForClientTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
 				"Cluj", "19f", "12", "John Doe");
+		// create document type
+		abstractPageSteps.selectActionFromLeftMenu("Document Types");
+		abstractPageSteps.deleteElementIfExists("type1");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputTitleField("type1");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
 		searchPageSteps.searchAndDeleteItem("Jane doe");
@@ -61,5 +68,9 @@ public class LinkedDocumentsForClientTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("Jane Doe");
+		abstractPageSteps.goToHomePage();
+		abstractPageSteps.selectMenuOption("Document Types");
+		abstractPageSteps.deleteElementIfExists("type1");
+		itemsPageSteps.checkThatElementIsNotPresent("type1");
 	}
 }

@@ -71,6 +71,10 @@ public class Application {
 		public class CreateTransactions {
 
 		}
+
+		public class CreateDocumentType {
+
+		}
 	}
 
 	public class Edit {
@@ -104,6 +108,10 @@ public class Application {
 		}
 
 		public class EditOfficeLink {
+
+		}
+
+		public class EditDocumentType {
 
 		}
 
@@ -161,6 +169,10 @@ public class Application {
 		}
 
 		public class ExportTaskDeficiencies {
+
+		}
+
+		public class ExportDocumentType {
 
 		}
 	}
