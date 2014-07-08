@@ -99,7 +99,6 @@ public class UploadItemsPage extends AbstractPage {
 				.findElements(
 						By.cssSelector("div[id*='documentsGrid__div'] table.ms-listviewtable > tbody > tr td:nth-child(2)"));
 		for (WebElement item : docList) {
-			System.out.println("@@@@@@@@"+item.getText());
 			if (item.getText().contains(terms)) {
 				return true;
 
@@ -107,6 +106,33 @@ public class UploadItemsPage extends AbstractPage {
 		}
 		return false;
 
+	}
+
+	public void checkDocumentInformation(String id, String type, String date,
+			String text) {
+		List<WebElement> documentInformations = getDriver()
+				.findElements(
+						By.cssSelector("div[id*='DeltaPlaceHolderMain'] > div:nth-of-type(3) tbody tr"));
+		documentInformations.remove(0);
+		for (WebElement item : documentInformations) {
+			System.out.println("$$$$$$$$$$$$$" + item.getText());
+			if (item.findElement(By.cssSelector("td:nth-child(2)")).getText()
+					.contentEquals(id)) {
+				WebElement documentType = item.findElement(By
+						.cssSelector("td:nth-child(3)"));
+				WebElement documentDate = item.findElement(By
+						.cssSelector("td:nth-child(4)"));
+				WebElement documentAbstract = item.findElement(By
+						.cssSelector("td:nth-child(5)"));
+
+				Assert.assertTrue("Document type is not correct", documentType
+						.getText().contentEquals(type));
+				Assert.assertTrue("Document date is not correct", documentDate
+						.getText().contentEquals(date));
+				Assert.assertTrue("Abstract is not correct", documentAbstract
+						.getText().contentEquals(text));
+			}
+		}
 	}
 
 }

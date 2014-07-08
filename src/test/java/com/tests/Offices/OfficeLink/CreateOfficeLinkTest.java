@@ -22,7 +22,7 @@ public class CreateOfficeLinkTest extends BaseTest {
 	@Test
 	public void createOfficeLink() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("OfficeLinks");
+		abstractPageSteps.selectMenuOption("Office Links");
 		abstractPageSteps.deleteElementIfExists("test");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();

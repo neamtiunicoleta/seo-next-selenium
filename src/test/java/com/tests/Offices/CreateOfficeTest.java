@@ -34,8 +34,5 @@ public class CreateOfficeTest extends BaseTest {
 				"Cluj", "15f", "12", "John Doe");
 		itemsPageSteps.checkIfElementIsPresent("cluj");
 		itemsPageSteps.checkOrganizationunit("cluj", "cjj");
-		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("15f");
-		itemsPageSteps.checkThatElementIsNotPresent("15f");
 	}
 }

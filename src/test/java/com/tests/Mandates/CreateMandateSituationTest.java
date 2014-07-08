@@ -31,16 +31,10 @@ public class CreateMandateSituationTest extends BaseTest {
 	@Test
 	public void createMandateSituation() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("89f");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("89f", "8F");
-		itemsPageSteps.checkIfElementIsPresent("89f");
+
 		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "89f", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate2");
@@ -60,10 +54,6 @@ public class CreateMandateSituationTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("Mandate2");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("89f");
-		itemsPageSteps.checkThatElementIsNotPresent("89f");
 	}
 
 }

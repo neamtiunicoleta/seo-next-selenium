@@ -31,16 +31,9 @@ public class ChangeAccountManagerTest extends BaseTest {
 	@Test
 	public void changeAccountManager() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("345");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("345", "34");
-		itemsPageSteps.checkIfElementIsPresent("345");
 		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "345", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate11");
@@ -57,9 +50,11 @@ public class ChangeAccountManagerTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid("Mandate22");
 		abstractPageSteps.selectActionFromRibbon("Account Manager");
 		mandatesPageSteps.changeAccountManager("John Doe");
+		abstractPageSteps.selectActionFromLeftMenu("Account Manager");
 		mandatesPageSteps.inputUser("Jane Doe");
 		mandatesPageSteps.clickOnGetMandatesButton();
 		mandatesPageSteps.checkThatMandateIsNotPresent("Mandate22");
+		abstractPageSteps.selectActionFromLeftMenu("Account Manager");
 		mandatesPageSteps.inputUser("John Doe");
 		mandatesPageSteps.clickOnGetMandatesButton();
 		mandatesPageSteps.checkIfMandateIsPresent("Mandate22");
@@ -68,9 +63,5 @@ public class ChangeAccountManagerTest extends BaseTest {
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("Mandate 22");
 		searchPageSteps.searchAndDeleteItem("Mandate11");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("345");
-		itemsPageSteps.checkThatElementIsNotPresent("345");
 	}
 }

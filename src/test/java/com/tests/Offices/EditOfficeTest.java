@@ -24,14 +24,14 @@ public class EditOfficeTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("15f");
+		abstractPageSteps.deleteElementIfExists("16f");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("15f", "1F");
-		itemsPageSteps.checkIfElementIsPresent("15f");
+		itemsPageSteps.createCountryWithoutRisk("16f", "6F");
+		itemsPageSteps.checkIfElementIsPresent("16f");
 		// create office
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "15f", "12", "John Doe");
+				"Cluj", "16f", "12", "John Doe");
 		itemsPageSteps.checkIfElementIsPresent("cluj");
 		abstractPageSteps.selectItemFromGrid("cluj");
 		abstractPageSteps.selectActionFromRibbon("View");
@@ -41,8 +41,5 @@ public class EditOfficeTest extends BaseTest {
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("alba");
 		itemsPageSteps.checkOrganizationunit("alba", "abb");
-		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("15f");
-		itemsPageSteps.checkThatElementIsNotPresent("15f");
 	}
 }

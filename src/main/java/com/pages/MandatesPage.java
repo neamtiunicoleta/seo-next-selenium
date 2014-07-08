@@ -182,13 +182,6 @@ public class MandatesPage extends AbstractPage {
 		element(turnoverAmountField).type(amount);
 	}
 
-	public void inputYearlyNetProfitAmount(String amount) {
-		WebElement profitAmountField = returnField("input",
-				"YearlyNetProfitAmount");
-		element(profitAmountField).clear();
-		element(profitAmountField).type(amount);
-	}
-
 	public void selectValuationOfTheLegalEntityCurrency(String currency) {
 		getDriver().findElement(
 				By.cssSelector("div[id*='ValuationOfTheLegalEntityCurrency']"))
@@ -206,6 +199,7 @@ public class MandatesPage extends AbstractPage {
 			}
 		}
 		Assert.assertTrue("The item was not found!", foundOption);
+		waitABit(2000);
 	}
 
 	public void selectYearlyTurnoverCurrency(String currency) {
@@ -224,25 +218,7 @@ public class MandatesPage extends AbstractPage {
 			}
 		}
 		Assert.assertTrue("The item was not found!", foundOption);
-	}
-
-	public void selectYearlyNetProfitCurrency(String currency) {
-		getDriver().findElement(
-				By.cssSelector("div[id*='ddlYearlyNetProfitCurrency']"))
-				.click();
-		List<WebElement> currenciesList = getDriver()
-				.findElements(
-						By.cssSelector("select[name*='ddlYearlyNetProfitCurrency'] option"));
-		boolean foundOption = false;
-
-		for (WebElement item : currenciesList) {
-			if (item.getText().contentEquals(currency)) {
-				foundOption = true;
-				item.click();
-				break;
-			}
-		}
-		Assert.assertTrue("The item was not found!", foundOption);
+		waitABit(2000);
 	}
 
 	public void inputNumberOfStaff(String number) {
@@ -288,6 +264,7 @@ public class MandatesPage extends AbstractPage {
 			}
 		}
 		Assert.assertTrue("The item was not found!", foundOption);
+		waitABit(2000);
 	}
 
 	public void inputAuditor(String auditor) {
@@ -413,11 +390,10 @@ public class MandatesPage extends AbstractPage {
 
 	public void selectDomicileOfCounterParties(String country) {
 		getDriver().findElement(
-				By.cssSelector("div[id*='ddlDomicileOfCounterParties']"))
-				.click();
+				By.cssSelector("div[id*='DomicileOfCounterParties']")).click();
 		List<WebElement> countriesList = getDriver()
 				.findElements(
-						By.cssSelector("select[name*='ddlDomicileOfCounterParties'] option"));
+						By.cssSelector("select[name*='DomicileOfCounterParties'] option"));
 		boolean foundOption = false;
 
 		for (WebElement item : countriesList) {
@@ -537,7 +513,7 @@ public class MandatesPage extends AbstractPage {
 
 	public void checkCountry(String country) {
 		List<WebElement> countriesList = getDriver().findElements(
-				By.cssSelector("div#divAddresstr:nth-child(4) select option"));
+				By.cssSelector("div#divAddress tr:nth-child(4) select option"));
 		boolean selected = false;
 		for (WebElement item : countriesList) {
 			if (item.getText().contentEquals(country)) {
@@ -562,7 +538,6 @@ public class MandatesPage extends AbstractPage {
 		WebElement accountManagerField = getDriver()
 				.findElement(
 						By.cssSelector("span[id*='UserAccountManager'] > span:nth-child(2)"));
-		System.out.println("@@@@@@@@@@@@@" + accountManagerField.getText());
 		Assert.assertTrue("Account Manager is not correct", accountManagerField
 				.getText().contentEquals(name));
 	}
@@ -666,27 +641,6 @@ public class MandatesPage extends AbstractPage {
 			if (item.getText().contentEquals(currency)) {
 
 				Assert.assertTrue("Yearly turnover currency is not correct",
-						isAttributePresent(item, "selected"));
-			}
-		}
-	}
-
-	public void checkYearlyNetProfitAmount(String amount) {
-		String netProfitField = getDriver().findElement(
-				By.cssSelector("tr[id*='YearlyNetProfitAmount'] input"))
-				.getAttribute("value");
-		Assert.assertTrue("Yearly net profit amount is not correct",
-				netProfitField.contentEquals(amount));
-	}
-
-	public void checkYearlyNetProfitCurrency(String currency) {
-		List<WebElement> currenciesList = getDriver()
-				.findElements(
-						By.cssSelector("tr[id*='YearlyNetProfitCurrency'] select option"));
-		for (WebElement item : currenciesList) {
-			if (item.getText().contentEquals(currency)) {
-
-				Assert.assertTrue("Yearly net profit currency is not correct",
 						isAttributePresent(item, "selected"));
 			}
 		}

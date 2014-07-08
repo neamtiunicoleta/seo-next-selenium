@@ -31,32 +31,30 @@ public class LinkedDocumentsForClientTest extends BaseTest {
 	@Test
 	public void UploadDocumentsForClients() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
-		itemsPageSteps.checkIfElementIsPresent("19f");
 		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "19f", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create document type
 		abstractPageSteps.selectActionFromLeftMenu("Document Types");
 		abstractPageSteps.deleteElementIfExists("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputTitleField("type1");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputTitleField("type2");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
-		searchPageSteps.searchAndDeleteItem("Jane doe");
+		searchPageSteps.searchAndDeleteItem("Jane Doe");
 		abstractPageSteps.selectActionFromRibbon("Individual");
 		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Doe",
 				"Jane");
 		// upload documents
 		abstractPageSteps.selectActionFromLeftMenu("Linked Documents");
-		uploadItemsSteps.selectDocumentType("Other");
+		uploadItemsSteps.selectDocumentType("type2");
 		uploadItemsSteps.inputDocumentDate("-20");
 		uploadItemsSteps.inputAbstract("Upload doc for clients");
 		uploadItemsSteps.clickOnChooseButton();
@@ -70,7 +68,7 @@ public class LinkedDocumentsForClientTest extends BaseTest {
 		clientsPageSteps.checkThatEntityDoesntExists("Jane Doe");
 		abstractPageSteps.goToHomePage();
 		abstractPageSteps.selectMenuOption("Document Types");
-		abstractPageSteps.deleteElementIfExists("type1");
-		itemsPageSteps.checkThatElementIsNotPresent("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
+		itemsPageSteps.checkThatElementIsNotPresent("type2");
 	}
 }

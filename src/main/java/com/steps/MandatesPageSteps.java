@@ -109,11 +109,6 @@ public class MandatesPageSteps extends AbstractSteps {
 	}
 
 	@Step
-	public void inputYearlyNetProfitAmount(String amount) {
-		mandatesPage().inputYearlyNetProfitAmount(amount);
-	}
-
-	@Step
 	public void selectValuationOfTheLegalEntityCurrency(String currency) {
 		mandatesPage().selectValuationOfTheLegalEntityCurrency(currency);
 	}
@@ -121,11 +116,6 @@ public class MandatesPageSteps extends AbstractSteps {
 	@Step
 	public void selectYearlyTurnoverCurrency(String currency) {
 		mandatesPage().selectYearlyTurnoverCurrency(currency);
-	}
-
-	@Step
-	public void selectYearlyNetProfitCurrency(String currency) {
-		mandatesPage().selectYearlyNetProfitCurrency(currency);
 	}
 
 	@Step
@@ -273,18 +263,17 @@ public class MandatesPageSteps extends AbstractSteps {
 			String days, String contactLabel, String contactUser,
 			String activity, String businessCode, String valuationAmount,
 			String valuationCurrency, String yearlyTurnoverAmount,
-			String yearlyTurnoverCurrency, String netProfitAmount,
-			String netProfitCurrency, String staffNr, String businessComments,
-			String year, String corporateAmount, String corporateCurrency,
-			String auditor, String bank, String bankAmount,
-			String bankCurrency, String bankComments, String participationName,
-			String participationValue, String participationCurrency,
-			String participationActivity, String participationPercentage,
-			String participationComments, String participationCountry,
-			String estateDescription, String estateValue,
-			String estateCurrency, String estateComments, String estateCountry,
-			String otherValue, String otherCurrency, String otherPlace,
-			String otherComments, String transactionType,
+			String yearlyTurnoverCurrency, String staffNr,
+			String businessComments, String year, String corporateAmount,
+			String corporateCurrency, String auditor, String bank,
+			String bankAmount, String bankCurrency, String bankComments,
+			String participationName, String participationValue,
+			String participationCurrency, String participationActivity,
+			String participationPercentage, String participationComments,
+			String participationCountry, String estateDescription,
+			String estateValue, String estateCurrency, String estateComments,
+			String estateCountry, String otherValue, String otherCurrency,
+			String otherPlace, String otherComments, String transactionType,
 			String domicileCountry, String transactionComments,
 			String tinNumber, String registrationDays) {
 		mandatesPage().checkServiceType(type1);
@@ -315,8 +304,6 @@ public class MandatesPageSteps extends AbstractSteps {
 				.checkValuationOfTheLegalEntityCurrency(valuationCurrency);
 		mandatesPage().checkYearlyTurnoverAmount(yearlyTurnoverAmount);
 		mandatesPage().checkYearlyTurnoverCurrency(yearlyTurnoverCurrency);
-		mandatesPage().checkYearlyNetProfitAmount(netProfitAmount);
-		mandatesPage().checkYearlyNetProfitCurrency(netProfitCurrency);
 		mandatesPage().checkStaffNumber(staffNr);
 		mandatesPage().checkBusinessActivitiesComments(businessComments);
 		abstractPage().clickOnTab("Economic Background");

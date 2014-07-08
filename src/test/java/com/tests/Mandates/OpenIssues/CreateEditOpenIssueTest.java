@@ -30,16 +30,9 @@ public class CreateEditOpenIssueTest extends BaseTest {
 	@Test
 	public void createAndEditOpenIssues() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("164");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("164", "16");
-		itemsPageSteps.checkIfElementIsPresent("16");
 		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "164", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
 		searchPageSteps.searchAndDeleteItem("Mandate77");
@@ -70,11 +63,11 @@ public class CreateEditOpenIssueTest extends BaseTest {
 		mandatesPageSteps.selectItemFromMandateSection("System Account");
 		abstractPageSteps.selectActionFromRibbon("View");
 		abstractPageSteps.selectEditModeButton();
-		mandatesPageSteps.selectTypeOfIssue("Compliance");
+		mandatesPageSteps.selectTypeOfIssue("PIA");
 		mandatesPageSteps.inputDeadlineDate("50");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		mandatesPageSteps.checkDeadlineForOpenIssues("System Account", "50");
-		mandatesPageSteps.checkTypeOfIssue("System Account", "Compliance");
+		mandatesPageSteps.checkTypeOfIssue("System Account", "PIA");
 		mandatesPageSteps.checkTypeOfDeficiency("System Account", " ");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectActionFromRibbon("Delete");

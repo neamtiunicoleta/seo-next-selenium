@@ -26,6 +26,11 @@ public class ItemsPageSteps extends AbstractSteps {
 	}
 
 	@Step
+	public void inputKeyFieldTaskType(String key) {
+		itemsPage().inputKeyField(key);
+	}
+
+	@Step
 	public void inputDescriptionField(String description) {
 		itemsPage().inputDescriptionField(description);
 	}

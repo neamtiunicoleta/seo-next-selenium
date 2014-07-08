@@ -25,7 +25,7 @@ public class ExportOfficeLinkTest extends BaseTest {
 	@Test
 	public void exportOfficeLinks() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("OfficeLinks");
+		abstractPageSteps.selectMenuOption("Office Links");
 		abstractPageSteps.deleteElementIfExists("office 1");
 		abstractPageSteps.deleteElementIfExists("office 2");
 		abstractPageSteps.selectActionFromRibbon("Create");

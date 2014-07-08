@@ -23,7 +23,8 @@ public class EditCountryTest extends BaseTest {
 	public void editCountry() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("aaf3");
+		abstractPageSteps.deleteElementIfExists("aaf3(*)");
+		abstractPageSteps.deleteElementIfExists("A58kn(*)");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("315");
 		abstractPageSteps.deleteElementIfExists("316");
@@ -38,8 +39,8 @@ public class EditCountryTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithRisk("aaf3", "NC", "315");
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
-		abstractPageSteps.selectItemFromGrid("aaf3");
+		itemsPageSteps.checkIfElementIsPresent("aaf3(*)");
+		abstractPageSteps.selectItemFromGrid("aaf3(*)");
 		// edit country
 		abstractPageSteps.selectActionFromRibbon("View");
 		abstractPageSteps.selectEditModeButton();
@@ -47,12 +48,12 @@ public class EditCountryTest extends BaseTest {
 		itemsPageSteps.inputCodeField("C2");
 		itemsPageSteps.selectRisk("316");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("A58kn");
-		itemsPageSteps.checkCodeFromGrid("A58kn", "C2");
-		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("A58kn", "316");
+		itemsPageSteps.checkIfElementIsPresent("A58kn(*)");
+		itemsPageSteps.checkCodeFromGrid("A58kn(*)", "C2");
+		itemsPageSteps.checkRiskCategoryForCriteriasFromGrid("A58kn(*)", "316");
 		// delete items
-		abstractPageSteps.deleteElementIfExists("A58kn");
-		itemsPageSteps.checkThatElementIsNotPresent("A58kn");
+		abstractPageSteps.deleteElementIfExists("A58kn(*)");
+		itemsPageSteps.checkThatElementIsNotPresent("A58kn(*)");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("315");
 		itemsPageSteps.checkThatElementIsNotPresent("315");

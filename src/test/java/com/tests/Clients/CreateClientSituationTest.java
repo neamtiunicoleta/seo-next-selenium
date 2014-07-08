@@ -28,16 +28,8 @@ public class CreateClientSituationTest extends BaseTest {
 	@Test
 	public void createClientSituation() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
-		itemsPageSteps.checkIfElementIsPresent("19f");
-		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "19f", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
 		searchPageSteps.searchAndDeleteItem("John Smith");
@@ -58,10 +50,6 @@ public class CreateClientSituationTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("John Smith");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		itemsPageSteps.checkThatElementIsNotPresent("19f");
 	}
 
 }

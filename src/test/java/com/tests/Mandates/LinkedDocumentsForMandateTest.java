@@ -34,22 +34,20 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 	@Test
 	public void UploadDocumentsForMandates() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("19f", "19");
-		itemsPageSteps.checkIfElementIsPresent("19f");
 		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "19f", "12", "John Doe");
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		// create document type
 		abstractPageSteps.selectActionFromLeftMenu("Document Types");
 		abstractPageSteps.deleteElementIfExists("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
 		itemsPageSteps.inputTitleField("type1");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		abstractPageSteps.switchToCreateIframe();
+		itemsPageSteps.inputTitleField("type2");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 
 		// create mandate
@@ -59,7 +57,7 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 				"John Doe");
 		// upload documents
 		abstractPageSteps.selectActionFromLeftMenu("Linked Documents");
-		uploadItemsSteps.selectDocumentType("type1");
+		uploadItemsSteps.selectDocumentType("type2");
 		uploadItemsSteps.inputDocumentDate("-20");
 		uploadItemsSteps.inputAbstract("Upload doc for mandates");
 		uploadItemsSteps.clickOnChooseButton();
@@ -67,16 +65,17 @@ public class LinkedDocumentsForMandateTest extends BaseTest {
 				+ "SEONEXT-Concept.pdf");
 		uploadItemsSteps.clickOnUploadDocumentsButton();
 		uploadItemsSteps.checkIfDocumentExists("SEONEXT-Concept.pdf");
+		uploadItemsSteps.checkDocumentInformation("SEONEXT-Concept.pdf",
+				"type2", "-20", "Upload doc for mandates");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("Mandate 1");
 		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		itemsPageSteps.checkThatElementIsNotPresent("19f");
-		abstractPageSteps.selectActionFromLeftMenu("Document Types");
+		abstractPageSteps.selectMenuOption("Document Types");
 		abstractPageSteps.deleteElementIfExists("type1");
 		itemsPageSteps.checkThatElementIsNotPresent("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
+		itemsPageSteps.checkThatElementIsNotPresent("type2");
 	}
 }

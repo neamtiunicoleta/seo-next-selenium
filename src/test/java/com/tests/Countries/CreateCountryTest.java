@@ -23,7 +23,7 @@ public class CreateCountryTest extends BaseTest {
 	public void createCountry() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("CtTest");
+		abstractPageSteps.deleteElementIfExists("CtTest(*)");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("293");
 		// create risk criterias
@@ -38,12 +38,12 @@ public class CreateCountryTest extends BaseTest {
 		itemsPageSteps.inputCodeField("C2");
 		itemsPageSteps.selectRisk("293");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		itemsPageSteps.checkIfElementIsPresent("CtTest");
-		itemsPageSteps.checkCodeFromGrid("CtTest", "C2");
-		itemsPageSteps.checkRiskCriteriaFromGrid("CtTest", "293");
+		itemsPageSteps.checkIfElementIsPresent("CtTest(*)");
+		itemsPageSteps.checkCodeFromGrid("CtTest(*)", "C2");
+		itemsPageSteps.checkRiskCriteriaFromGrid("CtTest(*)", "293");
 		// delete items
-		abstractPageSteps.deleteElementIfExists("CtTest");
-		itemsPageSteps.checkThatElementIsNotPresent("CtTest");
+		abstractPageSteps.deleteElementIfExists("CtTest(*)");
+		itemsPageSteps.checkThatElementIsNotPresent("CtTest(*)");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("293");
 		itemsPageSteps.checkThatElementIsNotPresent("293");

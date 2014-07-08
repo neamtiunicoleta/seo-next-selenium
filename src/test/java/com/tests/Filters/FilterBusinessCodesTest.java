@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.steps.FilterPageSteps;
-import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -21,8 +20,6 @@ public class FilterBusinessCodesTest extends BaseTest {
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
-	public HitLogPageSteps hitLogPageSteps;
-	@Steps
 	public FilterPageSteps filterPageSteps;
 
 	@Test
@@ -31,20 +28,14 @@ public class FilterBusinessCodesTest extends BaseTest {
 		abstractPageSteps.selectMenuOption("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		abstractPageSteps.deleteElementIfExists("595");
-		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
-		// create risk categories
-		abstractPageSteps.selectActionFromLeftMenu("Categories");
-		abstractPageSteps.deleteElementIfExists("78");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("78", "Edit Risk");
-		abstractPageSteps.selectActionFromRibbon("Close");
 		// create risk criterias
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "78");
+		itemsPageSteps.createRiskCriteria("893", "Edit Risk", "B (Category B)");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "78");
+		itemsPageSteps.createRiskCriteria("894", "Edit Risk", "C (Category C)");
 		// create business codes
 		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
 		abstractPageSteps.selectActionFromRibbon("Create");
@@ -72,14 +63,11 @@ public class FilterBusinessCodesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("595");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");
-		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("893");
 		abstractPageSteps.deleteElementIfExists("894");
 		itemsPageSteps.checkThatElementIsNotPresent("893");
 		itemsPageSteps.checkThatElementIsNotPresent("894");
-		abstractPageSteps.selectActionFromLeftMenu("Categories");
-		abstractPageSteps.deleteElementIfExists("78");
-		itemsPageSteps.checkThatElementIsNotPresent("78");
 
 	}
 }

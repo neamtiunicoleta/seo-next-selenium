@@ -66,8 +66,9 @@ public class SearchPage extends AbstractPage {
 
 	public void selectItemFromSearchResultsList(String key) {
 
-		List<WebElement> resultsList = getDriver().findElements(
-				By.cssSelector("div#page_container > ul > li:first-child > table > tbody"));
+		List<WebElement> resultsList = getDriver()
+				.findElements(
+						By.cssSelector("div#page_container > ul > li:first-child > table > tbody"));
 
 		for (WebElement item : resultsList) {
 			WebElement title = item.findElement(By
@@ -76,10 +77,11 @@ public class SearchPage extends AbstractPage {
 			if (title.getText().contentEquals(key)) {
 				System.out.println("@@@@@@@@@" + title.getText());
 				mouseOver(item.findElement(By
-						.cssSelector("tr:nth-child(1)>td:nth-child(4)")));
-				waitABit(2000);
+						.cssSelector("tr:nth-child(1)>td:nth-child(4) a")));
+				System.out.println("FOUND IT1!!!!!!!");
+				waitABit(5000);
 				item.findElement(
-						By.cssSelector("tr:nth-child(1)>td:nth-child(4)"))
+						By.cssSelector("tr:nth-child(1)>td:nth-child(4) a"))
 						.click();
 			}
 		}

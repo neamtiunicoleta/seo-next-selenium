@@ -40,10 +40,14 @@ public class CreateTransactionTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("g78k");
 		// create country
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("92m");
+		abstractPageSteps.deleteElementIfExists("91m");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("92m", "92");
-		itemsPageSteps.checkIfElementIsPresent("92m");
+		itemsPageSteps.createCountryWithoutRisk("91m", "91");
+		itemsPageSteps.checkIfElementIsPresent("91m");
+		abstractPageSteps.deleteElementIfExists("kfu");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("kfu", "kf");
+		itemsPageSteps.checkIfElementIsPresent("kfu");
 		// create currency
 		abstractPageSteps.selectActionFromLeftMenu("Currencies");
 		abstractPageSteps.selectActionFromRibbon("Create");
@@ -69,9 +73,10 @@ public class CreateTransactionTest extends BaseTest {
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
-		searchPageSteps.searchAndDeleteItem("Mandate00");
-		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate00", "cluj",
-				"John Doe");
+		 searchPageSteps.searchAndDeleteItem("Mandate00");
+		 mandatesPageSteps.createBasicMandate("Liquidator", "Mandate00",
+		 "cluj",
+		 "John Doe");
 		abstractPageSteps.selectActionFromLeftMenu("Transactions");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
@@ -81,7 +86,7 @@ public class CreateTransactionTest extends BaseTest {
 		mandatesPageSteps.inputAmountFX("112");
 		mandatesPageSteps.selectCurrency("g78k");
 
-		mandatesPageSteps.selectOriginOfFunds("92m");
+		mandatesPageSteps.selectOriginOfFunds("kfu");
 		mandatesPageSteps.inputNameOfBank("abcd");
 		mandatesPageSteps.inputSenderOrRecipient("John");
 		mandatesPageSteps.inputRelationWithMandate("test");
@@ -91,8 +96,9 @@ public class CreateTransactionTest extends BaseTest {
 		mandatesPageSteps.selectTransactionFromGrid("50");
 		abstractPageSteps.selectActionFromRibbon("View");
 		mandatesPageSteps.checkTransactionInformation("Non Cash", "Outgoing",
-				"50", "g78", "112.00", "31,136.00", "John", "test", "92m",
+				"50", "g78", "112.00", "31,136.00", "John", "test", "kfu",
 				"abcd", "Test");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
 
 		// edit and add link to transaction!!!!!
 

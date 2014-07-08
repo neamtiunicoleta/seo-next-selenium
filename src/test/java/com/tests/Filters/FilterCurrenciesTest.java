@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.steps.FilterPageSteps;
-import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -21,29 +20,38 @@ public class FilterCurrenciesTest extends BaseTest {
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
-	public HitLogPageSteps hitLogPageSteps;
-	@Steps
 	public FilterPageSteps filterPageSteps;
 
 	@Test
 	public void filterCurrencies() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-
-		// create currencies
 		abstractPageSteps.selectMenuOption("Currencies");
 		abstractPageSteps.deleteElementIfExists("g59k");
+		abstractPageSteps.deleteElementIfExists("g60k");
+
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("acd");
+		abstractPageSteps.deleteElementIfExists("bcd");
+		abstractPageSteps.deleteElementIfExists("dcd");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "AUSTRIA",
-				"985");
+		itemsPageSteps.createCountryWithoutRisk("acd", "CD");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("bcd", "BD");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("dcd", "DD");
+		// create currencies
+		abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createActiveCurrency("384", "g59k", "USD", "bcd", "985");
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createInactiveCurrency("385", "g60k", "EUR", "ARUBA",
+		itemsPageSteps.createInactiveCurrency("385", "g60k", "EUR", "dcd",
 				"985");
 		itemsPageSteps.checkIfElementIsPresent("g60k");
 
 		// filter by country code
 		filterPageSteps.clickOnFilterDropdownList();
-		filterPageSteps.inputCountryCode("AUSTRIA");
+		filterPageSteps.inputCountryCode("bcd");
 		filterPageSteps.clickOnFilterButton();
 		itemsPageSteps.checkIfElementIsPresent("g59k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
@@ -68,5 +76,8 @@ public class FilterCurrenciesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("g59k");
 		abstractPageSteps.deleteElementIfExists("g60k");
 		itemsPageSteps.checkThatElementIsNotPresent("g60k");
+		abstractPageSteps.selectActionFromLeftMenu("Countries");
+		abstractPageSteps.deleteElementIfExists("acd");
+		abstractPageSteps.deleteElementIfExists("bcd");
 	}
 }

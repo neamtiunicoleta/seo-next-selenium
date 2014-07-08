@@ -38,39 +38,44 @@ public class UploadDocumentForTransactionTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 
 		abstractPageSteps.selectMenuOption("Currencies");
-		abstractPageSteps.deleteElementIfExists("Euro");
-		abstractPageSteps.deleteElementIfExists("g56h");
-		// create currency
-		abstractPageSteps.selectActionFromLeftMenu("Currencies");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.inputKeyField("Euro");
-		itemsPageSteps.inputCodeField("Euro");
-		itemsPageSteps.inputTitleField("edit currency");
-		itemsPageSteps.clickOnActiveCheckBox();
-		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.inputKeyField("384");
-		itemsPageSteps.inputCodeField("g56h");
-		itemsPageSteps.inputTitleField("edit currency");
-		itemsPageSteps.clickOnActiveCheckBox();
-		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
-
-		itemsPageSteps.checkIfElementIsPresent("g56h");
-		abstractPageSteps.selectItemFromGrid("g56h");
-		// create exchange rate
-		abstractPageSteps.selectActionFromRibbon("Exchange");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createExchangeRateWithStartDate("0", "278");
-		// create office
-		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
-		// create document type
-		abstractPageSteps.selectActionFromLeftMenu("Document Types");
-		abstractPageSteps.deleteElementIfExists("type1");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		abstractPageSteps.switchToCreateIframe();
-		itemsPageSteps.inputTitleField("type1");
-		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		 abstractPageSteps.deleteElementIfExists("Euro");
+		 abstractPageSteps.deleteElementIfExists("g56h");
+		 // create currency
+		 abstractPageSteps.selectActionFromLeftMenu("Currencies");
+		 abstractPageSteps.selectActionFromRibbon("Create");
+		 itemsPageSteps.inputKeyField("Euro");
+		 itemsPageSteps.inputCodeField("Euro");
+		 itemsPageSteps.inputTitleField("edit currency");
+		 itemsPageSteps.clickOnActiveCheckBox();
+		 abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		 abstractPageSteps.selectActionFromRibbon("Create");
+		 itemsPageSteps.inputKeyField("384");
+		 itemsPageSteps.inputCodeField("g56h");
+		 itemsPageSteps.inputTitleField("edit currency");
+		 itemsPageSteps.clickOnActiveCheckBox();
+		 abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		
+		 itemsPageSteps.checkIfElementIsPresent("g56h");
+		 abstractPageSteps.selectItemFromGrid("g56h");
+		 // create exchange rate
+		 abstractPageSteps.selectActionFromRibbon("Exchange");
+		 abstractPageSteps.selectActionFromRibbon("Create");
+		 itemsPageSteps.createExchangeRateWithStartDate("0", "278");
+		 // create office
+		 abstractPageSteps.selectActionFromLeftMenu("Offices");
+		 itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
+		 // create document type
+		 abstractPageSteps.selectActionFromLeftMenu("Document Types");
+		 abstractPageSteps.deleteElementIfExists("type1");
+		 abstractPageSteps.deleteElementIfExists("type2");
+		 abstractPageSteps.selectActionFromRibbon("Create");
+		 abstractPageSteps.switchToCreateIframe();
+		 itemsPageSteps.inputTitleField("type1");
+		 abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		 abstractPageSteps.selectActionFromRibbon("Create");
+		 abstractPageSteps.switchToCreateIframe();
+		 itemsPageSteps.inputTitleField("type2");
+		 abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 
 		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
@@ -81,6 +86,7 @@ public class UploadDocumentForTransactionTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Create");
 		abstractPageSteps.switchToCreateIframe();
 		mandatesPageSteps.selectPayment("Non Cash");
+		
 		mandatesPageSteps.selectDirection("Outgoing");
 		mandatesPageSteps.inputDateOfTransaction("50");
 		mandatesPageSteps.inputAmountFX("112");
@@ -91,14 +97,16 @@ public class UploadDocumentForTransactionTest extends BaseTest {
 		mandatesPageSteps.selectTransactionFromGrid("50");
 
 		abstractPageSteps.selectActionFromRibbon("Documents");
-		uploadItemsSteps.selectDocumentType("type1");
+		uploadItemsSteps.selectDocumentType("type2");
 		uploadItemsSteps.inputDocumentDate("-20");
-		uploadItemsSteps.inputAbstract("Upload doc for mandates");
+		uploadItemsSteps.inputAbstract("Upload doc for transactions");
 		uploadItemsSteps.clickOnChooseButton();
 		uploadItemsSteps.insertFilePath(Constants.FILES_FOLDER
 				+ "SEONEXT-Concept.pdf");
 		uploadItemsSteps.clickOnUploadDocumentsButton();
 		uploadItemsSteps.checkIfDocumentExists("SEONEXT-Concept.pdf");
+		uploadItemsSteps.checkDocumentInformation("SEONEXT-Concept.pdf",
+				"type2", "-20", "Upload doc for transactions");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		// delete items
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
@@ -111,11 +119,10 @@ public class UploadDocumentForTransactionTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("Euro");
 		abstractPageSteps.deleteElementIfExists("g56h");
 		itemsPageSteps.checkThatElementIsNotPresent("g56h");
-		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("92m");
-		itemsPageSteps.checkThatElementIsNotPresent("92m");
 		abstractPageSteps.selectActionFromLeftMenu("Document Types");
 		abstractPageSteps.deleteElementIfExists("type1");
 		itemsPageSteps.checkThatElementIsNotPresent("type1");
+		abstractPageSteps.deleteElementIfExists("type2");
+		itemsPageSteps.checkThatElementIsNotPresent("type2");
 	}
 }

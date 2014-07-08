@@ -29,21 +29,16 @@ public class ExportCurrenciesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("a67b");
 		abstractPageSteps.deleteElementIfExists("a68b");
 		// create country
-		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("8km");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("8km", "8K");
-		itemsPageSteps.checkIfElementIsPresent("8km");
 		abstractPageSteps.selectActionFromLeftMenu("Currencies");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.inputKeyField("67");
-		itemsPageSteps.inputCodeField("a67b");
+		itemsPageSteps.inputCodeField("a68b");
 		itemsPageSteps.inputTitleField("Euro");
 		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.inputKeyField("68");
-		itemsPageSteps.inputCodeField("a68b");
+		itemsPageSteps.inputCodeField("a67b");
 		itemsPageSteps.inputTitleField("Euro");
 		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
@@ -60,7 +55,5 @@ public class ExportCurrenciesTest extends BaseTest {
 		itemsPageSteps.checkThatElementIsNotPresent("a67b");
 		abstractPageSteps.deleteElementIfExists("a68b");
 		itemsPageSteps.checkThatElementIsNotPresent("a68b");
-		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("8km");
 	}
 }

@@ -33,14 +33,14 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		abstractPageSteps.deleteElementIfExists("20f");
+		abstractPageSteps.deleteElementIfExists("29f");
+		abstractPageSteps.deleteElementIfExists("30f");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
-		itemsPageSteps.checkIfElementIsPresent("19f");
+		itemsPageSteps.createCountryWithoutRisk("29f", "92");
+		itemsPageSteps.checkIfElementIsPresent("29f");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("20f", "1F");
-		itemsPageSteps.checkIfElementIsPresent("20f");
+		itemsPageSteps.createCountryWithoutRisk("30f", "3F");
+		itemsPageSteps.checkIfElementIsPresent("30f");
 		// create risk criteria
 		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
@@ -54,10 +54,10 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		itemsPageSteps.createBusinessCode("594", "Kenya", "893");
 		// create office
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
-		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "19f", "12", "John Doe");
+		itemsPageSteps.createOfficeIfNotExists("dej", "dej", "Unirii", "325",
+				"Cluj", "29f", "12", "John Doe");
 		itemsPageSteps.createOfficeIfNotExists("alba", "abb", "Independentei",
-				"95", "Alba", "19f", "12", "John Doe");
+				"95", "Alba", "29f", "12", "John Doe");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
 		searchPageSteps.searchAndDeleteItem("Doe Mary");
@@ -66,12 +66,12 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		// create basic doc situation
 		abstractPageSteps.selectActionFromRibbon("Edit");
 		clientsPageSteps.inputNicknameOrAbbreviation("Test");
-		clientsPageSteps.selectListedIn("19f");
+		clientsPageSteps.selectListedIn("29f");
 		clientsPageSteps.selectTypeOfShareholding("Public");
 		clientsPageSteps.inputStreet("Abator");
 		clientsPageSteps.inputZIP("122");
 		clientsPageSteps.inputCity("Cluj");
-		itemsPageSteps.selectCountry("19f");
+		itemsPageSteps.selectCountry("29f");
 		clientsPageSteps.inputDateOfBirthOrIncorporation(DateUtils.toString(
 				DateUtils.addDays(new Date(), Integer.parseInt("-100")),
 				"dd/MM/yyyy"));
@@ -93,8 +93,8 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 
 		abstractPageSteps.selectActionFromLeftMenu("Basic Documentation");
 		clientsPageSteps.checkLegalClientInformation("Standard", "cluj",
-				"Doe Mary", "Test", "19f", "Public", "Abator", "122", "Cluj",
-				"19f", "-100", "Test", "Test", "594", "Dev", "Testing",
+				"Doe Mary", "Test", "29f", "Public", "Abator", "122", "Cluj",
+				"29f", "-100", "Test", "Test", "594", "Dev", "Testing",
 				"Jane Doe", "Passport", "0", "Just test");
 		// change type
 		abstractPageSteps.selectActionFromRibbon("Change Type");
@@ -115,10 +115,8 @@ public class CreateBasicDocForLegalClientTest extends BaseTest {
 		clientsPageSteps.checkThatEntityDoesntExists("Doe Mary");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		itemsPageSteps.checkThatElementIsNotPresent("19f");
-		abstractPageSteps.deleteElementIfExists("20f");
-		itemsPageSteps.checkThatElementIsNotPresent("20f");
+		abstractPageSteps.deleteElementIfExists("30f");
+		itemsPageSteps.checkThatElementIsNotPresent("30f");
 		abstractPageSteps.selectActionFromLeftMenu("Business Codes");
 		abstractPageSteps.deleteElementIfExists("594");
 		itemsPageSteps.checkThatElementIsNotPresent("594");

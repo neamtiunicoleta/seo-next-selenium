@@ -29,32 +29,26 @@ public class ExportCountriesTest extends BaseTest {
 		abstractPageSteps.deleteElementIfExists("aaf3");
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("315");
-		abstractPageSteps.deleteElementIfExists("316");
 		// create risk criterias
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createRiskCriteria("315", "Edit Risk", "C (Category C)");
 		itemsPageSteps.checkIfElementIsPresent("315");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCriteria("316", "Edit Risk", "D (Category D)");
-		itemsPageSteps.checkIfElementIsPresent("316");
 		// create countries
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithRisk("aaf3", "NC", "315");
 		// export
-		itemsPageSteps.checkIfElementIsPresent("aaf3");
+		itemsPageSteps.checkIfElementIsPresent("aaf3(*)");
 		exportFilesPageSteps
 				.deleteFilesFromDownloadsFolder("CountriesList.xlsx");
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("CountriesList.xlsx");
-		abstractPageSteps.deleteElementIfExists("aaf3");
-		itemsPageSteps.checkThatElementIsNotPresent("aaf3");
+		abstractPageSteps.deleteElementIfExists("aaf3(*)");
+		itemsPageSteps.checkThatElementIsNotPresent("aaf3(*)");
 		// delete items
 		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("315");
 		itemsPageSteps.checkThatElementIsNotPresent("315");
-		abstractPageSteps.deleteElementIfExists("316");
-		itemsPageSteps.checkThatElementIsNotPresent("316");
 	}
 }

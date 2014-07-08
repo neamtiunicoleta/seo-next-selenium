@@ -30,25 +30,18 @@ public class CreateEditTaskTypeTest extends BaseTest {
 	@Test
 	public void createAndEditTaskType() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create country
-		abstractPageSteps.selectMenuOption("Countries");
-		 abstractPageSteps.deleteElementIfExists("22");
-		 abstractPageSteps.selectActionFromRibbon("Create");
-		 itemsPageSteps.createCountryWithoutRisk("22", "22");
-		 itemsPageSteps.checkIfElementIsPresent("22");
-		 // create office
-		 abstractPageSteps.selectActionFromLeftMenu("Offices");
-		 itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii",
-		 "325",
-		 "Cluj", "22", "12", "John Doe");
-		 // create mandate
+		// create office
+		abstractPageSteps.selectMenuOption("Offices");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
+		// create mandate
 		abstractPageSteps.selectActionFromTopMenu("Mandates");
-		searchPageSteps.searchAndDeleteItem("Mandate23");
-		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate23", "cluj",
-				"John Doe");
+//		searchPageSteps.searchAndDeleteItem("Mandate23");
+//		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate23", "cluj",
+//				"John Doe");
 		abstractPageSteps.selectActionFromLeftMenu("Open Issues");
 		abstractPageSteps.selectActionFromRibbon("Types");
 		abstractPageSteps.deleteElementIfExists("88");
+		abstractPageSteps.deleteElementIfExists("89");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.inputKeyField("88");
 		itemsPageSteps.inputTitleField("test");
@@ -58,7 +51,7 @@ public class CreateEditTaskTypeTest extends BaseTest {
 		abstractPageSteps.selectItemFromGrid("88");
 		abstractPageSteps.selectActionFromRibbon("View");
 		abstractPageSteps.selectEditModeButton();
-		itemsPageSteps.inputKeyField("89");
+		itemsPageSteps.inputKeyFieldTaskType("89");
 		itemsPageSteps.inputTitleField("test2");
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("89");
@@ -70,9 +63,5 @@ public class CreateEditTaskTypeTest extends BaseTest {
 		abstractPageSteps.selectActionFromRibbon("Delete");
 		abstractPageSteps.clickOk();
 		clientsPageSteps.checkThatEntityDoesntExists("Mandate23");
-		abstractPageSteps.goToHomePage();
-		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("22");
-		itemsPageSteps.checkThatElementIsNotPresent("22");
 	}
 }

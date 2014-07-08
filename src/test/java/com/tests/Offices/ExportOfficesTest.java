@@ -27,21 +27,19 @@ public class ExportOfficesTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("15f");
+		abstractPageSteps.deleteElementIfExists("66f");
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createCountryWithoutRisk("15f", "1F");
-		itemsPageSteps.checkIfElementIsPresent("15f");
+		itemsPageSteps.createCountryWithoutRisk("66f", "0F");
+		itemsPageSteps.checkIfElementIsPresent("66f");
 		// create office
 		abstractPageSteps.selectActionFromLeftMenu("Offices");
 		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
-				"Cluj", "15f", "12", "John Doe");
+				"Cluj", "66f", "12", "John Doe");
 		itemsPageSteps.checkIfElementIsPresent("cluj");
 		// export
 		exportFilesPageSteps.deleteFilesFromDownloadsFolder("OfficesList.xlsx");
 		abstractPageSteps.selectActionFromRibbon("Export");
 		exportFilesPageSteps
 				.checkIfTheFileHasBeenSuccessfullyDownloaded("OfficesList.xlsx");
-		abstractPageSteps.deleteElementIfExists("15f");
-		itemsPageSteps.checkThatElementIsNotPresent("15f");
 	}
 }

@@ -27,27 +27,33 @@ public class CreateCurrencyTest extends BaseTest {
 		// create country
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.deleteElementIfExists("56l");
+		abstractPageSteps.deleteElementIfExists("560");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithoutRisk("56l", "5L");
-		itemsPageSteps.checkIfElementIsPresent("56l");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("560", "5O");
 		// create currency
 		abstractPageSteps.selectActionFromLeftMenu("Currencies");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.inputKeyField("562");
 		itemsPageSteps.inputCodeField("594f");
 		itemsPageSteps.inputTitleField("Euro");
+		itemsPageSteps.selectCountry("560");
 		itemsPageSteps.clickOnActiveCheckBox();
 		itemsPageSteps.clickOnHighImportanceCheckBox();
 		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
 		itemsPageSteps.checkIfElementIsPresent("594f");
 		itemsPageSteps.checkTitleFromGrid("594f", "Euro");
-		itemsPageSteps.checkCountryFromGrid("594f", "56l");
+		itemsPageSteps.checkCountryFromGrid("594f", "560");
 		itemsPageSteps.checkIfActiveCheckBoxIsChecked("594f");
 		itemsPageSteps.checkIfHighImportanceCheckBoxIsChecked("594f");
 		abstractPageSteps.deleteElementIfExists("594f");
 		itemsPageSteps.checkThatElementIsNotPresent("694f");
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
 		abstractPageSteps.deleteElementIfExists("56l");
+		itemsPageSteps.checkThatElementIsNotPresent("56l");
+		abstractPageSteps.deleteElementIfExists("560");
+		itemsPageSteps.checkThatElementIsNotPresent("560");
 	}
 
 }

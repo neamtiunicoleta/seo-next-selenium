@@ -3,6 +3,7 @@ package com.tests.Links;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
@@ -25,6 +26,7 @@ public class EditLinkTest extends BaseTest {
 	@Steps
 	public HitLogPageSteps hitLogPageSteps;
 
+	@Pending
 	@Test
 	public void editLink() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);

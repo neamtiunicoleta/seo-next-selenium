@@ -33,25 +33,23 @@ public class CreateBasicDocForIndividualClientTest extends BaseTest {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create country
 		abstractPageSteps.selectMenuOption("Countries");
-		 abstractPageSteps.deleteElementIfExists("19f");
-		 abstractPageSteps.deleteElementIfExists("20f");
-		 abstractPageSteps.selectActionFromRibbon("Create");
-		 itemsPageSteps.createCountryWithoutRisk("19f", "9F");
-		 itemsPageSteps.checkIfElementIsPresent("19f");
-		 abstractPageSteps.selectActionFromRibbon("Create");
-		 itemsPageSteps.createCountryWithoutRisk("20f", "1F");
-		 itemsPageSteps.checkIfElementIsPresent("20f");
-		 // create office
-		 abstractPageSteps.selectActionFromLeftMenu("Offices");
-		 itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii",
-		 "325",
-		 "Cluj", "19f", "12", "John Doe");
-		 itemsPageSteps.createOfficeIfNotExists("alba", "abb",
-		 "Independentei",
-		 "95", "Alba", "19f", "12", "John Doe");
+		abstractPageSteps.deleteElementIfExists("19f");
+		abstractPageSteps.deleteElementIfExists("20f");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("19f", "9F");
+		itemsPageSteps.checkIfElementIsPresent("19f");
+		abstractPageSteps.selectActionFromRibbon("Create");
+		itemsPageSteps.createCountryWithoutRisk("20f", "1F");
+		itemsPageSteps.checkIfElementIsPresent("20f");
+		// create office
+		abstractPageSteps.selectActionFromLeftMenu("Offices");
+		itemsPageSteps.createOfficeIfNotExists("cluj", "cjj", "Unirii", "325",
+				"Cluj", "19f", "12", "John Doe");
+		itemsPageSteps.createOfficeIfNotExists("alba", "abb", "Independentei",
+				"95", "Alba", "19f", "12", "John Doe");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
-		 searchPageSteps.searchAndDeleteItem("Johnny Doe");
+		searchPageSteps.searchAndDeleteItem("Johnny Doe");
 		abstractPageSteps.selectActionFromRibbon("Individual Standard");
 		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Doe",
 				"Johnny");
@@ -125,8 +123,6 @@ public class CreateBasicDocForIndividualClientTest extends BaseTest {
 		clientsPageSteps.checkThatEntityDoesntExists("Johnny Doe");
 		abstractPageSteps.selectActionFromRibbon("Close");
 		abstractPageSteps.selectMenuOption("Countries");
-		abstractPageSteps.deleteElementIfExists("19f");
-		itemsPageSteps.checkThatElementIsNotPresent("19f");
 		abstractPageSteps.deleteElementIfExists("20f");
 		itemsPageSteps.checkThatElementIsNotPresent("20f");
 	}

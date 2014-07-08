@@ -73,4 +73,15 @@ public class UploadItemsSteps extends AbstractSteps {
 		Assert.assertFalse("The document is not present", uploadItemsPage()
 				.checkIfDocumentExists(name));
 	}
+
+	@Step
+	public void checkDocumentInformation(String id, String type, String days,
+			String text) {
+		uploadItemsPage().checkDocumentInformation(
+				id,
+				type,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"), text);
+	}
 }

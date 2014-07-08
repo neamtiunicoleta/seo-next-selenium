@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.steps.FilterPageSteps;
-import com.steps.HitLogPageSteps;
 import com.steps.ItemsPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
@@ -21,27 +20,21 @@ public class FilterCountriesTest extends BaseTest {
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
-	public HitLogPageSteps hitLogPageSteps;
-	@Steps
 	public FilterPageSteps filterPageSteps;
 
 	@Test
 	public void filterCountries() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		abstractPageSteps.selectMenuOption("Risk Management");
+		abstractPageSteps.selectMenuOption("Countries");
+		abstractPageSteps.deleteElementIfExists("abd(*)");
+		abstractPageSteps.deleteElementIfExists("aaf4");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("754");
-		// create risk categories
-		abstractPageSteps.selectActionFromLeftMenu("Categories");
-		abstractPageSteps.deleteElementIfExists("91");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCategoryOrAsset("91", "Edit Risk1");
-		abstractPageSteps.selectActionFromRibbon("Close");
 		// create risk criterias
 		abstractPageSteps.selectActionFromRibbon("Create");
-		itemsPageSteps.createRiskCriteria("754", "Risk", "91");
+		itemsPageSteps.createRiskCriteria("754", "Risk", "B (Category B)");
 		// create countries
 		abstractPageSteps.selectActionFromLeftMenu("Countries");
-		abstractPageSteps.deleteElementIfExists("abd");
 		abstractPageSteps.selectActionFromRibbon("Create");
 		itemsPageSteps.createCountryWithRisk("abd", "NC", "754");
 		itemsPageSteps.checkIfElementIsPresent("abd");
@@ -72,13 +65,11 @@ public class FilterCountriesTest extends BaseTest {
 		filterPageSteps.clickOnClearFiltersButton();
 
 		// delete items
-		abstractPageSteps.deleteElementIfExists("abd");
-		itemsPageSteps.checkThatElementIsNotPresent("abd");
+		abstractPageSteps.deleteElementIfExists("abd(*)");
+		itemsPageSteps.checkThatElementIsNotPresent("abd(*)");
 		abstractPageSteps.deleteElementIfExists("aaf4");
 		itemsPageSteps.checkThatElementIsNotPresent("aaf4");
-		abstractPageSteps.selectActionFromLeftMenu("Risk Management");
+		abstractPageSteps.selectActionFromLeftMenu("Risk Criterias");
 		abstractPageSteps.deleteElementIfExists("754");
-		abstractPageSteps.selectActionFromLeftMenu("Categories");
-		abstractPageSteps.deleteElementIfExists("91");
 	}
 }
