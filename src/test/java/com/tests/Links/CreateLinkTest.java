@@ -3,14 +3,14 @@ package com.tests.Links;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import net.thucydides.core.annotations.Pending;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
 
 import com.steps.ClientsPageSteps;
 import com.steps.ItemsPageSteps;
-import com.steps.LinksPageSteps;
+import com.steps.MandatesPageSteps;
+import com.steps.SearchPageSteps;
 import com.tests.BaseTest;
 import com.tools.Application;
 import com.tools.Constants;
@@ -20,89 +20,80 @@ import com.tools.Constants;
 public class CreateLinkTest extends BaseTest {
 
 	@Steps
-	public LinksPageSteps linksPageSteps;
-	@Steps
 	public ItemsPageSteps itemsPageSteps;
 	@Steps
 	public ClientsPageSteps clientsPageSteps;
+	@Steps
+	public SearchPageSteps searchPageSteps;
+	@Steps
+	public MandatesPageSteps mandatesPageSteps;
 
-	@Pending
 	@Test
 	public void createLink() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
-		// create mandate
-
+		// create office
+		abstractPageSteps.selectMenuOption("Offices");
+		 itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
+		 // create mandate
+		 abstractPageSteps.selectActionFromTopMenu("Mandates");
+		 searchPageSteps.searchAndDeleteItem("Mandate2");
+		 mandatesPageSteps.createBasicMandate("Liquidator", "Mandate2",
+		 "cluj",
+		 "John Doe");
+		 abstractPageSteps.selectActionFromRibbon("Close");
+		 searchPageSteps.searchAndDeleteItem("Mandate3");
+		 mandatesPageSteps.createBasicMandate("Liquidator", "Mandate3",
+		 "cluj",
+		 "John Doe");
 		// create client
-		abstractPageSteps.selectMenuOption("Clients");
+		abstractPageSteps.selectActionFromTopMenu("Clients");
 		abstractPageSteps.deleteElementIfExists("Doe Joe");
 		abstractPageSteps.selectActionFromRibbon("Individual");
-		clientsPageSteps.createBasicStandardIndividualClient("Argentina", "Doe", "Joe");
-		abstractPageSteps.selectActionFromRibbon("Save");
-		abstractPageSteps.selectActionFromRibbon("Links");
-		abstractPageSteps.selectActionFromRibbon("Types");
-		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
-		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
-		// create linkCategories
-		abstractPageSteps.selectActionFromRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("cl-md29");
-		abstractPageSteps.deleteElementIfExists("md1-cl29");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createLinkCategory("cl-md29", "Client", "Mandate",
-				"Client-Mandate");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createLinkCategory("md1-cl29", "Mandate", "Client",
-				"Mandate-Client");
-		abstractPageSteps.selectActionFromRibbon("Close");
-		// create linkTypes
-		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createLinkType("Client2-Mandate2", "cl-md29");
-		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createLinkType("Mandate4-Client4", "md1-cl29");
-		abstractPageSteps.selectActionFromRibbon("Close");
+		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Doe",
+				"Joe");
+		abstractPageSteps.selectActionFromLeftMenu("Linked Mandates");
+
 		// create links
-
 		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createActiveLink("Cl-md Link", "Client", "Walters",
-				"Mandate", "PAEMandate", "Client2-Mandate2",
-				"Client mandate link");
-		itemsPageSteps.checkIfElementIsPresent("Cl-md Link");
-		linksPageSteps.checkSource("Cl-cmd Link", "Client Walters");
-		linksPageSteps.checkTarget("Cl-md Link", "Mandate PAEMandate");
-		linksPageSteps.checkLinkType("Cl-md Link", "Client2-Mandate2");
-		linksPageSteps.checkIfActiveCheckBoxIsChecked("Cl-md Link");
+		abstractPageSteps.switchToCreateIframe();
+		clientsPageSteps.selectTargetObject("Mandate3");
+		clientsPageSteps.activateLinkType("UBO", "20");
+		clientsPageSteps.activateLinkType("Settlor", "30");
+		clientsPageSteps.inputLinkComments("Create link");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		clientsPageSteps.checkIfLinkIsPresentInActiveSection("Mandate3");
+		clientsPageSteps.checkThatLinkIsNotPresentInInactiveSection("Mandate3");
+		clientsPageSteps.checkLinkCommentsFromGrid("Mandate3", "Create link");
+		clientsPageSteps.selectLinkFromGrid("Mandate3");
+		abstractPageSteps.selectActionFromRibbon("View");
+		abstractPageSteps.selectEditModeButton();
+		clientsPageSteps.checkDataForActiveLink("UBO", "20");
+		clientsPageSteps.checkDataForActiveLink("Settlor", "30");
+		clientsPageSteps.inactivateLinkType("UBO", "100");
+		clientsPageSteps.inputLinkComments("Edit link");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Save");
+		clientsPageSteps.checkIfLinkIsPresentInActiveSection("Mandate3");
+		clientsPageSteps.checkIfLinkIsPresentInInactiveSection("Mandate3");
+		clientsPageSteps.checkLinkCommentsFromGrid("Mandate3", "Edit link");
+		clientsPageSteps.selectLinkFromGrid("Mandate3");
 
-		abstractPageSteps.selectActionFromRibbon("Create");
-		linksPageSteps.createActiveLink("Md-cl Link", "Mandate", "MTPMandate",
-				"Client", "Muller", "Mandate4-Client4", "Mandate client link");
-		itemsPageSteps.checkIfElementIsPresent("Md-cl Link");
-		linksPageSteps.checkSource("Md-cl Link", "Mandate MTPMandate");
-		linksPageSteps.checkTarget("Md-cl Link", "Client Muller");
-		linksPageSteps.checkLinkType("Md-cl Link", "Mandate4-Client4");
-		linksPageSteps.checkIfActiveCheckBoxIsChecked("Md-cl Link");
+		abstractPageSteps.selectActionFromRibbon("View");
+		abstractPageSteps.selectEditModeButton();
+		clientsPageSteps.checkDataForInactiveLink("UBO", "100");
+		abstractPageSteps.selectActionFromCreateAndEditPage("Close");
+		abstractPageSteps.selectActionFromTopMenu("Mandates");
+		searchPageSteps.searchByText("Mandate3");
+		searchPageSteps.selectItemFromSearchResultsList("Mandate3");
+		abstractPageSteps.selectActionFromLeftMenu("Linked Clients");
+		clientsPageSteps.checkIfLinkIsPresentInActiveSection("Joe Doe");
+		clientsPageSteps.checkIfLinkIsPresentInInactiveSection("Joe Doe");
+		searchPageSteps.searchAndDeleteItem("Mandate3");
+		clientsPageSteps.checkThatEntityDoesntExists("Mandate3");
+		searchPageSteps.searchAndDeleteItem("Mandate2");
+		clientsPageSteps.checkThatEntityDoesntExists("Mandate2");
+		abstractPageSteps.selectActionFromTopMenu("Clients");
+		searchPageSteps.searchAndDeleteItem("Joe Doe");
+		clientsPageSteps.checkThatEntityDoesntExists("Joe Doe");
 
-		// activate links
-
-		abstractPageSteps.selectItemFromGrid("Cl-md Link");
-		abstractPageSteps.selectItemFromGrid("Md-cl Link");
-		abstractPageSteps.selectActionFromRibbon("Activate");
-		linksPageSteps.checkIfActiveCheckBoxIsChecked("Cl-md Link");
-		linksPageSteps.checkIfActiveCheckBoxIsChecked("Md-cl Link");
-
-		// deactivate links
-		abstractPageSteps.selectItemFromGrid("Cl-md Link");
-		abstractPageSteps.selectItemFromGrid("Md-cl Link");
-		abstractPageSteps.selectActionFromRibbon("Deactivate");
-		linksPageSteps.checkIfActiveCheckBoxIsNotChecked("Cl-md Link");
-		linksPageSteps.checkIfActiveCheckBoxIsNotChecked("Md-cl Link");
-
-		// delete items
-		abstractPageSteps.deleteElementIfExists("Cl-md Link");
-		abstractPageSteps.deleteElementIfExists("Md-cl Link");
-		abstractPageSteps.selectActionFromRibbon("Types");
-		abstractPageSteps.deleteElementIfExists("Client2-Mandate2");
-		abstractPageSteps.deleteElementIfExists("Mandate4-Client4");
-		abstractPageSteps.selectActionFromRibbon("Categories");
-		abstractPageSteps.deleteElementIfExists("cl-md29");
-		abstractPageSteps.deleteElementIfExists("md1-cl29");
 	}
 }

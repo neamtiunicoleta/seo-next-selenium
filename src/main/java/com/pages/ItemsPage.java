@@ -67,7 +67,6 @@ public class ItemsPage extends AbstractPage {
 		List<WebElement> gridList = getDriver().findElements(
 				By.cssSelector("div[class*='select2-drop'] ul li"));
 		for (WebElement item : gridList) {
-			System.out.println("!!!!!!!!!!!!!!!!!" + item.getText());
 			if (item.getText().contains(id)) {
 				item.click();
 				return true;

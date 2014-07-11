@@ -1020,4 +1020,219 @@ public class ClientsPage extends AbstractPage {
 				otherField.contentEquals(other));
 	}
 
+	public void selectTargetObject(String title) {
+		getDriver().findElement(By.cssSelector("div[id*='TargetObject']"))
+				.click();
+		List<WebElement> statesList = getDriver().findElements(
+				By.cssSelector("select[id*='TargetObject'] option"));
+		boolean foundOption = false;
+		for (WebElement item : statesList) {
+			if (item.getText().equals(title)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The target was not found!", foundOption);
+
+	}
+
+	public void activateLinkType(String type, String date) {
+		List<WebElement> typesList = getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain tr[id*='Tr2'] tbody tr"));
+		boolean foundOption = false;
+		List<WebElement> newList = null;
+		typesList.remove(0);
+		for (int i = 0; i < typesList.size(); i++) {
+
+			if (isAttributePresent(typesList.get(i), "id")) {
+				typesList.remove(i);
+			}
+			newList = typesList;
+		}
+		for (WebElement item : newList) {
+			if (item.findElement(By.cssSelector("td:first-child")).getText()
+					.contentEquals(type)) {
+				foundOption = true;
+
+				item.findElement(
+						By.cssSelector("td:nth-child(2) input[id*='rbActive']"))
+						.click();
+				WebElement activatedOnField = item
+						.findElement(By
+								.cssSelector("td:nth-child(3) input[name*='CreatedOnDate']"));
+				element(activatedOnField).type(date);
+			}
+		}
+
+		Assert.assertTrue("The type was not found", foundOption);
+	}
+
+	public void inactivateLinkType(String type, String date) {
+		List<WebElement> typesList = getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain tr[id*='Tr2'] tbody tr"));
+		boolean foundOption = false;
+		List<WebElement> newList = null;
+		typesList.remove(0);
+		for (int i = 0; i < typesList.size(); i++) {
+
+			if (isAttributePresent(typesList.get(i), "id")) {
+				typesList.remove(i);
+			}
+			newList = typesList;
+		}
+		for (WebElement item : newList) {
+			if (item.findElement(By.cssSelector("td:first-child")).getText()
+					.contentEquals(type)) {
+				foundOption = true;
+
+				item.findElement(
+						By.cssSelector("td:nth-child(2) input[id*='rbInactive']"))
+						.click();
+				WebElement activatedOnField = item
+						.findElement(By
+								.cssSelector("td:nth-child(4) input[name*='ChangedDateDate']"));
+				element(activatedOnField).type(date);
+			}
+		}
+
+		Assert.assertTrue("The type was not found", foundOption);
+	}
+
+	public void inputLinkComments(String comment) {
+		WebElement commentField = returnField("textarea", "Comment");
+		element(commentField).clear();
+		element(commentField).type(comment);
+	}
+
+	public boolean checkIfLinkIsPresentInActiveSection(String... key) {
+		boolean foundDocument = false;
+		foundDocument = checkIfElementWithSpecifiedTextExistsInList(
+				By.cssSelector("div#DeltaPlaceHolderMain > div:nth-of-type(1) tr>td:nth-child(3)"),
+				true, false, key);
+		return foundDocument;
+	}
+
+	public boolean checkIfLinkIsPresentInInactiveSection(String... key) {
+		boolean foundDocument = false;
+		foundDocument = checkIfElementWithSpecifiedTextExistsInList(
+				By.cssSelector("div#DeltaPlaceHolderMain > div:nth-of-type(2) tr>td:nth-child(3)"),
+				true, false, key);
+		return foundDocument;
+	}
+
+	public void selectLinkFromGrid(String name) {
+		List<WebElement> gridList = getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain > div:nth-of-type(1) tr"));
+		gridList.remove(0);
+		for (WebElement elemNow : gridList) {
+			String elemId = elemNow.findElement(
+					By.cssSelector("a[id*='targetObject']")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			if (elemId != null && name.contentEquals(elemId)) {
+				elemNow.findElement(By.cssSelector("input")).click();
+				break;
+			}
+		}
+	}
+
+	public void checkDataForActiveLink(String type, String date) {
+		List<WebElement> typesList = getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain tr[id*='Tr2'] tbody tr"));
+		List<WebElement> newList = null;
+		typesList.remove(0);
+
+		for (int i = 0; i < typesList.size(); i++) {
+
+			if (isAttributePresent(typesList.get(i), "id")) {
+				typesList.remove(i);
+			}
+			newList = typesList;
+		}
+
+		for (WebElement item : newList) {
+			if (item.findElement(By.cssSelector("td:first-child")).getText()
+					.contentEquals(type)) {
+
+				Assert.assertTrue(
+						"The radio button is not checked",
+						isAttributePresent(
+								item.findElement(By
+										.cssSelector("td:nth-child(2) input[id*='rbActive']")),
+								"checked"));
+				Assert.assertTrue(
+						"Activated on date is not correct",
+						item.findElement(
+								By.cssSelector("td:nth-child(3) input[name*='CreatedOnDate']"))
+								.getAttribute("value").contentEquals(date));
+
+			}
+		}
+
+	}
+
+	public void checkDataForInactiveLink(String type, String date) {
+		List<WebElement> typesList = getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain tr[id*='Tr2'] tbody tr"));
+		List<WebElement> newList = null;
+		typesList.remove(0);
+
+		for (int i = 0; i < typesList.size(); i++) {
+
+			if (isAttributePresent(typesList.get(i), "id")) {
+				typesList.remove(i);
+			}
+			newList = typesList;
+		}
+
+		for (WebElement item : newList) {
+			if (item.findElement(By.cssSelector("td:first-child")).getText()
+					.contentEquals(type)) {
+
+				Assert.assertTrue(
+						"The radio button is not checked",
+						isAttributePresent(
+								item.findElement(By
+										.cssSelector("td:nth-child(2) input[id*='rbInactive']")),
+								"checked"));
+
+				Assert.assertTrue(
+						"Activated on date is not correct",
+						item.findElement(
+								By.cssSelector("td:nth-child(4) input[name*='ChangedDateDate']"))
+								.getAttribute("value").contentEquals(date));
+
+			}
+		}
+
+	}
+
+	public void checkLinkCommentsFromGrid(String name, String comment) {
+		String result = "";
+		List<WebElement> gridList = getVisibleElementsFromList(getDriver()
+				.findElements(
+						By.cssSelector("div#DeltaPlaceHolderMain > div:nth-of-type(1) tr>td:nth-child(3)")));
+		gridList.remove(0);
+
+		for (WebElement elemNow : gridList) {
+			String elemId = elemNow.findElement(
+					By.cssSelector("a[id*='targetObject']")).getText();
+			elemId = elemId.replace("\n", "");
+			elemId = elemId.replace(
+					"Use SHIFT+ENTER to open the menu (new window).", "");
+			if (elemId != null && name.contentEquals(elemId)) {
+				Assert.assertTrue("The text is not correct",
+						result.contains(comment));
+				break;
+			}
+
+		}
+	}
 }

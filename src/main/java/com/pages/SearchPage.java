@@ -73,12 +73,9 @@ public class SearchPage extends AbstractPage {
 		for (WebElement item : resultsList) {
 			WebElement title = item.findElement(By
 					.cssSelector("tr:nth-child(2)>td:nth-child(2)"));
-			System.out.println("****************" + title.getText());
 			if (title.getText().contentEquals(key)) {
-				System.out.println("@@@@@@@@@" + title.getText());
 				mouseOver(item.findElement(By
 						.cssSelector("tr:nth-child(1)>td:nth-child(4) a")));
-				System.out.println("FOUND IT1!!!!!!!");
 				waitABit(5000);
 				item.findElement(
 						By.cssSelector("tr:nth-child(1)>td:nth-child(4) a"))

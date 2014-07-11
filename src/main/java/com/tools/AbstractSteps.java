@@ -7,7 +7,6 @@ import com.pages.ClientsPage;
 import com.pages.FilterPage;
 import com.pages.HitLogPage;
 import com.pages.ItemsPage;
-import com.pages.LinksPage;
 import com.pages.MandatesPage;
 import com.pages.SearchPage;
 import com.pages.UploadItemsPage;
@@ -42,10 +41,6 @@ public class AbstractSteps extends ScenarioSteps {
 
 	public FilterPage filterPage() {
 		return getPages().currentPageAt(FilterPage.class);
-	}
-
-	public LinksPage linksPage() {
-		return getPages().currentPageAt(LinksPage.class);
 	}
 
 	public ClientsPage clientsPage() {

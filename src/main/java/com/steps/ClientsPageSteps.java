@@ -448,4 +448,86 @@ public class ClientsPageSteps extends AbstractSteps {
 	public void checkResolution(String title, String resolution) {
 		clientsPage().checkResolution(title, resolution);
 	}
+
+	@Step
+	public void selectTargetObject(String title) {
+		clientsPage().selectTargetObject(title);
+	}
+
+	@Step
+	public void activateLinkType(String type, String days) {
+		clientsPage().activateLinkType(
+				type,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void inactivateLinkType(String type, String days) {
+		clientsPage().inactivateLinkType(
+				type,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+	}
+
+	@Step
+	public void inputLinkComments(String comment) {
+		clientsPage().inputLinkComments(comment);
+	}
+
+	@Step
+	public void checkIfLinkIsPresentInActiveSection(String name) {
+		Assert.assertTrue("The link is not present!", clientsPage()
+				.checkIfLinkIsPresentInActiveSection(name));
+	}
+
+	@Step
+	public void checkThatLinkIsNotPresentInActiveSection(String name) {
+		Assert.assertFalse("The link is not present!", clientsPage()
+				.checkIfLinkIsPresentInActiveSection(name));
+	}
+
+	@Step
+	public void checkIfLinkIsPresentInInactiveSection(String name) {
+		Assert.assertTrue("The link is present!", clientsPage()
+				.checkIfLinkIsPresentInInactiveSection(name));
+	}
+
+	@Step
+	public void checkThatLinkIsNotPresentInInactiveSection(String name) {
+		Assert.assertFalse("The link is present!", clientsPage()
+				.checkIfLinkIsPresentInInactiveSection(name));
+	}
+
+	@Step
+	public void selectLinkFromGrid(String name) {
+		clientsPage().selectLinkFromGrid(name);
+	}
+
+	@Step
+	public void checkDataForActiveLink(String type, String days) {
+		clientsPage().checkDataForActiveLink(
+				type,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+
+	}
+
+	@Step
+	public void checkDataForInactiveLink(String type, String days) {
+		clientsPage().checkDataForInactiveLink(
+				type,
+				DateUtils.toString(
+						DateUtils.addDays(new Date(), Integer.parseInt(days)),
+						"dd/MM/yyyy"));
+
+	}
+
+	@Step
+	public void checkLinkCommentsFromGrid(String name, String comment) {
+		clientsPage().checkLinkCommentsFromGrid(name, comment);
+	}
 }

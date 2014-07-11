@@ -115,7 +115,6 @@ public class UploadItemsPage extends AbstractPage {
 						By.cssSelector("div[id*='DeltaPlaceHolderMain'] > div:nth-of-type(3) tbody tr"));
 		documentInformations.remove(0);
 		for (WebElement item : documentInformations) {
-			System.out.println("$$$$$$$$$$$$$" + item.getText());
 			if (item.findElement(By.cssSelector("td:nth-child(2)")).getText()
 					.contentEquals(id)) {
 				WebElement documentType = item.findElement(By
