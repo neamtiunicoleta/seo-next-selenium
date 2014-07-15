@@ -17,7 +17,7 @@ import com.tools.Constants;
 
 @Story(Application.Create.CreateLink.class)
 @RunWith(ThucydidesRunner.class)
-public class CreateLinkTest extends BaseTest {
+public class CreateLinkFromClientTest extends BaseTest {
 
 	@Steps
 	public ItemsPageSteps itemsPageSteps;
@@ -29,25 +29,23 @@ public class CreateLinkTest extends BaseTest {
 	public MandatesPageSteps mandatesPageSteps;
 
 	@Test
-	public void createLink() {
+	public void createLinkFromClientSide() {
 		abstractPageSteps.openLoginPage(Constants.SEONEXT_BASE_URL);
 		// create office
 		abstractPageSteps.selectMenuOption("Offices");
-		 itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
-		 // create mandate
-		 abstractPageSteps.selectActionFromTopMenu("Mandates");
-		 searchPageSteps.searchAndDeleteItem("Mandate2");
-		 mandatesPageSteps.createBasicMandate("Liquidator", "Mandate2",
-		 "cluj",
-		 "John Doe");
-		 abstractPageSteps.selectActionFromRibbon("Close");
-		 searchPageSteps.searchAndDeleteItem("Mandate3");
-		 mandatesPageSteps.createBasicMandate("Liquidator", "Mandate3",
-		 "cluj",
-		 "John Doe");
+		itemsPageSteps.createBasicOfficeIfNotExists("cluj", "cjj");
+		// create mandate
+		abstractPageSteps.selectActionFromTopMenu("Mandates");
+		searchPageSteps.searchAndDeleteItem("Mandate2");
+		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate2", "cluj",
+				"John Doe");
+		abstractPageSteps.selectActionFromRibbon("Close");
+		searchPageSteps.searchAndDeleteItem("Mandate3");
+		mandatesPageSteps.createBasicMandate("Liquidator", "Mandate3", "cluj",
+				"John Doe");
 		// create client
 		abstractPageSteps.selectActionFromTopMenu("Clients");
-		abstractPageSteps.deleteElementIfExists("Doe Joe");
+		searchPageSteps.searchAndDeleteItem("Doe Joe");
 		abstractPageSteps.selectActionFromRibbon("Individual");
 		clientsPageSteps.createBasicStandardIndividualClient("cluj", "Doe",
 				"Joe");

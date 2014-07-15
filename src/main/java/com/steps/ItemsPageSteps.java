@@ -337,4 +337,24 @@ public class ItemsPageSteps extends AbstractSteps {
 	public void checkOrganizationunit(String name, String unit) {
 		itemsPage().checkOrganizationUnit(name, unit);
 	}
+
+	@Step
+	public void selectMandateServiceType(String type) {
+		itemsPage().selectMandateServiceType(type);
+	}
+
+	@Step
+	public void checkTypeFromGrid(String id, String type) {
+		itemsPage().checkTypeFromGrid(id, type);
+	}
+
+	@Step
+	public void inputServiceDescription(String description) {
+		itemsPage().inputServiceDescription(description);
+	}
+
+	@Step
+	public void selectTaskTypeForDeficienct(String type) {
+		itemsPage().selectTaskTypeForDeficienct(type);
+	}
 }

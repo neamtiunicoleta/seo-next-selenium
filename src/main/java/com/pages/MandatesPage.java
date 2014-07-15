@@ -70,6 +70,7 @@ public class MandatesPage extends AbstractPage {
 	}
 
 	public void inputAccountManager(String userName) {
+		waitABit(3000);
 		WebElement identificationMadeByField = getDriver()
 				.findElement(
 						By.cssSelector("input[id*='UserAccountManager_TopSpan_EditorInput']"));

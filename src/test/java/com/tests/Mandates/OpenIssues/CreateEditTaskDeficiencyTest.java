@@ -15,7 +15,7 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Story;
 import net.thucydides.junit.runners.ThucydidesRunner;
 
-@Story(Application.Create.CreateTaskDeficiencies.class)
+@Story(Application.Create.CreateTaskDeficiency.class)
 @RunWith(ThucydidesRunner.class)
 public class CreateEditTaskDeficiencyTest extends BaseTest {
 

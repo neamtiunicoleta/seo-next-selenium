@@ -17,7 +17,7 @@ public class ItemsPage extends AbstractPage {
 	}
 
 	public void inputKeyField(String key) {
-		WebElement keyField = returnField("input", "idKey");
+		WebElement keyField = returnField("input", "Key");
 		element(keyField).clear();
 		element(keyField).type(key);
 	}
@@ -241,5 +241,49 @@ public class ItemsPage extends AbstractPage {
 
 	public void checkOrganizationUnit(String name, String unit) {
 		checkTextFromField("td:nth-child(3)", name, unit);
+	}
+
+	public void selectMandateServiceType(String type) {
+		getDriver().findElement(By.cssSelector("div[id*='ddlServiceType']"))
+				.click();
+		List<WebElement> typesList = getDriver().findElements(
+				By.cssSelector("select[id*='ddlServiceType'] option"));
+		boolean foundOption = false;
+		for (WebElement country : typesList) {
+			if (country.getText().equals(type)) {
+				foundOption = true;
+				country.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The type was not found!", foundOption);
+
+	}
+
+	public void checkTypeFromGrid(String id, String type) {
+		checkTextFromField("td:nth-child(4)", id, type);
+	}
+
+	public void inputServiceDescription(String description) {
+		WebElement descriptionField = returnField("input", "Description");
+		element(descriptionField).clear();
+		element(descriptionField).type(description);
+
+	}
+
+	public void selectTaskTypeForDeficienct(String type) {
+		getDriver().findElement(By.cssSelector("div[id*='TaskType']")).click();
+		List<WebElement> taskTypeList = getDriver().findElements(
+				By.cssSelector("div[class*='select2-drop'] ul li"));
+		boolean foundOption = false;
+		for (WebElement item : taskTypeList) {
+			if (item.getText().equals(type)) {
+				foundOption = true;
+				item.click();
+				break;
+			}
+		}
+		Assert.assertTrue("The task type was not found!", foundOption);
+
 	}
 }

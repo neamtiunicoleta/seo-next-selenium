@@ -60,7 +60,7 @@ public class Application {
 
 		}
 
-		public class CreateTaskDeficiencies {
+		public class CreateTaskDeficiency {
 
 		}
 
@@ -115,6 +115,17 @@ public class Application {
 
 		}
 
+		public class EditMandateService {
+
+		}
+
+		public class EditTaskType {
+
+		}
+
+		public class EditTaskDeficiency {
+
+		}
 	}
 
 	public class Import {
@@ -168,11 +179,15 @@ public class Application {
 
 		}
 
-		public class ExportTaskDeficiencies {
+		public class ExportTaskDeficiency {
 
 		}
 
 		public class ExportDocumentType {
+
+		}
+
+		public class ExportMandateServices {
 
 		}
 	}
